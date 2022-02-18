@@ -1,0 +1,84 @@
+/****************************** Body
+*/
+main{
+    margin-top: 75px!important;
+}
+.mb-section {
+    margin-bottom: 7%;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.imgProduct{
+    height: auto;
+    width: 100px;
+}
+
+/* End Body
+_______________________________*/
+/****************************** H5
+*/
+
+h5 {
+    font-size: 1.375rem !important;
+    margin-bottom: 20px !important;
+}
+
+/* End H5
+_______________________________*/
+
+/****************************** Border
+*/
+
+.rounded-4 {
+    border-radius: 20px;
+}
+
+/* End Border
+_______________________________*/
+/******************************* Hoover
+*/
+.search-hover {
+    border: 1px solid #ccc;
+    outline: none;
+    background-size: 22px;
+    background-position: 13px;
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    padding: 25px;
+    transition: all 0.5s;
+}
+
+.search-hover:hover {
+    width: 300px;
+    padding-right: 50px;
+}
+
+/* End Hoover
+_______________________________*/
+
+
+/******************************
+          RESPONSIVE
+*******************************/
+
+@media screen and (max-width: 1320px) {
+    .footer-bg-p {
+        padding-top: 22px;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .footer-bg-p {
+        padding-top: 15px;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .footer-bg-p {
+        padding-top: 14px;
+    }
+}

@@ -1,0 +1,199 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DefaultController!{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/index.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="node_modules/aos/dist/aos.css"/>
+{% endblock %}
+
+{% block body %}
+    <html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!---------------------------------------
+                         CSS
+         ---------------------------------------->
+
+        <!--  Index Stylesheet  -->
+        {# <link rel="stylesheet" href="css/index.css"/>
+
+        <!--  AOS Stylesheet  -->
+        <link rel="stylesheet" href="node_modules/aos/dist/aos.css"/> #}
+        <!---------------------------------------
+                    End CSS
+        ---------------------------------------->
+        <title>La Nîmes'Alerie</title>
+    </head>
+
+    <body>
+    <main>
+        <!-- ici Carousel -->
+        <section class="bg-info carousel mb-section mt-5">
+
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{{ asset('images/carousel-1.png') }}" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('images/carousel-2.jpg') }}" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('images/carousel-3.jpg') }}" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                        data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                        data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+        </section>
+        <!-- ici QSN ? -->
+        <section class="mb-section qsn">
+            <div class="container text-center">
+                <h2 class="mb-5">Qui sommes-nous ?</h2>
+                <p>
+                    consectetur adipiscing elit. Bibendum vulputate vitae elit, pretium lacinia morbi viverra facilisis
+                    purus.
+                    Pharetra consequat enim tincidunt a. Massa faucibus gravida pellentesque amet. Ut egestas elit
+                    adipiscing ornare risus.
+                    Commodo sollicitudin est sit tristique feugiat praesent nulla neque. Pellentesque cursus faucibus
+                    diam pellentesque eget donec.
+                    Senectus ac magna semper consectetur. Ullamcorper pharetra et amet morbi.
+                </p>
+            </div>
+        </section>
+        <!-- ici Produits du moments -->
+        <section class="pdm mb-section">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-lg-12 col-sm-12">
+                        <div class="border">
+                            <div class="container">
+                                <h2>
+                                    Produits du moments
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-sm-12">
+                        <div class="border">
+                            <div class="my-slider">
+                                <div>test</div>
+                                <div>test</div>
+                                <div>test</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-sm-12">
+                        <div class="border">
+                            <button>Voir tous les produits</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ici  VPM-->
+        <section class="mb-section">
+            <div class="container ">
+                <div class="rounded-4 vpm py-5">
+                    <h2 class="text-center mb-5">Vous en parlez le mieux :</h2>
+                    <div class="row  px-5 my-5">
+
+                        <div class="col-lg-4 col-sm-12 mb-sm-5">
+                            <img src="{{ asset('images/index/vpm_photo.png') }}" class="d-block mx-auto" alt="photo du témoin" width=""
+                                 height="">
+                        </div>
+                        <div class="col-lg-8 col-sm-12 vpm_block_text">
+                            <p class="mx-sm-auto text-sm-center mx-lg-0">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec venenatis turpis massa
+                                fermentum. Sed blandit porta sed quis quis imperdiet mattis.
+                                Yves G.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ici  Réassurance-->
+        <section class="mb-section reassurance aos-item" data-aos="fade-up">
+            <div class="container">
+                <h2 class="text-center rea-h2 position-relative">Un service à la hauteur de vos compagnons !</h2>
+                <div class="row text-center rea_margin">
+                    <div class="col-lg-4 col-sm-12 ">
+                        <div class="rea_block_ship rounded-4">
+                            <img src="{{ asset('images/index/reassurance_shippment.png') }}" alt="" width="" height="">
+                        </div>
+                        <p>
+                            Livraison sous <strong>24h</strong>
+                        </p>
+                        <hr class="mb-5">
+                    </div>
+                    <div class="col-lg-4 col-sm-12 rea_block">
+                        <div class="rea_block_mPaiement rounded-4 position-relative">
+                            <img src="{{ asset('images/index/reassurance_mPaiement.png') }}" alt="" width="" height="">
+                        </div>
+                        <p>
+                            Paiement sécurisé
+                        </p>
+                        <hr class="mb-5">
+                    </div>
+                    <div class="col-lg-4 col-sm-12 ">
+                        <div class="rea_block_refound rounded-4">
+                            <img src="{{ asset('images/index/reassurance_remboursement.png') }}" alt="" width="" height="">
+                        </div>
+                        <p>
+                            Remboursement sous <strong>30 jours</strong>
+                        </p>
+                        <hr class="mb-5">
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% if app.request.cookies.get('accepted') != 1 %}
+            <div class="row">
+                <div class="col-md-4 col-sm-12 button-fixed">
+                    <div class="p-3 pb-4 bg-custom text-white">
+                        <div class="row">
+                            <div class="col-10">
+                                <h2>Allow Cookies</h2>
+                            </div>
+                            <div class="col-2 text-center">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua.
+                        </p>
+                        <a href="{{ path('cookie_authorize') }}">
+                            <button type="button" class="btn btn-danger w-100">Accept Cookies</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </main>
+    </body>
+    </html>
+{% endblock %}
+{% block javascripts %}
+     {{ parent() }}
+     <script src="node_modules/aos/dist/aos.js"></script>
+     <script>
+         AOS.init();
+     </script>
+ {% endblock %}

@@ -1,0 +1,177 @@
+/******************************
+            NavBar
+*******************************/
+.section-navbar {
+  background-color: aliceblue;
+}
+
+.div-navbar ul {
+  margin-bottom: 0;
+}
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  font-size: 1rem;
+}
+
+i {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.nav-disp a:hover{
+  color: black!important;
+}
+
+.section-navbar svg {
+  height: 4.5rem;
+  padding: 1.5rem;
+
+  cursor: pointer;
+  position: absolute;
+}
+
+svg.searchBar-search {
+  fill: #0a53be;
+  z-index: 99;
+}
+
+/* close btn initial style */
+svg.searchBar-remove {
+  visibility: hidden;
+  opacity: 0;
+  z-index: 98;
+  right: 0;
+  transition: 0.5s all ease-in-out;
+}
+
+/* close btn open searchBar style */
+svg.searchBar-remove.open {
+  opacity: 1;
+  visibility: visible;
+  fill: cornflowerblue;
+  transition: 1s all ease-in-out;
+}
+
+/* input initial style */
+#searchBar-input {
+  padding: 1rem 2rem;
+  border-radius: 50%;
+  width: 2rem;
+  box-shadow: 0 0 0 3px green;
+  background-color: transparent;
+  border: none;
+  transition: 500ms width ease-in-out, 500ms padding ease-in-out,
+    500ms border-radius ease-in-out;
+}
+
+/* input openn searchBar style */
+#searchBar-input.open {
+  width: 14rem;
+  padding: 0.5rem 1rem 0.5rem 4rem;
+  border-radius: 12px;
+}
+
+@media screen and (max-width: 960px) {
+  svg.searchBar-remove {
+    transition: 0s all;
+  }
+
+  svg.searchBar-remove.open {
+    transition: 0s all;
+  }
+
+  #form-searchBar {
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* padding: 1rem 0;
+    background-color: #0a53be; */
+  }
+
+  #searchBar-input {
+    transition: 0s all;
+  }
+
+  #form-searchBar.open {
+    padding: 1rem 0;
+    background-color: #bf4f1f;
+  }
+
+  #searchBar-input.open {
+    width: 100%;
+    padding: 0.5rem 1rem 0.5rem 4rem;
+    border-radius: 12px;
+    transition: 0s all;
+    border-bottom: 2px black;
+    box-shadow: 0 0 2px 0 black;
+  }
+}
+
+/* / ============ desktop view ============ / */
+
+@media all and (min-width: 992px) {
+  .navbar .dropdown-menu-end {
+    right: 0;
+    left: auto;
+  }
+
+  .navbar .nav-item .dropdown-menu {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+    margin-top: 0;
+  }
+
+  .navbar .nav-item:hover .nav-link {
+    color: #fff;
+  }
+
+  .navbar .dropdown-menu.fade-down {
+    top: 80%;
+    transform: rotateX(-75deg);
+    transform-origin: 0% 0%;
+  }
+
+  .navbar .dropdown-menu.fade-up {
+    top: 180%;
+  }
+
+  .navbar .nav-item:hover .dropdown-menu {
+    transition: 0.3s;
+    opacity: 1;
+    visibility: visible;
+    top: 100%;
+    transform: rotateX(0deg);
+  }
+
+  .navbar .dropdown-large {
+    min-width: 500px;
+  }
+}
+
+/* / ============ desktop view .end// ============ */
+
+/******************************
+          End NavBar
+*******************************/
+
+/******************************
+          RESPONSIVE
+*******************************/
+
+/*@media screen and (max-width: 1320px) {
+
+}
+
+
+
+@media screen and (max-width: 540px) {
+
+}*/

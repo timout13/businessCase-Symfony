@@ -1,0 +1,15 @@
+.text-justify{
+    text-align: justify ;
+}
+
+.img-md-detail {
+    border-width: 8px 1px 8px 1px;
+    border-color: green;
+    border-style: solid;
+    border-radius: 5px;
+}
+
+.divImg{
+    width: 90px;
+    height: auto;
+}

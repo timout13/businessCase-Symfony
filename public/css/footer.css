@@ -1,0 +1,61 @@
+/******************************
+          FOOTER
+*******************************/
+
+.height-footer {
+    padding-top: 50px;
+}
+
+.bg-footer {
+    background-color: #1b4332;
+    border-radius: 25px 25px 0px 0px;
+    box-shadow: 0px -5px 25px rgba(0, 0, 0, 0.2);
+}
+
+.bg-footer h3, .bg-footer p {
+    color: white;
+}
+
+.div-svg-footer {
+    z-index: -1;
+    width: 100%;
+}
+
+.footer-bg-p {
+    padding-top: 40px;
+}
+
+.bg-footer-paw {
+    background-image: none;
+}
+
+.logo-footer {
+    filter: brightness(10);
+}
+
+L
+
+/******************************
+          End FOOTER
+*******************************/
+/******************************
+          RESPONSIVE
+*******************************/
+
+@media screen and (max-width: 1320px) {
+    .footer-bg-p {
+        padding-top: 22px;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .footer-bg-p {
+        padding-top: 15px;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .footer-bg-p {
+        padding-top: 14px;
+    }
+}
