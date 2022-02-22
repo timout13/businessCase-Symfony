@@ -1,11 +1,12 @@
 .bg-custom{
-    background-color:#130f40;
+    background-color:#091a14;
 }
 .button-fixed{
     bottom: 0;
     position: fixed;
     right: 0;
     border-radius: 4px;
+    z-index: 90;
 }
 .fas{
     cursor: pointer;
@@ -13,4 +14,8 @@
 }
 p{
     font-size: 14px;
+}
+.btn-color{
+    background-color: #40916c;
+    color: white;
 }

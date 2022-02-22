@@ -28,6 +28,22 @@ i {
   color: black!important;
 }
 
+.fade-up a {
+  color: black;
+}
+
+.fade-up a:hover {
+  color: #40916c!important;
+}
+
+.a-color {
+  color: #0000008c!important;
+}
+
+.a-color:hover {
+  color: black!important;
+}
+
 .section-navbar svg {
   height: 4.5rem;
   padding: 1.5rem;
@@ -37,8 +53,12 @@ i {
 }
 
 svg.searchBar-search {
-  fill: #0a53be;
+  fill: #0000008c;
   z-index: 99;
+}
+
+svg.searchBar-search:hover {
+  fill: black;
 }
 
 /* close btn initial style */
@@ -54,7 +74,7 @@ svg.searchBar-remove {
 svg.searchBar-remove.open {
   opacity: 1;
   visibility: visible;
-  fill: cornflowerblue;
+  fill: #0000008c;
   transition: 1s all ease-in-out;
 }
 

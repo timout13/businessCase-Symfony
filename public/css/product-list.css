@@ -1,0 +1,6 @@
+.cat-card {
+    border-radius: 20px;
+    height: 10rem;
+    color: white;
+    background-image: url('../images/index/bulle_poisson_droite.png');
+}

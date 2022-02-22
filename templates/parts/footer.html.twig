@@ -1,8 +1,10 @@
 <div class="container-fluid footer-bg-p px-0 position-relative">
     <div class="position-absolute div-svg-footer top-0">
 
-        <svg class="svg-footer" width="100%" height="100%" viewBox="0 0 1440 112" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M-4.97323e-05 12.0031V162.003H1440V12.0031C1350 -27.9978 1191 45.2814 1080 45.502C940 45.2814 889 12.5029 720 12.5029C551 12.5029 501.5 45.2825 360 45.2826C249 45.2826 89.9999 -27.9978 -4.97323e-05 12.0031Z" fill="#081C15" />
+        <svg class="svg-footer" width="100%" height="100%" viewBox="0 0 1440 112" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+            <path d="M-4.97323e-05 12.0031V162.003H1440V12.0031C1350 -27.9978 1191 45.2814 1080 45.502C940 45.2814 889 12.5029 720 12.5029C551 12.5029 501.5 45.2825 360 45.2826C249 45.2826 89.9999 -27.9978 -4.97323e-05 12.0031Z"
+                  fill="#081C15"/>
         </svg>
     </div>
 
@@ -30,7 +32,8 @@
                 </p>
             </div>
             <div class="col-lg-2 col-sm-12">
-                <a class="navbar-brand me-5" href="#"><img src="{{ asset('images/logo_min.png') }}" alt="logo" width="100"  class="img-fluid logo-footer"></a>
+                <a class="navbar-brand me-5" href="#"><img src="{{ asset('images/logo_min.png') }}" alt="logo"
+                                                           width="100" class="img-fluid logo-footer"></a>
             </div>
             <div class="col-lg-2 col-sm-12">
                 <h3>SEO</h3>
@@ -41,12 +44,26 @@
             </div>
             <div class="col-lg-2 col-sm-12">
                 <h3 class="text-end bg-footer-paw">Réseaux </br> sociaux </h3>
+                <div class="d-flex socialN justify-content-end gap-2">
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                            <!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                            <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
+                        </svg>
+                    </a>
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                            <!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                            <path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
-            <div class="col-12 d-flex pb-5 gap-4">
-                <a href="{{ path('mentions-legales') }}">Mentions légales</a>
-                <a href="{{ path('cgv') }}">CGV</a>
-                <a href="#">FAQ</a>
-                <a href="#">Plan du site</a>
+            <div class="col-12 d-flex pb-5 gap-4 link-footer">
+                <a href="{{ path('mentions-legales') }}" class="position-relative">Mentions légales</a>
+                <a href="{{ path('cgv') }}" class="position-relative">CGV</a>
+                <a href="#" class="position-relative">FAQ</a>
+                <a href="#" class="position-relative">Plan du site</a>
             </div>
         </div>
     </div>

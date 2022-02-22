@@ -21,6 +21,16 @@
     width: 100%;
 }
 
+.socialN svg {
+    height: 1.5rem;
+    fill: white;
+}
+
+.socialN svg:hover {
+    fill: #40916c!important;
+
+}
+
 .footer-bg-p {
     padding-top: 40px;
 }
@@ -33,7 +43,54 @@
     filter: brightness(10);
 }
 
-L
+.bg-footer a {
+    color: white;
+    text-decoration: none;
+
+}
+
+
+.link-footer a::before {
+    position: absolute;
+    content: '';
+    width: 10px;
+    height: 2px;
+    top: 100%;
+    left: 0;
+    background-color: white;
+}
+
+.link-footer a:hover::before {
+    content: '';
+    width: 0%;
+    left: 0;
+    background-color: white;
+    animation: traitRetour 2s ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+@keyframes traitRetour {
+    from {
+        width: 0;
+    }
+    25% {
+        width: 100%;
+        left: 0;
+    }
+
+    50% {
+        width: 0%;
+        left: 100%;
+    }
+    75% {
+        width: 100%;
+        left: 0;
+    }
+    to {
+        left: 0;
+        width: 0;
+    }
+}
 
 /******************************
           End FOOTER
