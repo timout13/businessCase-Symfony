@@ -17,7 +17,7 @@ class Products
     private $name;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $descrption;
+    private $description;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $image;
@@ -45,14 +45,14 @@ class Products
         return $this;
     }
 
-    public function getDescrption(): ?string
+    public function getdescription(): ?string
     {
-        return $this->descrption;
+        return $this->description;
     }
 
-    public function setDescrption(string $descrption): self
+    public function setdescription(string $description): self
     {
-        $this->descrption = $descrption;
+        $this->description = $description;
 
         return $this;
     }
