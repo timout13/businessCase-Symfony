@@ -1,8 +1,9 @@
 <section class="section-navbar">
     <nav class="fixed-top navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="{{ path('default') }}"><img src="{{ asset('images/logo_min.png') }}" height="50"
-                                                          alt="logo de l'Animealerie"></a>
+            <a class="navbar-brand" href="{{ path('default') }}"><img src="{{ asset('images/logo_min.png') }}"
+                                                                      height="50"
+                                                                      alt="logo de l'Animealerie"></a>
             <div class="d-flex order-lg-last align-items-center gap-2 gap-md-5">
                 <form class="d-flex justify-content-start align-items-center position-relative" id="form-searchBar">
                     <!--                    <i class="fas fa-search" id="searchBar-search"></i>-->
@@ -22,7 +23,7 @@
                 </a>
 
 
-                {#<?php
+                {# <?php
                 if (isset($_SESSION) && isset($_SESSION['lastname'])) {
                     echo ('
                     <div class="btn-group">
@@ -41,68 +42,70 @@
             echo ('<a href="login.php"><i class="fas fa-user-circle fa"></i></a>');
             }
 
-            ?>#}
-        </div>
-        <button class="navbar-toggler order-first" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse " id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto nav-disp my-2 my-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ path('default') }}">ACCUEIL</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="{{ path('products') }}" data-bs-toggle="dropdown"> PRODUITS </a>
-                    <div class="dropdown-menu dropdown-large px-4 fade-up" data-bs-popper="none">
-                        <div class="row g-3">
-                            <div class="col-6">
-                                <h6 class="title">Nos animaux</h6>
-                                <ul class="list-unstyled">
-                                    <li><a href="#">Félins </a></li>
-                                    <li><a href="#">Canidés </a></li>
-                                    <li><a href="#">Rongeurs </a></li>
-                                    <li><a href="#">Poissons </a></li>
-                                    <li><a href="#">Volatile </a></li>
-                                </ul>
-                            </div><!-- end col-3 -->
-                            <div class="col-6">
-                                <h6 class="title">Title second</h6>
-                                <ul class="list-unstyled">
-                                    <li><a href="#">Submenu item </a></li>
-                                    <li><a href="#">Submenu item </a></li>
-                                    <li><a href="#">Submenu item </a></li>
-                                    <li><a href="#">Submenu item </a></li>
-                                    <li><a href="#">Submenu item </a></li>
-                                </ul>
-                            </div><!-- end col-3 -->
-                        </div><!-- end row -->
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        SERVICES
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">À PROPOS</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="#">CONTACT</a>
-                </li>
-            </ul>
+            ?> #}
+            </div>
+            <button class="navbar-toggler order-first" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto nav-disp my-2 my-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="{{ path('products') }}" data-bs-toggle="dropdown">
+                            PRODUITS </a>
+                        <div class="dropdown-menu dropdown-large px-4 fade-up" data-bs-popper="none">
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <h6 class="title">Nos animaux</h6>
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <a href="{{ path('product_list', {'currentPage': 1, 'nbDisplayed': 2}) }}">Félins</a>
+                                        </li>
 
-        </div>
+                                        <li><a href="#">Canidés </a></li>
+                                        <li><a href="#">Rongeurs </a></li>
+                                        <li><a href="#">Poissons </a></li>
+                                        <li><a href="#">Volatile </a></li>
+                                    </ul>
+                                </div><!-- end col-3 -->
+                                <div class="col-6">
+                                    <h6 class="title">Title second</h6>
+                                    <ul class="list-unstyled">
+                                        <li><a href="#">Submenu item </a></li>
+                                        <li><a href="#">Submenu item </a></li>
+                                        <li><a href="#">Submenu item </a></li>
+                                        <li><a href="#">Submenu item </a></li>
+                                        <li><a href="#">Submenu item </a></li>
+                                    </ul>
+                                </div><!-- end col-3 -->
+                            </div><!-- end row -->
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            SERVICES
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">À PROPOS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="#">CONTACT</a>
+                    </li>
+                </ul>
+
+            </div>
         </div>
     </nav>
 </section>

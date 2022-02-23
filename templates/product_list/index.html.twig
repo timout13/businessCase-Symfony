@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/product-list.css') }}">
+{% endblock %}
+
+{% block body %}
+    <main>
+        <div class="container">
+            <h3>Nos produits</h3>
+            <div class="row gap-4 justify-content-center py-5">
+                <a class="col-md-3 border cat-card bg-success" data-bs-toggle="collapse" href="#multiCollapseExample1">
+                    <div>Félins</div>
+                </a>
+                <a class="col-md-3 border cat-card bg-success">
+                    <div>Canidés</div>
+                </a>
+                <a class="col-md-3 border cat-card bg-success">
+                    <div>Rongeurs</div>
+                </a>
+                <a class="col-md-3 border cat-card bg-success">
+                    <div>Poissons</div>
+                </a>
+                <a class="col-md-3 border cat-card bg-success" href="#">
+                    <div>Volatiles</div>
+                </a>
+
+            </div>
+            <div class="row justify-content-center collapse" id="multiCollapseExample1">
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="{{ path('product_list', {'currentPage': currentPage, 'nbDisplayed': 2}) }}">Afficher 2
+                        produits</a>
+                    <a href="{{ path('product_list', {'currentPage': currentPage, 'nbDisplayed': 4}) }}">Afficher 4
+                        produits</a>
+                </div>
+                {% for produit in produits %}
+                    <div class="col-md-3 col-sm-12 d-flex justify-content-center">
+                        <div class="card" style="width: 18rem;">
+                            <img src="{{ produit.image }}" class="card-img-top  imgProduct" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ produit.name }}</h5>
+                                <p class="card-text">{{ produit.descrption| u.truncate(50, '...') }}</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <a href="{{ path('cart_add', {'id': produit.id }) }}" class="btn btn-primary">Ajouter au
+                                    panier</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <nav aria-label="Page navigation example" class="mt-4">
+                    <ul class="pagination justify-content-center">
+                        {% if currentPage !=1 %}
+                            <li class="page-item">
+                                <a class="page-link"
+                                   href="{{ path('product_list', {'currentPage': currentPage-1, 'nbDisplayed': nbDisplayed}) }}"
+                                   aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% for page in 1..nbPage %}
+                            <li class="page-item {% if page == currentPage %}active{% endif %}"><a class="page-link"
+                                                                                                   href="{{ path('product_list', {'currentPage': page, 'nbDisplayed': nbDisplayed}) }}">{{ page }}</a>
+                            </li>
+                        {% endfor %}
+                        {% if currentPage != nbPage %}
+                            <li class="page-item">
+                                <a class="page-link"
+                                   href="{{ path('product_list', {'currentPage': currentPage+1, 'nbDisplayed': nbDisplayed}) }}"
+                                   aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </main>
+{% endblock %}

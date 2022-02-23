@@ -19,6 +19,12 @@ class ProductsRepository extends ServiceEntityRepository
         parent::__construct($registry, Products::class);
     }
 
+    public function findByPagination($currentPage, $nbDisplayed) {
+        return $this->createQueryBuilder('p')
+            ->setMaxResults($nbDisplayed)->setFirstResult($currentPage*$nbDisplayed-$nbDisplayed)
+            ->getQuery()->getResult();
+    }
+
     // /**
     //  * @return Products[] Returns an array of Products objects
     //  */
@@ -47,4 +53,5 @@ class ProductsRepository extends ServiceEntityRepository
         ;
     }
     */
+
 }
