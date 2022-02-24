@@ -19,6 +19,14 @@ class Orders
     #[ORM\Column(type: 'date')]
     private $dateOrder;
 
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'orders')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $user;
+
+    #[ORM\ManyToOne(targetEntity: Status::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private $status;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +52,30 @@ class Orders
     public function setDateOrder(\DateTimeInterface $dateOrder): self
     {
         $this->dateOrder = $dateOrder;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getStatus(): ?Status
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?Status $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }
