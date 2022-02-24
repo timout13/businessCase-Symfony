@@ -18,16 +18,15 @@ class Category
     #[ORM\Column(type: 'string', length: 255)]
     private $label;
 
-    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'parent')]
+    #[ORM\OneToOne(targetEntity: self::class, cascade: ['persist', 'remove'])]
     private $parent;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $description;
-
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Products::class)]
+    private $product;
 
     public function __construct()
     {
-        $this->parent = new ArrayCollection();
+        $this->product = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -59,39 +58,34 @@ class Category
         return $this;
     }
 
-    public function addParent(self $parent): self
+    /**
+     * @return Collection|Products[]
+     */
+    public function getProduct(): Collection
     {
-        if (!$this->parent->contains($parent)) {
-            $this->parent[] = $parent;
-            $parent->setParent($this);
+        return $this->product;
+    }
+
+    public function addProduct(Products $product): self
+    {
+        if (!$this->product->contains($product)) {
+            $this->product[] = $product;
+            $product->setCategory($this);
         }
 
         return $this;
     }
 
-    public function removeParent(self $parent): self
+    public function removeProduct(Products $product): self
     {
-        if ($this->parent->removeElement($parent)) {
+        if ($this->product->removeElement($product)) {
             // set the owning side to null (unless already changed)
-            if ($parent->getParent() === $this) {
-                $parent->setParent(null);
+            if ($product->getCategory() === $this) {
+                $product->setCategory(null);
             }
         }
 
         return $this;
     }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(?string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
 
 }

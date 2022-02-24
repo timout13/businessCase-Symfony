@@ -40,8 +40,8 @@
                             <img src="{{ produit.image }}" class="card-img-top  imgProduct" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">{{ produit.name }}</h5>
-                                <p class="card-text">{{ produit.descrption| u.truncate(50, '...') }}</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <p class="card-text">{{ produit.description| u.truncate(50, '...') }}</p>
+                                <a href="{{ path('detail', {'id': produit.id }) }}" class="btn btn-primary">détail du produit</a>
                                 <a href="{{ path('cart_add', {'id': produit.id }) }}" class="btn btn-primary">Ajouter au
                                     panier</a>
                             </div>

@@ -25,8 +25,13 @@ class Products
     #[ORM\Column(type: 'float')]
     private $price;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'integer', nullable: false)]
     private $nbStar;
+
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'product')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $category;
+
 
     public function getId(): ?int
     {
@@ -92,4 +97,17 @@ class Products
 
         return $this;
     }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
 }

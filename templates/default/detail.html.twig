@@ -38,23 +38,18 @@
                                 </div>
                             </div>
                             <div class="d-flex align-items-center">
-                                <img src="{{ produit.image }}" alt="Image de croquette pour chien" class="img-fluid img-md-detail">
+                                <img src="{{ produit.image }}" alt="Image de croquette pour chien"
+                                     class="img-fluid img-md-detail">
 
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <h4 class="text-end text-success fw-bolder mb-4">Croquettes pour chien Medium Maxi +10 kg Adult
-                            ULTIMA</h4>
-                        <p class="text-end blockquote-footer">ref client : 123456</p>
+                        <h4 class="text-end text-success fw-bolder mb-4">{{ produit.name }}</h4>
+                        <p class="text-end blockquote-footer">ref client : {{ produit.id }}</p>
                         <h6 class="text-success fw-bolder mb-4">Description du produit :</h6>
                         <p class="text-justify">
-                            Ultima Medium-Maxi (+10kg) Adult (1 - 7 Ans) a été élaboré avec une grande variété
-                            d'ingrédients
-                            comme le poulet, le riz, les céréales complètes, les carottes, les haricots verts et la
-                            pomme.Cette recette associe des ingrédients de haute qualité pour que votre chien reste en
-                            pleine forme. La délicieuse sauce qui recouvre les croquettes lui confère une très bonne
-                            saveur.
+                            {{ produit.description }}
                         </p>
                         <div class="d-flex justify-content-end gap-5 mt-5 pt-2">
                             <button type="button" class="btn btn-success">Success</button>
