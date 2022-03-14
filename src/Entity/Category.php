@@ -18,15 +18,19 @@ class Category
     #[ORM\Column(type: 'string', length: 255)]
     private $label;
 
-    #[ORM\OneToOne(targetEntity: self::class, cascade: ['persist', 'remove'])]
-    private $parent;
-
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Products::class)]
     private $product;
+
+    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'categories')]
+    private $cat_parent;
+
+    #[ORM\OneToMany(mappedBy: 'cat_parent', targetEntity: self::class)]
+    private $categories;
 
     public function __construct()
     {
         $this->product = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -42,18 +46,6 @@ class Category
     public function setLabel(string $label): self
     {
         $this->label = $label;
-
-        return $this;
-    }
-
-    public function getParent(): ?self
-    {
-        return $this->parent;
-    }
-
-    public function setParent(?self $parent): self
-    {
-        $this->parent = $parent;
 
         return $this;
     }
@@ -82,6 +74,48 @@ class Category
             // set the owning side to null (unless already changed)
             if ($product->getCategory() === $this) {
                 $product->setCategory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getCatParent(): ?self
+    {
+        return $this->cat_parent;
+    }
+
+    public function setCatParent(?self $cat_parent): self
+    {
+        $this->cat_parent = $cat_parent;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(self $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+            $category->setCatParent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(self $category): self
+    {
+        if ($this->categories->removeElement($category)) {
+            // set the owning side to null (unless already changed)
+            if ($category->getCatParent() === $this) {
+                $category->setCatParent(null);
             }
         }
 

@@ -6,32 +6,22 @@
 {% endblock %}
 
 {% block body %}
-    <main>
+
         <div class="container">
             <h3>Nos produits</h3>
             <div class="row gap-4 justify-content-center py-5">
-                <a class="col-md-3 border cat-card bg-success" data-bs-toggle="collapse" href="#multiCollapseExample1">
-                    <div>Félins</div>
-                </a>
-                <a class="col-md-3 border cat-card bg-success">
-                    <div>Canidés</div>
-                </a>
-                <a class="col-md-3 border cat-card bg-success">
-                    <div>Rongeurs</div>
-                </a>
-                <a class="col-md-3 border cat-card bg-success">
-                    <div>Poissons</div>
-                </a>
-                <a class="col-md-3 border cat-card bg-success" href="#">
-                    <div>Volatiles</div>
-                </a>
-
+                {% for categorie in categories %}
+                    <a class="col-md-3 border cat-card bg-success" data-bs-toggle="collapse"
+                       href="#multiCollapseExample1">
+                        <div>{{categorie.label}}</div>
+                    </a>
+                {% endfor %}
             </div>
-            <div class="row justify-content-center collapse" id="multiCollapseExample1">
+            <div class="row justify-content-center" id="multiCollapseExample1">
                 <div class="d-flex justify-content-center gap-3">
-                    <a href="{{ path('product_list', {'currentPage': currentPage, 'nbDisplayed': 2}) }}">Afficher 2
+                    <a href="{{ path('product_list', {'idCat':idCat, 'currentPage': currentPage, 'nbDisplayed': 2}) }}">Afficher 2
                         produits</a>
-                    <a href="{{ path('product_list', {'currentPage': currentPage, 'nbDisplayed': 4}) }}">Afficher 4
+                    <a href="{{ path('product_list', {'idCat':idCat, 'currentPage': currentPage, 'nbDisplayed': 4}) }}">Afficher 4
                         produits</a>
                 </div>
                 {% for produit in produits %}
@@ -53,7 +43,7 @@
                         {% if currentPage !=1 %}
                             <li class="page-item">
                                 <a class="page-link"
-                                   href="{{ path('product_list', {'currentPage': currentPage-1, 'nbDisplayed': nbDisplayed}) }}"
+                                   href="{{ path('product_list', {'idCat':idCat, 'currentPage': currentPage-1, 'nbDisplayed': nbDisplayed}) }}"
                                    aria-label="Previous">
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
@@ -61,13 +51,13 @@
                         {% endif %}
                         {% for page in 1..nbPage %}
                             <li class="page-item {% if page == currentPage %}active{% endif %}"><a class="page-link"
-                                                                                                   href="{{ path('product_list', {'currentPage': page, 'nbDisplayed': nbDisplayed}) }}">{{ page }}</a>
+                                                                                                   href="{{ path('product_list', {'idCat':idCat, 'currentPage': page, 'nbDisplayed': nbDisplayed}) }}">{{ page }}</a>
                             </li>
                         {% endfor %}
                         {% if currentPage != nbPage %}
                             <li class="page-item">
                                 <a class="page-link"
-                                   href="{{ path('product_list', {'currentPage': currentPage+1, 'nbDisplayed': nbDisplayed}) }}"
+                                   href="{{ path('product_list', {'idCat':idCat, 'currentPage': currentPage+1, 'nbDisplayed': nbDisplayed}) }}"
                                    aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
                                 </a>
@@ -78,5 +68,5 @@
                 </nav>
             </div>
         </div>
-    </main>
+
 {% endblock %}

@@ -38,6 +38,9 @@ class Products
     #[ORM\Column(type: 'boolean')]
     private $available;
 
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $flagship;
+
 
     public function getId(): ?int
     {
@@ -136,6 +139,18 @@ class Products
     public function setAvailable(bool $available): self
     {
         $this->available = $available;
+
+        return $this;
+    }
+
+    public function getFlagship(): ?bool
+    {
+        return $this->flagship;
+    }
+
+    public function setFlagship(?bool $flagship): self
+    {
+        $this->flagship = $flagship;
 
         return $this;
     }

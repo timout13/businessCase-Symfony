@@ -19,10 +19,14 @@ class ProductsRepository extends ServiceEntityRepository
         parent::__construct($registry, Products::class);
     }
 
-    public function findByPagination($currentPage, $nbDisplayed) {
+    public function findByPagination($idCat, $currentPage, $nbDisplayed) {
         return $this->createQueryBuilder('p')
-            ->setMaxResults($nbDisplayed)->setFirstResult($currentPage*$nbDisplayed-$nbDisplayed)
-            ->getQuery()->getResult();
+            ->where('p.category = :idCat')
+            ->setParameter('idCat', $idCat)
+            ->setMaxResults($nbDisplayed)
+            ->setFirstResult($currentPage*$nbDisplayed-$nbDisplayed)
+            ->getQuery()
+            ->getResult();
     }
 
     // /**

@@ -7,6 +7,7 @@ let searchForm = document.querySelector("#form-searchBar");
 let searchIcon = document.querySelector(".searchBar-search");
 let searchClose = document.querySelector(".searchBar-remove");
 let searchInput = document.querySelector("#searchBar-input");
+let listLogin = document.querySelector(".li-connexion");
 
 /***************
  Fonctions
@@ -47,15 +48,17 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     window.addEventListener("resize", () => {
-        //Input 'open' & width < 960 = input take full width of the window
-        if (innerWidth < 960 && searchInput.classList.contains("open")) {
-            sectionNavBar.classList.add("position-relative");
-            searchForm.classList.add("position-absolute");
+        if (innerWidth < 960) {
+            //Input 'open' & width < 960 = input take full width of the window
+            if (searchInput.classList.contains("open")) {
+                sectionNavBar.classList.add("position-relative");
+                searchForm.classList.add("position-absolute");
+            } else {
+                sectionNavBar.classList.remove("position-relative");
+                searchForm.classList.remove("position-absolute");
+            }
         }
+
         //Initial position of the searchBar
-        else {
-            sectionNavBar.classList.remove("position-relative");
-            searchForm.classList.remove("position-absolute");
-        }
     });
 });

@@ -15,17 +15,23 @@
         <link rel="stylesheet" href="{{ asset('css/cookie.css') }}">
         <link rel="stylesheet" href="{{ asset('node_modules/bootstrap-icons/font/bootstrap-icons.css') }}">
         <link rel="stylesheet" href="{{ asset('node_modules/@fortawesome/fontawesome-free/css/all.min.css') }}">
-{#        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">#}
+        {#        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css"> #}
     {% endblock %}
 
 
 </head>
 <body>
-{% include 'parts/header.html.twig' %}
+<header>
+    {{ render(controller('App\\Controller\\DefaultController::displayCatNav')) }}
+</header>
+<main>
 
 {% block body %}{% endblock %}
+</main>
+<footer>
 
-{% include 'parts/footer.html.twig' %}
+    {% include 'parts/footer.html.twig' %}
+</footer>
 
 
 {% block javascripts %}

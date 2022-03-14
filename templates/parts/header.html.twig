@@ -20,8 +20,27 @@
                 </form>
                 <a href="{{ path('cart_display') }}" class="a-color">
                     <i class="fas fa-shopping-cart text-center"></i>
-                    <i class="bi-alarm"></i>
                 </a>
+
+
+                {% if app.user %}
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-success rounded-pill dropdown-toggle"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            <i class="fas fa-user-circle fa-2x "></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#">Menu item</a></li>
+                            <li><a class="dropdown-item" href="account.php">Mon compte</a></li>
+                            <li><a class="dropdown-item" href="{{ path('app_logout') }}">Me déconnecter</a></li>
+                        </ul>
+                    </div>
+                {% else %}
+                    <a href="{{ path('app_login') }}" class="a-color block-icon-connexion d-md-none d-lg-block">
+                        <i class="bi bi-box-arrow-in-right"></i>
+                    </a>
+                {% endif %}
 
 
                 {# <?php
@@ -54,21 +73,22 @@
             <div class="collapse navbar-collapse " id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto nav-disp my-2 my-lg-0">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="{{ path('products') }}" data-bs-toggle="dropdown">
+                        <a class="nav-link dropdown-toggle"
+                           href=""
+                           data-bs-toggle="dropdown">
                             PRODUITS </a>
                         <div class="dropdown-menu dropdown-large px-4 fade-up" data-bs-popper="none">
                             <div class="row g-3">
                                 <div class="col-6">
                                     <h6 class="title">Nos animaux</h6>
                                     <ul class="list-unstyled">
-                                        <li>
-                                            <a href="{{ path('product_list', {'currentPage': 1, 'nbDisplayed': 2}) }}">Félins</a>
-                                        </li>
-
-                                        <li><a href="#">Canidés </a></li>
-                                        <li><a href="#">Rongeurs </a></li>
-                                        <li><a href="#">Poissons </a></li>
-                                        <li><a href="#">Volatile </a></li>
+                                        {% for category in categories %}
+                                            <li>
+                                                <a href="{{ path('product_list', {'idCat':category.id, 'currentPage': 1, 'nbDisplayed': 2}) }}">
+                                                    {{ category.label }}
+                                                </a>
+                                            </li>
+                                        {% endfor %}
                                     </ul>
                                 </div><!-- end col-3 -->
                                 <div class="col-6">
@@ -104,9 +124,18 @@
                     <li class="nav-item">
                         <a class="nav-link " href="#">CONTACT</a>
                     </li>
+                    <li class="nav-item li-connexion d-lg-none">
+                        <hr>
+                        <a class="nav-link d-flex align-items-center a-connexion" href="{{ path('app_login') }}">
+                            <i class="bi bi-box-arrow-in-right"></i>
+                            <p class="mb-0">Connexion</p>
+                        </a>
+                    </li>
                 </ul>
 
             </div>
         </div>
     </nav>
+    <div class="bg-success py-1"> test</div>
+
 </section>
