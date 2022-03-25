@@ -14,6 +14,9 @@ class BrandFixtures extends Fixture
     public const PURINA_REFERENCE = 'purina';
     public const FROLIC_REFERENCE = 'frolic';
     public const ANKA_REFERENCE = 'anka';
+    public const EDGARDANDCOOPER_REFERENCE = 'edgardAndCooper';
+    public const TETRA_REFERENCE = 'tetra';
+    public const PARADISIO_REFERENCE = 'paradisio';
     public function load(ObjectManager $manager): void
     {
         // $product = new Product();
@@ -42,12 +45,27 @@ class BrandFixtures extends Fixture
         $anka->setLabel('Anka');
         $this->addReference(self::ANKA_REFERENCE, $anka);
 
+        $edgardAndCooper = new Brand();
+        $edgardAndCooper->setLabel('Edgard & Cooper');
+        $this->addReference(self::EDGARDANDCOOPER_REFERENCE, $edgardAndCooper);
+
+        $tetra = new Brand();
+        $tetra->setLabel('Tetra');
+        $this->addReference(self::TETRA_REFERENCE, $tetra);
+
+        $paradisio = new Brand();
+        $paradisio->setLabel('Paradisio');
+        $this->addReference(self::PARADISIO_REFERENCE, $paradisio);
+
         $manager->persist($whiskas);
         $manager->persist($pedigree);
         $manager->persist($royalcanin);
         $manager->persist($purina);
         $manager->persist($frolic);
         $manager->persist($anka);
+        $manager->persist($edgardAndCooper);
+        $manager->persist($tetra);
+        $manager->persist($paradisio);
         $manager->flush();
     }
 }

@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Form\SearchEngineType;
 use App\Repository\CategoryRepository;
 use App\Repository\ProductsRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,15 +19,26 @@ class ProductListController extends AbstractController
     }*/
 
     #[Route('/product/list/{idCat}/{currentPage}/{nbDisplayed}', name: 'product_list', requirements: ['idCat' => '\d+'])]
-    public function products(ProductsRepository $productsRepository, $currentPage, $nbDisplayed, $idCat, CategoryRepository $categoryRepository): Response {
-        $nbProducts = $productsRepository->count([]);
+    public function products(ProductsRepository $productsRepository, $currentPage, $nbDisplayed, $idCat, CategoryRepository $categoryRepository, Request $request): Response {
+        $form = $this->createForm(SearchEngineType::class);
+        $form->handleRequest($request);
+
+        $nbProducts = $productsRepository->countByCat($idCat);
         $nbPage = $nbProducts/$nbDisplayed;
+
         if ($nbProducts%$nbDisplayed !=0){
             $nbPage = (int) ($nbProducts/$nbDisplayed)+1;
         }
+
         $products = $productsRepository->findByPagination($idCat, $currentPage, $nbDisplayed);
         $categories = $categoryRepository->findByParentNull();
-        //$categories = $categoryRepository->findAll();
+
+
+        $productFiltered = '';
+        if ($form->isSubmitted() && $form->isValid()) {
+            $filter = $form->getData();
+            $productFiltered = $productsRepository->search($filter);
+        }
 
         return $this->render('product_list/index.html.twig', [
             'produits' => $products,
@@ -33,7 +46,9 @@ class ProductListController extends AbstractController
             'currentPage' => $currentPage,
             'nbDisplayed' => $nbDisplayed,
             'idCat'=> $idCat,
-            'categories'=>$categories
+            'categories'=>$categories,
+            'form'=>$form->createView(),
+            'productFiltered'=>$productFiltered
         ]);
     }
 }

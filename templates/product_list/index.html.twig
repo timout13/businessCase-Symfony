@@ -7,66 +7,109 @@
 
 {% block body %}
 
-        <div class="container">
-            <h3>Nos produits</h3>
-            <div class="row gap-4 justify-content-center py-5">
-                {% for categorie in categories %}
-                    <a class="col-md-3 border cat-card bg-success" data-bs-toggle="collapse"
-                       href="#multiCollapseExample1">
-                        <div>{{categorie.label}}</div>
-                    </a>
-                {% endfor %}
-            </div>
-            <div class="row justify-content-center" id="multiCollapseExample1">
-                <div class="d-flex justify-content-center gap-3">
-                    <a href="{{ path('product_list', {'idCat':idCat, 'currentPage': currentPage, 'nbDisplayed': 2}) }}">Afficher 2
+
+    <div class="container">
+        <h3>Nos produits</h3>
+        <div class="row gap-4 justify-content-center py-5">
+            {% for categorie in categories %}
+                <a class="col-md-3 border cat-card bg-success"
+                   href="{{ path('product_list', {'idCat':categorie.id, 'currentPage': 1, 'nbDisplayed': 2}) }}">
+                    <div>{{ categorie.label }}</div>
+                </a>
+            {% endfor %}
+        </div>
+
+        <div class="">
+        </div>
+        <div class="row justify-content-center">
+
+            <div class=" mb-5 border">
+                <div class="btn-group-vertical">
+                    <a class="btn btn-outline-success"
+                       href="{{ path('product_list', {'idCat':idCat, 'currentPage': currentPage, 'nbDisplayed': 2}) }}">Afficher
+                        2
                         produits</a>
-                    <a href="{{ path('product_list', {'idCat':idCat, 'currentPage': currentPage, 'nbDisplayed': 4}) }}">Afficher 4
+                    <a class="btn btn-outline-success"
+                       href="{{ path('product_list', {'idCat':idCat, 'currentPage': currentPage, 'nbDisplayed': 4}) }}">Afficher
+                        4
                         produits</a>
                 </div>
-                {% for produit in produits %}
-                    <div class="col-md-3 col-sm-12 d-flex justify-content-center">
-                        <div class="card" style="width: 18rem;">
-                            <img src="{{ produit.image }}" class="card-img-top  imgProduct" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ produit.name }}</h5>
-                                <p class="card-text">{{ produit.description| u.truncate(50, '...') }}</p>
-                                <a href="{{ path('detail', {'id': produit.id }) }}" class="btn btn-primary">détail du produit</a>
-                                <a href="{{ path('cart_add', {'id': produit.id }) }}" class="btn btn-primary">Ajouter au
-                                    panier</a>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-                <nav aria-label="Page navigation example" class="mt-4">
-                    <ul class="pagination justify-content-center">
-                        {% if currentPage !=1 %}
-                            <li class="page-item">
-                                <a class="page-link"
-                                   href="{{ path('product_list', {'idCat':idCat, 'currentPage': currentPage-1, 'nbDisplayed': nbDisplayed}) }}"
-                                   aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                        {% endif %}
-                        {% for page in 1..nbPage %}
-                            <li class="page-item {% if page == currentPage %}active{% endif %}"><a class="page-link"
-                                                                                                   href="{{ path('product_list', {'idCat':idCat, 'currentPage': page, 'nbDisplayed': nbDisplayed}) }}">{{ page }}</a>
-                            </li>
-                        {% endfor %}
-                        {% if currentPage != nbPage %}
-                            <li class="page-item">
-                                <a class="page-link"
-                                   href="{{ path('product_list', {'idCat':idCat, 'currentPage': currentPage+1, 'nbDisplayed': nbDisplayed}) }}"
-                                   aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        {% endif %}
+                {{ form_start(form) }}
+                {{ form_end(form) }}
 
-                    </ul>
-                </nav>
+            </div>
+            <div class="btn-group-vertical">
+                <a class="btn btn-outline-success"
+                   href="{{ path('product_list', {'idCat':idCat, 'currentPage': currentPage, 'nbDisplayed': 2}) }}">Afficher
+                    2
+                    produits</a>
+                <a class="btn btn-outline-success"
+                   href="{{ path('product_list', {'idCat':idCat, 'currentPage': currentPage, 'nbDisplayed': 4}) }}">Afficher
+                    4
+                    produits</a>
+            </div>
+            {% for productF in productFiltered %}
+                <p>{{ productF.name }}</p>
+            {% endfor %}
+            <div class="border row">
+                <div class="col-md-3 col-sm-12 bg-light sticky-sm-top">
+                    sidebar
+                </div>
+                <div class="col-md-9 col-sm-12">
+                    <div class="row">
+
+                        {% for produit in produits %}
+                            <div class="col-md-4 col-sm-12 col-12 d-flex justify-content-center">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="{{ produit.image }}" class="card-img-top  imgProduct" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ produit.name }}</h5>
+                                        <p class="card-text">{{ produit.description| u.truncate(50, '...') }}</p>
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <a href="{{ path('detail', {'id': produit.id }) }}"
+                                               class="btn btn-outline-success">détail
+                                                du produit</a>
+                                            <a href="{{ path('cart_add', {'id': produit.id }) }}"
+                                               class="btn btn-outline-success">Ajouter
+                                                au panier</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <nav aria-label="Page navigation example" class="mt-4">
+                            <ul class="pagination justify-content-center">
+                                {% if currentPage !=1 %}
+                                    <li class="page-item">
+                                        <a class="page-link"
+                                           href="{{ path('product_list', {'idCat':idCat, 'currentPage': currentPage-1, 'nbDisplayed': nbDisplayed}) }}"
+                                           aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                {% for page in 1..nbPage %}
+                                    <li class="page-item {% if page == currentPage %}active{% endif %}"><a
+                                                class="page-link"
+                                                href="{{ path('product_list', {'idCat':idCat, 'currentPage': page, 'nbDisplayed': nbDisplayed}) }}">{{ page }}</a>
+                                    </li>
+                                {% endfor %}
+                                {% if currentPage != nbPage %}
+                                    <li class="page-item">
+                                        <a class="page-link"
+                                           href="{{ path('product_list', {'idCat':idCat, 'currentPage': currentPage+1, 'nbDisplayed': nbDisplayed}) }}"
+                                           aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
 
 {% endblock %}

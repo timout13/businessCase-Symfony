@@ -27,24 +27,24 @@ class Category
     #[ORM\OneToMany(mappedBy: 'cat_parent', targetEntity: self::class)]
     private $categories;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->product = new ArrayCollection();
         $this->categories = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getLabel(): ?string
-    {
+    public function __toString() {
         return $this->label;
     }
 
-    public function setLabel(string $label): self
-    {
+    public function getId(): ?int {
+        return $this->id;
+    }
+
+    public function getLabel(): ?string {
+        return $this->label;
+    }
+
+    public function setLabel(string $label): self {
         $this->label = $label;
 
         return $this;
@@ -53,13 +53,11 @@ class Category
     /**
      * @return Collection|Products[]
      */
-    public function getProduct(): Collection
-    {
+    public function getProduct(): Collection {
         return $this->product;
     }
 
-    public function addProduct(Products $product): self
-    {
+    public function addProduct(Products $product): self {
         if (!$this->product->contains($product)) {
             $this->product[] = $product;
             $product->setCategory($this);
@@ -68,8 +66,7 @@ class Category
         return $this;
     }
 
-    public function removeProduct(Products $product): self
-    {
+    public function removeProduct(Products $product): self {
         if ($this->product->removeElement($product)) {
             // set the owning side to null (unless already changed)
             if ($product->getCategory() === $this) {
@@ -80,13 +77,11 @@ class Category
         return $this;
     }
 
-    public function getCatParent(): ?self
-    {
+    public function getCatParent(): ?self {
         return $this->cat_parent;
     }
 
-    public function setCatParent(?self $cat_parent): self
-    {
+    public function setCatParent(?self $cat_parent): self {
         $this->cat_parent = $cat_parent;
 
         return $this;
@@ -95,13 +90,11 @@ class Category
     /**
      * @return Collection|self[]
      */
-    public function getCategories(): Collection
-    {
+    public function getCategories(): Collection {
         return $this->categories;
     }
 
-    public function addCategory(self $category): self
-    {
+    public function addCategory(self $category): self {
         if (!$this->categories->contains($category)) {
             $this->categories[] = $category;
             $category->setCatParent($this);
@@ -110,8 +103,7 @@ class Category
         return $this;
     }
 
-    public function removeCategory(self $category): self
-    {
+    public function removeCategory(self $category): self {
         if ($this->categories->removeElement($category)) {
             // set the owning side to null (unless already changed)
             if ($category->getCatParent() === $this) {
