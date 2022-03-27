@@ -31,6 +31,7 @@
                 </thead>
                 <tbody>
                 {% for productOrder in cart %}
+                    {% dump productOrder %}
                     <tr>
                         <th scope="row">{{ productOrder.product.id }}</th>
                         <th scope="row">{{ productOrder.product.name }}</th>

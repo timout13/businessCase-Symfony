@@ -6,6 +6,7 @@
     {{ parent() }}
     <link href="{{ asset('css/index.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="node_modules/aos/dist/aos.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
 {% endblock %}
 
 {% block body %}
@@ -81,11 +82,9 @@
                 <div class="row text-center">
                     <div class="col-lg-12 col-sm-12">
                         <div class="border">
-                            <div class="container">
                                 <h2>
                                     Produits du moments
                                 </h2>
-                            </div>
                         </div>
                     </div>
                     <div class="col-lg-12 col-sm-12">
@@ -196,4 +195,21 @@
     <script>
         AOS.init();
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js">var slider = tns({
+            container: '.my-slider',
+            items: 1,
+            responsive: {
+                640: {
+                    edgePadding: 20,
+                    gutter: 20,
+                    items: 2
+                },
+                700: {
+                    gutter: 30
+                },
+                900: {
+                    items: 3
+                }
+            }
+        });</script>
 {% endblock %}

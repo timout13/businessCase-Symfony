@@ -28,10 +28,16 @@ class CartController extends AbstractController
         }
 
         $exist = false;
-        foreach ($cart as $productOrder){
-            if ($productOrder->getProduct() == $products){
+        foreach ($cart as $productOrderElem){
+            dump('produit');
+            dump($products);
+            dump('produits dans ma session panier');
+            dump($productOrderElem->getProduct());
+            dump('expression entre les deux');
+            dd($productOrderElem->getProduct() == $products);
+            if ($productOrderElem->getProduct() == $products){
                 $exist = true;
-                $productOrder->setQuantity($productOrder->getQuantity() + 1);
+                $productOrderElem->setQuantity($productOrderElem->getQuantity() + 1);
             }
         }
         if (!$exist){
