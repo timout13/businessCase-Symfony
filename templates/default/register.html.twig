@@ -15,7 +15,7 @@
                                 <form method="post">
                                     <div class="form-outline form-white mb-4">
                                         <label class="form-label" for="inputEmail">Nom d'utilisateur</label>
-                                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
+                                        <input type="email" value="" name="email" id="inputEmail"
                                                class="form-control"
                                                autocomplete="email" required autofocus>
                                     </div>
@@ -24,11 +24,9 @@
                                         <input type="password" name="password" id="inputPassword" class="form-control"
                                                autocomplete="current-password" required>
                                     </div>
-                                    {% if error %}
-                                        <div class="alert alert-danger mt-2">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                                    {% endif %}
+
                                     <input type="hidden" name="_csrf_token"
-                                           value="{{ csrf_token('authenticate') }}">
+                                           value="">
                                     <p class="small mb-4 pb-lg-2"><a class="text-dark" href="#!">Mot de passe oublié ?</a></p>
 
                                     {#{% if app.user %}
@@ -41,7 +39,7 @@
                                 </form>
                             </div>
                             <div>
-                                <p class="mb-0">Vous n'avez pas de compte ? <a href="{{ path('register') }}" class="text-dark fw-bold">Enregistrez-Vous</a></p>
+                                <p class="mb-0">Vous n'avez pas de compte ? <a href="#!" class="text-dark fw-bold">Enregistrez-Vous</a></p>
                             </div>
                         </div>
                     </div>

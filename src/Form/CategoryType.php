@@ -22,6 +22,7 @@ class CategoryType extends AbstractType
             )
             ->add('cat_parent', EntityType::class,
                 [
+                    'class' => Category::class,
                     'attr'=>['class'=>'form-control']
                 ]
             )

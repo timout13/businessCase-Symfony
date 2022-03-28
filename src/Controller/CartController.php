@@ -14,9 +14,9 @@ class CartController extends AbstractController
 {
 
     #[Route('/{id}', name: 'add', requirements: ['id'=> '\d+'])]
-    public function addToCart(Products $products, Request $request) {
+    public function addToCart(Products $product, Request $request) {
         $productOrder = new ProductOrder();
-        $productOrder->setProduct($products);
+        $productOrder->setProduct($product);
         $productOrder->setQuantity(1);
 
         $session = $request->getSession();
@@ -29,13 +29,13 @@ class CartController extends AbstractController
 
         $exist = false;
         foreach ($cart as $productOrderElem){
-            dump('produit');
-            dump($products);
+            /*dump('produit');
+            dump($product->getId());
             dump('produits dans ma session panier');
-            dump($productOrderElem->getProduct());
+            dump($productOrderElem->getProduct()->getId());
             dump('expression entre les deux');
-            dd($productOrderElem->getProduct() == $products);
-            if ($productOrderElem->getProduct() == $products){
+            dd($productOrderElem->getProduct() == $product);*/
+            if ($productOrderElem->getProduct()->getId() == $product->getId()){
                 $exist = true;
                 $productOrderElem->setQuantity($productOrderElem->getQuantity() + 1);
             }

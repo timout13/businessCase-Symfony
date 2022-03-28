@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Products;
+use App\Form\SearchEngineType;
+use App\Form\SearchType;
 use App\Repository\CategoryRepository;
 use App\Repository\ProductsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -35,13 +38,7 @@ class DefaultController extends AbstractController
             'categories' => $categories
         ]);
     }
-   /* #[Route('/products', name: 'products')]
-    public function products(): Response {
-        $produits = $this->productRepository->findAll();
-        return $this->render('default/products.html.twig', [
-            'produits' => $produits,
-        ]);
-    }*/
+
 
     #[Route('/detail/{id}', name: 'detail')]
     public function getOne(Products $product) {
@@ -56,5 +53,10 @@ class DefaultController extends AbstractController
     #[Route('/cgv', name: 'cgv')]
     public function cgv() {
         return $this->render('default/cgv.html.twig');
+    }
+
+    #[Route('/register', name: 'register')]
+    public function register() {
+        return $this->render('default/register.html.twig');
     }
 }
