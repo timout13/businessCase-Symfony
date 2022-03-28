@@ -35,7 +35,13 @@
 </header>
 <main>
 
-    {% block body %}{% endblock %}
+    {% block body %}
+        {% if  isAdmin  starts  with 'admin_' %}
+            <div class="height-100 bg-light">
+                <h4>Main Components</h4>
+            </div>
+        {% endif %}
+    {% endblock %}
 </main>
 <footer>
     {% if not (isAdmin  starts  with 'admin_') %}
