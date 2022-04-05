@@ -138,6 +138,37 @@ _______________________________*/
     background-color: #eaeaea;
 }
 
+/*________ Product Card _______*/
+.card {
+    width: 250px;
+    overflow: hidden;
+}
+
+.cart-icon{
+    position: absolute;
+    z-index: 10;
+    visibility: hidden;
+    opacity: 0;
+    top: 20px;
+    right:0;
+    transition: 0.3s;
+}
+
+
+.pdm .card:hover > .cart-icon{
+    background-color: blueviolet;
+    color: #3dd5f3;
+    visibility: visible;
+    opacity: 1;
+    right: 6px;
+    padding: 10px 10px 10px 10px;
+    border-radius: 25px;
+}
+
+.fa-md {
+    font-size: 15px!important;
+}
+
 /******************************
           End PdM
 *******************************/

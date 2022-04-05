@@ -10,6 +10,7 @@ use App\Repository\ProductsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
@@ -32,10 +33,16 @@ class DefaultController extends AbstractController
         ]);
     }
 
-    public function displayCatNav(): Response {
+    public function displayCatNav(SessionInterface $session): Response {
         $categories = $this->categoryRepository->findByParentNull();
+        $cart = $session->get('cart', []);
+        $cart_notif=0;
+        foreach ($cart as $value){
+            $cart_notif += $value->getQuantity();
+        }
         return $this->render('parts/header.html.twig', [
-            'categories' => $categories
+            'categories' => $categories,
+            'cart_notif'=> $cart_notif
         ]);
     }
 
@@ -55,8 +62,8 @@ class DefaultController extends AbstractController
         return $this->render('default/cgv.html.twig');
     }
 
-    #[Route('/register', name: 'register')]
+    /*#[Route('/register', name: 'register')]
     public function register() {
         return $this->render('default/register.html.twig');
-    }
+    }*/
 }

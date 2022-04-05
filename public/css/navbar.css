@@ -29,6 +29,10 @@ i {
     color: black !important;
 }
 
+.navbar .nav-item:hover .nav-link {
+    color: black;
+}
+
 .fade-up a {
     color: black;
 }
@@ -103,6 +107,30 @@ svg.searchBar-remove.open {
     display: none;
 }
 
+.notification {
+    text-decoration: none;
+    padding: 0px 11px;
+    position: relative;
+    display: inline-block;
+    border-radius: 2px;
+}
+
+.notification:hover > .notif-badge{
+    background: #52b98a;
+}
+
+.notification .notif-badge {
+    position: absolute;
+    top: -11px;
+    right: 0px;
+    border-radius: 50%;
+    background: #40916c;
+    font-size: 9px;
+    font-weight: 900;
+    color: white;
+    padding: 3px;
+}
+
 @media screen and (max-width: 959px) {
     svg.searchBar-remove {
         transition: 0s all;
@@ -165,10 +193,6 @@ svg.searchBar-remove.open {
         visibility: hidden;
         transition: 0.3s;
         margin-top: 0;
-    }
-
-    .navbar .nav-item:hover .nav-link {
-        color: #fff;
     }
 
     .navbar .dropdown-menu.fade-down {

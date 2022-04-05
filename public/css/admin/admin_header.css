@@ -9,9 +9,28 @@
     --z-fixed: 100
 }
 
+*,
+::before,
+::after {
+    box-sizing: border-box
+}
+
+body {
+    position: relative;
+    margin: 3rem 0 0 0;
+    padding: 0 1rem;
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    transition: .5s
+}
+
+a {
+    text-decoration: none
+}
+
 .header {
     width: 100%;
-    height: var(--header-height);
+    height: 3rem;
     position: fixed;
     top: 0;
     left: 0;
@@ -20,7 +39,7 @@
     justify-content: space-between;
     padding: 0 1rem;
     background-color: var(--white-color);
-    z-index: var(--z-fixed);
+    z-index: 100;
     transition: .5s
 }
 
@@ -47,7 +66,7 @@
     position: fixed;
     top: 0;
     left: -30%;
-    width: var(--nav-width);
+    width: 68px;
     height: 100vh;
     background-color: var(--first-color);
     padding: .5rem 1rem 0 0;
@@ -107,7 +126,7 @@
 }
 
 .body-pd {
-    padding-left: calc(var(--nav-width) + 1rem)
+    padding-left: calc(68px + 1rem)
 }
 
 .active {
@@ -129,13 +148,13 @@
 
 @media screen and (min-width: 768px) {
     body {
-        margin: calc(var(--header-height) + 1rem) 0 0 0;
-        padding-left: calc(var(--nav-width) + 2rem)
+        margin: calc(3rem + 1rem) 0 0 0;
+        padding-left: calc(68px + 2rem)
     }
 
     .header {
-        height: calc(var(--header-height) + 1rem);
-        padding: 0 2rem 0 calc(var(--nav-width) + 2rem)
+        height: calc(3rem + 1rem);
+        padding: 0 2rem 0 calc(68px + 2rem)
     }
 
     .header_img {
@@ -153,10 +172,10 @@
     }
 
     .show {
-        width: calc(var(--nav-width) + 156px)
+        width: calc(68px + 156px)
     }
 
     .body-pd {
-        padding-left: calc(var(--nav-width) + 188px)
+        padding-left: calc(68px + 188px)
     }
 }

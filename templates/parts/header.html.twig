@@ -18,8 +18,8 @@
                         <path d="M0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256zM175 208.1L222.1 255.1L175 303C165.7 312.4 165.7 327.6 175 336.1C184.4 346.3 199.6 346.3 208.1 336.1L255.1 289.9L303 336.1C312.4 346.3 327.6 346.3 336.1 336.1C346.3 327.6 346.3 312.4 336.1 303L289.9 255.1L336.1 208.1C346.3 199.6 346.3 184.4 336.1 175C327.6 165.7 312.4 165.7 303 175L255.1 222.1L208.1 175C199.6 165.7 184.4 165.7 175 175C165.7 184.4 165.7 199.6 175 208.1V208.1z"/>
                     </svg>
                 </form>
-                <a href="{{ path('cart_display') }}" class="a-color">
-                    <i class="fas fa-shopping-cart text-center"></i>
+                <a href="{{ path('cart_display') }}" class="a-color notification">
+                    <i class="fas fa-shopping-cart text-center"></i><span class="notif-badge">{{ cart_notif }}</span>
                 </a>
 
 
@@ -75,7 +75,7 @@
             <div class="collapse navbar-collapse " id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto nav-disp my-2 my-lg-0">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle"
+                        <a class="nav-link dropdown-toggle active"
                            href=""
                            data-bs-toggle="dropdown">
                             PRODUITS </a>
@@ -84,7 +84,7 @@
                                 <div class="col-6">
                                     <h6 class="title">Nos animaux</h6>
                                     <ul class="list-unstyled">
-                                        {% for category in categories %}
+                                       {% for category in categories %}
                                             <li>
                                                 <a href="{{ path('product_list', {'idCat':category.id, 'currentPage': 1, 'nbDisplayed': 2}) }}">
                                                     {{ category.label }}
@@ -139,5 +139,4 @@
         </div>
     </nav>
     <div class="bg-success py-1"> test</div>
-
 </section>

@@ -23,6 +23,17 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $whiskasPateeChat->setAvailable(true);
         $whiskasPateeChat->setFlagship(true);
 
+        $purinaPateeChat = new Products();
+        $purinaPateeChat->setName('Purina® Junior Volaille x12 en Gelée');
+        $purinaPateeChat->setBrand($this->getReference(BrandFixtures::PURINA_REFERENCE));
+        $purinaPateeChat->setCategory($this->getReference(CategoryFixtures::FELINNOURRITURE_REFERENCE));
+        $purinaPateeChat->setdescription('Chez Purina®, nous vous aidons à nourrir votre chat à chaque étape de sa vie, avec des repas qu\'il aimera instinctivement.');
+        $purinaPateeChat->setImage('https://s3-eu-west-1.amazonaws.com/w3.cdn.gpd/fr.whiskas.12/large_whiskas-junior-volaille-x12-en-gelee-637359487585710674.png');
+        $purinaPateeChat->setPrice(5.99);
+        $purinaPateeChat->setNbStar(4);
+        $purinaPateeChat->setAvailable(true);
+        $purinaPateeChat->setFlagship(true);
+
         $purinaCroquetteChat = new Products();
         $purinaCroquetteChat->setName('Purina One Chat adulte Saumon et Céréales');
         $purinaCroquetteChat->setBrand($this->getReference(BrandFixtures::PURINA_REFERENCE));
@@ -90,6 +101,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $paradisioNourVolatile->setFlagship(true);
 
         $manager->persist($whiskasPateeChat);
+        $manager->persist($purinaPateeChat);
         $manager->persist($purinaCroquetteChat);
         $manager->persist($ankaJouetChat);
         $manager->persist($edgarCooperCroqChien);

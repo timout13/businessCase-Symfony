@@ -47,18 +47,22 @@ class ProductsRepository extends ServiceEntityRepository
 
 
     public function search($filter) {
-        $query = $this->createQueryBuilder('p')->leftJoin('p.category', 'categ');
+        $query = $this->createQueryBuilder('p')->leftJoin('p.category', 'category');
 
 
         if(!is_null($filter["searchBar"])){
             $query->where('p.name LIKE :name')
                 ->orWhere('p.description LIKE :name')
-                ->orWhere('categ.label LIKE :name')
+                ->orWhere('category.label LIKE :name')
                 ->setParameter('name', '%'.$filter["searchBar"].'%');
         }
 
         if(!is_null($filter["category"])){
-            $query->andWhere('categ = :categ')->setParameter('categ', $filter["category"]);
+            $query->andWhere('category = :category')->setParameter('category', $filter["category"]);
+        }
+
+        if(!is_null($filter["brand"])){
+            $query->andWhere("p.brand = :brand")->setParameter('brand', $filter["brand"]);
         }
 
         if(!empty($filter["nbStar"])){

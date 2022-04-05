@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin', name: 'admin_')]
-#[IsGranted('ROLE_ADMIN')]
+/*#[IsGranted('ROLE_ADMIN')]*/
 
 class AdminController extends AbstractController
 {
@@ -41,7 +41,7 @@ class AdminController extends AbstractController
             $entityManager->persist($category);
             $entityManager->flush();
 
-            return $this->redirectToRoute('category_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_category_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('admin/category/new.html.twig', [
@@ -65,7 +65,7 @@ class AdminController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('category_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_category_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('admin/category/edit.html.twig', [
@@ -81,6 +81,6 @@ class AdminController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('category_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('admin_category_index', [], Response::HTTP_SEE_OTHER);
     }
 }

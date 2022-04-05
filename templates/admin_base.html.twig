@@ -16,21 +16,23 @@
         <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
         <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
         <link rel="stylesheet" href="{{ asset('css/cookie.css') }}">
+        <link href="{{ asset('css/admin/admin_header.css') }}" rel="stylesheet">
     {% endblock %}
 
 
 </head>
-<body>
-<header>
-    {{ render(controller('App\\Controller\\DefaultController::displayCatNav')) }}
+<body class="body-pd">
+<header class="header bg-light" id="header">
+    {% include 'admin/parts/navbar.html.twig' %}
 </header>
 <main>
-
-    {% block body %}
-    {% endblock %}
+    {% include 'admin/parts/sidebar.html.twig' %}
+    <div class="height-100 bg-light">
+        {% block body %}
+        {% endblock %}
+    </div>
 </main>
 <footer>
-    {% include 'parts/footer.html.twig' %}
 </footer>
 
 
@@ -39,7 +41,7 @@
     <script src="{{ asset('js/bootstrap.bundle.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/header.js') }}"></script>
+    <script src="{{ asset('js/admin/admin_header.js') }}"></script>
 {% endblock %}
 </body>
 </html>

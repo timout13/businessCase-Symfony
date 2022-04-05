@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Brand;
 use App\Entity\Category;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -21,6 +22,10 @@ class SearchEngineType extends AbstractType
             ])
             ->add('category', EntityType::class, ['required' => false,
                 'class' => Category::class,
+                'attr' => ['class' => 'form-control', 'multiple'=>'']
+            ])
+            ->add('brand', EntityType::class, ['required' => false,
+                'class' => Brand::class,
                 'attr' => ['class' => 'form-control', 'multiple'=>'']
             ])
             ->add('nbStars', ChoiceType::class, ['required' => false,

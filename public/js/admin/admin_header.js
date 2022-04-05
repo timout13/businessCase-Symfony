@@ -6,9 +6,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
             bodypd = document.getElementById(bodyId),
             headerpd = document.getElementById(headerId)
 
-        console.log(nav);
-        console.log(bodypd);
-        console.log(headerpd);
 // Validate that all variables exist
         if (toggle && nav && bodypd && headerpd) {
             toggle.addEventListener('click', () => {
