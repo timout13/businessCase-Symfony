@@ -4,10 +4,15 @@ namespace App\Controller;
 
 use App\Entity\ProductOrder;
 use App\Entity\Products;
+use App\Entity\User;
 use App\Form\QuantityOrderType;
+use App\Form\UserType;
+use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/cart', name: 'cart_')]
@@ -120,5 +125,18 @@ class CartController extends AbstractController
         $session->set('cart', $cart);
 
         return $this->redirectToRoute('cart_display');
+    }
+
+    #[Route('/validation', name: 'validation')]
+    public function cartValidation(SessionInterface $session, Request $request,User $user, EntityManagerInterface $entityManager) {
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+        }
+        return $this->render('cart/orderOption.html.twig', [
+            'form'=>$form->createView(),
+        ]);
     }
 }

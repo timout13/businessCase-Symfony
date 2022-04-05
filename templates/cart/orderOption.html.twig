@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CartController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="">
+        Mode de livraison
+    </div>
+    <div class="border">
+        {{ form_start(form) }}
+            {{ form_row(form.nbStreet, {'attr': {'placeholder': app.user.nbStreet }}) }}
+            {{ form_row(form.addressLine, {'attr': {'placeholder': app.user.addressLine }}) }}
+            {{ form_row(form.postCode, {'attr': {'placeholder': app.user.postCode }}) }}
+            {{ form_row(form.city, {'attr': {'placeholder': app.user.city }}) }}
+            {{ form_row(form._token) }}
+            {{ form_row(form.submit)}}
+        {{ form_end(form, {'render_rest':false}) }}
+    </div>
+    <div class="border">
+        Moyen de paiement
+    </div>
+</div>
+{% endblock %}

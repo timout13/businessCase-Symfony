@@ -23,52 +23,61 @@
 
                 <h2 class="mb-5">Le montant de votre panier s'élève à : <span class="text-success">{{ price }} €</span>
                 </h2>
-                <div class="table-responsive-sm">
+                <div class="row">
+                    <div class="col-8">
+                        <div class="table-responsive-sm">
+                            <table class="table border border-dark table-hover">
+                                <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col" class="text-center">Quantité</th>
+                                    <th scope="col" class="text-center">Prix unitaire</th>
+                                    <th scope="col" class="text-center">Prix total</th>
+                                    <th scope="col" class="text-center">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for productOrder in cart %}
+                                    {% dump productOrder %}
+                                    <tr class="align-middle">
+                                        <th scope="row">{{ productOrder.product.id }}</th>
+                                        <th scope="row">{{ productOrder.product.name }}</th>
+                                        <td class="text-center">
+                                            <a href="{{ path('cart_addremoveone', {'id' : productOrder.product.id, 'operator' : 'minus'}) }}"
+                                               class="btn btn-success py-0 px-1 mx-1">
+                                                -
+                                            </a>
+                                            {{ productOrder.quantity }}
+                                            <a href="{{ path('cart_addremoveone', {'id' : productOrder.product.id, 'operator' : 'plus'}) }}"
+                                               class="btn btn-success py-0 px-1 mx-1">
+                                                +
+                                            </a>
+                                        </td>
+                                        <td class="text-center">{{ productOrder.product.price }} €</td>
+                                        <td class="text-center">{{ productOrder.product.price * productOrder.quantity }}
+                                            €
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="{{ path('detail', {'id':productOrder.product.id}) }}"
+                                               class="btn btn-success p-1">
+                                                <i class="fa-solid fa-eye fa-sm"></i>
+                                            </a>
+                                            <a href="{{ path('cart_remove_product', {'id':productOrder.product.id}) }}"
+                                               class="btn btn-success p-1">
+                                                <i class="fa-solid fa-trash-can fa-sm"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-4 border">
+                        <a class="btn btn-success " href="{{ path('cart_validation') }}">Confirmer la commande</a>
 
-                    <table class="table border border-dark table-hover">
-                        <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Nom</th>
-                            <th scope="col" class="text-center">Quantité</th>
-                            <th scope="col" class="text-center">Prix unitaire</th>
-                            <th scope="col" class="text-center">Prix total</th>
-                            <th scope="col" class="text-center">Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for productOrder in cart %}
-                            {% dump productOrder %}
-                            <tr class="align-middle">
-                                <th scope="row">{{ productOrder.product.id }}</th>
-                                <th scope="row">{{ productOrder.product.name }}</th>
-                                <td class="text-center">
-                                    <a href="{{ path('cart_addremoveone', {'id' : productOrder.product.id, 'operator' : 'minus'}) }}"
-                                       class="btn btn-success py-0 px-1 mx-1">
-                                        -
-                                    </a>
-                                    {{ productOrder.quantity }}
-                                    <a href="{{ path('cart_addremoveone', {'id' : productOrder.product.id, 'operator' : 'plus'}) }}"
-                                       class="btn btn-success py-0 px-1 mx-1">
-                                        +
-                                    </a>
-                                </td>
-                                <td class="text-center">{{ productOrder.product.price }} €</td>
-                                <td class="text-center">{{ productOrder.product.price * productOrder.quantity }} €</td>
-                                <td class="text-center">
-                                    <a href="{{ path('detail', {'id':productOrder.product.id}) }}"
-                                       class="btn btn-success p-1">
-                                        <i class="fa-solid fa-eye fa-sm"></i>
-                                    </a>
-                                    <a href="{{ path('cart_remove_product', {'id':productOrder.product.id}) }}"
-                                       class="btn btn-success p-1">
-                                        <i class="fa-solid fa-trash-can fa-sm"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                    </div>
                 </div>
                 <div class="d-flex justify-content-center gap-2">
                     {% if app.request.headers.get('referer') == app.request.uri %}
@@ -76,7 +85,6 @@
                     {% else %}
                         <a href="{{ app.request.headers.get('referer') }}" class="btn btn-success"> Retour</a>
                     {% endif %}
-                    <a class="btn btn-success ">Confirmer la commande</a>
                 </div>
             {% else %}
                 <div class="border shadow text-center rounded-3 py-4">
