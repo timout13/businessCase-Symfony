@@ -156,8 +156,8 @@ _______________________________*/
 
 
 .pdm .card:hover > .cart-icon{
-    background-color: blueviolet;
-    color: #3dd5f3;
+    background-color: #41916c;
+    color: #ffffff;
     visibility: visible;
     opacity: 1;
     right: 6px;
@@ -167,6 +167,36 @@ _______________________________*/
 
 .fa-md {
     font-size: 15px!important;
+}
+#customize-controls{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 50%;
+    transform: translatey(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+}
+#customize-controls >button {
+    background-color: #41916c;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 10px 16px;
+}
+a.btn-home:hover {
+    color: white;
+    background-color: black;
+}
+.btn-home {
+    background-color: #d5af5d;
+    padding: 10px 15px;
+    border-radius: 25px;
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
 }
 
 /******************************

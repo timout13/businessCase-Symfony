@@ -80,144 +80,47 @@
     <section class="pdm mb-section">
         <div class="container">
             <div class="row text-center">
-                <div class="col-lg-12 col-sm-12">
-                    <div class="border">
+                <div class="col-lg-12 col-sm-12 py-4">
                         <h2>
                             Produits du moments
                         </h2>
-                    </div>
                 </div>
                 <div class="col-lg-12 col-sm-12">
-                    <div class="border">
+                    <div class="border position-relative">
+                        <div id="customize-controls">
+                            <button id="prev"><i class="fa-solid fa-caret-left fa-2xl"></i></button>
+                            <button id="next"><i class="fa-solid fa-caret-right fa-2xl"></i></button>
+                        </div>
                         <div class="my-slider">
-                            <div class="ps-2 ">
-                                <div class="card py-3 position-relative rounded-4 ">
-                                    <div class="cart-icon">
-                                        <i class="fa-solid fa-cart-arrow-down align-middle fa-md "></i>
-                                    </div>
-                                    <div class="img">
-                                        <img src="{{ asset('images/products/1449_044209.jpg') }}"
-                                             class="img-fluid rounded-4"
-                                             width="200"
-                                             height="300">
-                                    </div>
-                                    <div class=" card-body">
-                                        <h3 class="card-title">titre</h3>
-                                        <p>
-                                            Lorem ipsum dolor sit lorenm i amet, consectetur adipisicing elit. Eum, ea,
-                                            ducimus!
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ps-2 ">
-                                <div class="card  rounded-4 ">
-                                    <div class="cart-icon">
-                                        <i class="fa-solid fa-cart-arrow-down  fa-md "></i>
-                                    </div>
-                                    <div class="img">
-                                        <img src="{{ asset('images/products/1449_044209.jpg') }}"
-                                             class="img-fluid rounded-4"
-                                             width="200"
-                                             height="300">
-                                    </div>
-                                    <div class=" card-body">
-                                        <h3 class="card-title">titre</h3>
-                                        <p>
-                                            Lorem ipsum dolor sit lorenm i amet, consectetur adipisicing elit. Eum, ea,
-                                            ducimus!
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ps-2 ">
-                                <div class="card  rounded-4 ">
-                                    <div class="cart-icon">
-                                        <i class="fa-solid fa-cart-arrow-down align-middle fa-md"></i>
-                                    </div>
-                                    <div class="img">
-                                        <img src="{{ asset('images/products/1449_044209.jpg') }}"
-                                             class="img-fluid rounded-4"
-                                             width="200"
-                                             height="300">
-                                    </div>
-                                    <div class=" card-body">
-                                        <h3 class="card-title">titre</h3>
-                                        <p>
-                                            Lorem ipsum dolor sit lorenm i amet, consectetur adipisicing elit. Eum, ea,
-                                            ducimus!
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ps-2 ">
-                                <div class="card  rounded-4 ">
-                                    <div class="cart-icon">
-                                        <i class="fa-solid fa-cart-arrow-down align-middle fa-md"></i>
-                                    </div>
-                                    <div class="img">
-                                        <img src="{{ asset('images/products/28675_836383.jpg') }}"
-                                             class="img-fluid rounded-4"
-                                             width="200"
-                                             height="300">
-                                    </div>
-                                    <div class=" card-body">
-                                        <h3 class="card-title">titre</h3>
-                                        <p>
-                                            Lorem ipsum dolor sit lorenm i amet, consectetur adipisicing elit. Eum, ea,
-                                            ducimus!
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {# <div class="product-card">
-                                <div class="logo-cart">
-                                    <img src="images/logo.jpg" alt="logo">
-                                    <i class='bx bx-shopping-bag'></i>
-                                </div>
-                                <div class="main-images">
-                                    <img id="blue" class="blue active" src="images/blue.png" alt="blue">
-                                    <img id="pink" class="pink" src="images/pink.png" alt="blue">
-                                    <img id="yellow" class="yellow" src="images/yellow.png" alt="blue">
-                                </div>
-                                <div class="shoe-details">
-                                    <span class="shoe_name">ADDIDAS GAZE ZX</span>
-                                    <p>Lorem ipsum dolor sit lorenm i amet, consectetur adipisicing elit. Eum, ea,
-                                        ducimus!</p>
-                                    <div class="stars">
-                                        <i class='bx bxs-star'></i>
-                                        <i class='bx bxs-star'></i>
-                                        <i class='bx bxs-star'></i>
-                                        <i class='bx bxs-star'></i>
-                                        <i class='bx bx-star'></i>
-                                    </div>
-                                </div>
-                                <div class="color-price">
-                                    <div class="color-option">
-                                        <span class="color">Colour:</span>
-                                        <div class="circles">
-                                            <span class="circle blue active" id="blue"></span>
-                                            <span class="circle pink " id="pink"></span>
-                                            <span class="circle yellow " id="yellow"></span>
+                            {% for produit in produits %}
+                                {% if produit.flagship == 1 %}
+                                    <div class="ps-2 ">
+                                        <div class="card py-3 position-relative rounded-4 ">
+                                            <div class="cart-icon">
+                                                <i class="fa-solid fa-cart-arrow-down align-middle fa-md "></i>
+                                            </div>
+                                            <div class="img">
+                                                <img src="{{ produit.image }}"
+                                                     class="img-fluid rounded-4"
+                                                     width="200"
+                                                     height="300">
+                                            </div>
+                                            <div class=" card-body">
+                                                <div class="card-title h6">{{ produit.name | u.truncate(30, '...')}}</div>
+                                                <p>
+                                                    {{ produit.description | u.truncate(60, '...')}}
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="price">
-                                        <span class="price_num">$09.00</span>
-                                        <span class="price_letter">Nine dollar only</span>
-                                    </div>
-                                </div>
-                                <div class="button">
-                                    <div class="button-layer"></div>
-                                    <button>Add To Cart</button>
-                                </div>
-                            </div> #}
+                                {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12 col-sm-12">
-                    <div class="border">
-                        <button>Voir tous les produits</button>
+                <div class="col-lg-12 col-sm-12 py-4">
+                    <div class="py-4">
+                        <a href="" class="btn-home">Voir tous les produits</a>
                     </div>
                 </div>
             </div>
@@ -321,16 +224,19 @@
         var slider = tns({
             container: '.my-slider',
             items: 1,
+
             autoWidth: true,
             center: true,
             controls:true,
             controlsText: ["précedent","suivant"],
-            nextButton:'next',
+            controlsContainer:'#customize-controls',
+            nextButton:'#next',
             responsive: {
                 640: {},
-                700: {},
+                700: {
+                },
                 900: {
-                    arrowKeys: true,
+
                 }
             }
         });
