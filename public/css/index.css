@@ -140,22 +140,12 @@ _______________________________*/
 
 /*________ Product Card _______*/
 .card {
-    width: 250px;
     overflow: hidden;
+    max-height: 357px;
 }
 
-.cart-icon{
+.cart-icon {
     position: absolute;
-    z-index: 10;
-    visibility: hidden;
-    opacity: 0;
-    top: 20px;
-    right:0;
-    transition: 0.3s;
-}
-
-
-.pdm .card:hover > .cart-icon{
     background-color: #41916c;
     color: #ffffff;
     visibility: visible;
@@ -163,12 +153,78 @@ _______________________________*/
     right: 6px;
     padding: 10px 10px 10px 10px;
     border-radius: 25px;
+    z-index: 10;
+}
+
+.card > .card-content > hr {
+    margin: inherit;
+    box-shadow: 0px -5px 12px 4px black;
+}
+.card-content{
+    text-decoration: none;
+    color: black;
+}
+.card-content:hover{
+    color: #41916c;
+}
+
+.card-body{
+    padding: 0.5rem 1rem;
+    border-top: solid 1px;
+}
+
+.card-product-brand{
+    text-align: left;
+    font-size: 14px;
+    font-weight: 700;
+}
+.card-product-name{
+    text-align: left;
+    font-size: 14px;
+    max-height: 40px;
+    overflow: hidden;
+    margin-bottom: 0;
+}
+.card-product-price{
+    font-weight: 700;
+}
+.star-text{
+    font-size: 12px;
+    font-style: italic;
+}
+.ttc{
+    font-size: 12px;
+    font-style: italic;
+}
+@media (hover: hover) {
+    /* when supported */
+    .cart-icon {
+        visibility: hidden;
+        opacity: 0;
+        top: 20px;
+        right: 0;
+        transition: 0.3s;
+    }
+    .pdm .card:hover > .cart-icon {
+
+        visibility: visible;
+        opacity: 1;
+        right: 6px;
+        padding: 10px 10px 10px 10px;
+        border-radius: 25px;
+    }
+    .cart-icon:hover {
+        background-color: #1a4332;
+        color: white;
+        transition: 0.3s;
+    }
 }
 
 .fa-md {
-    font-size: 15px!important;
+    font-size: 15px !important;
 }
-#customize-controls{
+
+#customize-controls {
     position: absolute;
     left: 0;
     width: 100%;
@@ -179,17 +235,20 @@ _______________________________*/
     justify-content: space-between;
     z-index: 1000;
 }
-#customize-controls >button {
+
+#customize-controls > button {
     background-color: #41916c;
     color: white;
     border: none;
     border-radius: 50%;
     padding: 10px 16px;
 }
+
 a.btn-home:hover {
     color: white;
     background-color: black;
 }
+
 .btn-home {
     background-color: #d5af5d;
     padding: 10px 15px;
@@ -216,12 +275,14 @@ a.btn-home:hover {
     line-height: 1.5;
     color: white !important;
 }
+
 .vpm_block_text p {
     width: 50%;
 }
-    /******************************
-              End VPM
-    *******************************/
+
+/******************************
+          End VPM
+*******************************/
 
 /******************************
           REASSURANCE
@@ -435,11 +496,11 @@ a.btn-home:hover {
 }
 
 @media screen and (max-width: 580px) {
-   .vpm_block_text p {
-       text-align: center;
-       margin-right: auto;
-       margin-left: auto;
-   }
+    .vpm_block_text p {
+        text-align: center;
+        margin-right: auto;
+        margin-left: auto;
+    }
 
     .vpm {
         background-image: none;
