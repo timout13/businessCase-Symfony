@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container px-5">
+        {% include 'parts/breadcrumbs.html.twig' %}
+        <h1>Nous Contacter</h1>
+        <div class="address row p-5 mt-5 mx-5">
+            <div class="col-12 col-md-6">
+                <h2>
+                    Horaire d'ouverture
+                </h2>
+                <p>
+                    En semaine : 9h - 18h<br>
+                    Samedi : 10h - 18h
+                </p>
+                <h2 class="mt-2"> Notre adresse</h2>
+                <p>
+                    42 Chem. du Capouchine,<br>
+                    30900 Nîmes<br>
+                    France
+                </p>
+            </div>
+            <div class="col-12 col-md-6">
+                <h2>Nous contacter par téléphone </h2>
+                <p>
+                    Notre Service Clients est à votre disposition du du lundi au vendredi de 9h à 17h /
+                    au : 0473702832
+                </p>
+                <h2 class="mt-2">
+                    Nous contacter par courrier
+                </h2>
+                <p>
+                    Vous pouvez nous écrire à l'adresse suivante :<br>
+                    LaNîmesAlerie SAS<br>
+                    42 Chem. du Capouchine,<br>
+                    30900 Nîmes<br>
+                    France<br>
+                </p>
+            </div>
+        </div>
+        <div class="form-contact border rounded-4 p-5">
+            {{ form_start(form) }}
+            <div class="my-custom-class-for-errors">
+                {{ form_errors(form) }}
+            </div>
+            <div class="form-row">
+                {{ form_label(form.firstname, 'Prénom' , {'label_attr': {'class': 'form-label position-relative'}}) }}
+                {{ form_widget(form.firstname, {'attr': {'placeholder': 'Entrer votre prénom'}}) }}
+            </div>
+            <div class="form-row mt-4">
+                {{ form_label(form.lastname, 'Nom' , {'label_attr': {'class': 'form-label position-relative'}}) }}
+                {{ form_widget(form.lastname, {'attr': {'placeholder': 'Entrer votre nom'}}) }}
+            </div>
+            <div class="form-row mt-4">
+                {{ form_label(form.email, 'Email' , {'label_attr': {'class': 'form-label position-relative'}}) }}
+                {{ form_widget(form.email,  {'attr': {'placeholder': 'Entrer votre mail'}}) }}
+            </div>
+            <div class="form-row mt-4">
+                {{ form_label(form.message, 'Sujet' , {'label_attr': {'class': 'form-label position-relative'}}) }}
+                {{ form_widget(form.message, {'attr': {'placeholder': 'Entrer votre message'}}) }}
+            </div>
+            <div class="form-row mt-5 text-center">
+                {{ form_widget(form.save, { 'label': 'Envoyer' }) }}
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

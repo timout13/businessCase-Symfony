@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Products;
+use App\Form\ContactFormType;
 use App\Form\SearchEngineType;
 use App\Form\SearchType;
 use App\Repository\CategoryRepository;
@@ -47,7 +48,7 @@ class DefaultController extends AbstractController
     }
 
 
-    #[Route('/detail/{id}', name: 'detail')]
+    #[Route('/product/list/detail/{id}', name: 'detail')]
     public function getOne(Products $product) {
         return $this->render('default/detail.html.twig', ['produit' => $product]);
     }
@@ -60,6 +61,18 @@ class DefaultController extends AbstractController
     #[Route('/cgv', name: 'cgv')]
     public function cgv() {
         return $this->render('default/cgv.html.twig');
+    }
+
+    #[Route('/contact', name: 'contact')]
+    public function contact(Request $request) {
+        $form = $this->createForm(ContactFormType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            return $this->redirectToRoute('contact', [], Response::HTTP_SEE_OTHER);
+        }
+        return $this->render('default/contact.html.twig',
+        ['form'=>$form->createView(),]);
     }
 
     /*#[Route('/register', name: 'register')]
