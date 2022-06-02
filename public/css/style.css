@@ -19,7 +19,7 @@ ul {
 
 /* End Body
 _______________________________*/
-/****************************** H5
+/****************************** H5p-card
 */
 
 h5 {
@@ -60,13 +60,14 @@ _______________________________*/
 
 /* End Hoover
 _______________________________*/
-/******************************* Card
+/******************************* p-card
 */
-.card {
+.p-card {
     overflow: hidden;
     max-height: 357px;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, .125);
 }
-
 .cart-icon {
     position: absolute;
     background-color: #41916c;
@@ -79,36 +80,36 @@ _______________________________*/
     z-index: 10;
 }
 
-.card > .card-content > hr {
+.p-card > .p-card-content > hr {
     margin: inherit;
     box-shadow: 0px -5px 12px 4px black;
 }
-.card-content{
+.p-card-content{
     text-decoration: none;
     color: black;
 }
-.card-content:hover{
+.p-card-content:hover{
     color: #41916c;
 }
 
-.card-body{
+.p-card-body{
     padding: 0.5rem 1rem;
     border-top: solid 1px;
 }
 
-.card-product-brand{
+.p-card-product-brand{
     text-align: left;
     font-size: 14px;
     font-weight: 700;
 }
-.card-product-name{
+.p-card-product-name{
     text-align: left;
     font-size: 14px;
     max-height: 40px;
     overflow: hidden;
     margin-bottom: 0;
 }
-.card-product-price{
+.p-card-product-price{
     font-weight: 700;
 }
 .star-text{
@@ -128,7 +129,7 @@ _______________________________*/
     background-color: white;
     color: #1c4332;
 }
-.form-label::after{
+.contact-form-label::after{
     position: absolute;
     content: '';
     width: 50%;
@@ -147,7 +148,7 @@ _______________________________*/
         right: 0;
         transition: 0.3s;
     }
-     .card:hover > .cart-icon {
+     .p-card:hover > .cart-icon {
 
         visibility: visible;
         opacity: 1;

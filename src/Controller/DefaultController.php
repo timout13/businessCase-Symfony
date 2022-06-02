@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Products;
 use App\Form\ContactFormType;
+use App\Form\SearchBarType;
 use App\Form\SearchEngineType;
 use App\Form\SearchType;
 use App\Repository\CategoryRepository;
@@ -34,16 +35,27 @@ class DefaultController extends AbstractController
         ]);
     }
 
-    public function displayCatNav(SessionInterface $session): Response {
+    public function displayCatNav(SessionInterface $session, Request $request, ProductsRepository $productsRepository): Response {
         $categories = $this->categoryRepository->findByParentNull();
         $cart = $session->get('cart', []);
         $cart_notif=0;
+        $searchProduct='';
+        $form = $this->createForm(SearchBarType::class);
+        $form->handleRequest($request);
         foreach ($cart as $value){
             $cart_notif += $value->getQuantity();
         }
+        $productSearched='';
+        if ($form->isSubmitted() && $form->isValid()) {
+            $filter = $form->getData();
+            $productSearched = $productsRepository->search($filter);
+            return  $this->redirectToRoute('product_all');
+        }
         return $this->render('parts/header.html.twig', [
             'categories' => $categories,
-            'cart_notif'=> $cart_notif
+            'cart_notif'=> $cart_notif,
+            'formSearch'=>$form->createView(),
+
         ]);
     }
 

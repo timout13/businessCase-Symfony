@@ -17,8 +17,9 @@ class SearchEngineType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void {
         $builder
-            ->add('searchBar', TextType::class, ['required' => false,
-                'attr' => ['class' => 'form-control']
+            ->add('searchBar', TextType::class, [
+                'required' => false,
+                'attr' => ['class' => 'form-control'],
             ])
             ->add('category', EntityType::class, ['required' => false,
                 'class' => Category::class,
@@ -38,26 +39,29 @@ class SearchEngineType extends AbstractType
                         'stars 5' => 5],
                 'expanded' => true,
                 'multiple' => true,
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control'],
             ])
             ->add('minPrice', NumberType::class,
                 [
                     'required' => false,
-                    'attr'=>['class'=>'form-control']
+                    'attr'=>['class'=>'form-control'],
                 ])
             ->add('maxPrice', NumberType::class,
                 [
                     'required' => false,
-                    'attr'=>['class'=>'form-control']
+                    'attr'=>['class'=>'form-control'],
                 ])
             ->add('save', SubmitType::class, [
-                'attr'=>['class'=>'btn btn-dark']
+                'attr'=>['class'=>'btn btn-dark'],
+
             ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void {
-        $resolver->setDefaults([
+        $resolver
+            ->setDefaults([
             // Configure your form options here
         ]);
     }
+
 }

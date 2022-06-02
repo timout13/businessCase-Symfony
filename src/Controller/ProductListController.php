@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Products;
 use App\Form\SearchEngineType;
+use App\Form\SearchType;
 use App\Repository\CategoryRepository;
 use App\Repository\ProductsRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,4 +53,14 @@ class ProductListController extends AbstractController
             'productFiltered'=>$productFiltered
         ]);
     }
+
+    #[Route('/product/all', name: 'product_all')]
+    public function allProducts(Request $request): Response {
+
+//$productSearched= $request->request->get('search_bar')['searchBar'];
+        return $this->render('product_list/allProducts.html.twig', [
+            //'productSearched'=>$productSearched,
+        ]);
+    }
+
 }

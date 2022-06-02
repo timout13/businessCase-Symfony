@@ -50,7 +50,7 @@ class ProductsRepository extends ServiceEntityRepository
         $query = $this->createQueryBuilder('p')->leftJoin('p.category', 'category');
 
 
-        if(!is_null($filter["searchBar"])){
+        if(!is_null($filter['searchBar'])){
             $query->where('p.name LIKE :name')
                 ->orWhere('p.description LIKE :name')
                 ->orWhere('category.label LIKE :name')

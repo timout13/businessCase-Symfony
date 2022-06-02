@@ -44,19 +44,19 @@
                 {{ form_errors(form) }}
             </div>
             <div class="form-row">
-                {{ form_label(form.firstname, 'Prénom' , {'label_attr': {'class': 'form-label position-relative'}}) }}
+                {{ form_label(form.firstname, 'Prénom' , {'label_attr': {'class': 'contact-form-label position-relative'}}) }}
                 {{ form_widget(form.firstname, {'attr': {'placeholder': 'Entrer votre prénom'}}) }}
             </div>
             <div class="form-row mt-4">
-                {{ form_label(form.lastname, 'Nom' , {'label_attr': {'class': 'form-label position-relative'}}) }}
+                {{ form_label(form.lastname, 'Nom' , {'label_attr': {'class': 'contact-form-label position-relative'}}) }}
                 {{ form_widget(form.lastname, {'attr': {'placeholder': 'Entrer votre nom'}}) }}
             </div>
             <div class="form-row mt-4">
-                {{ form_label(form.email, 'Email' , {'label_attr': {'class': 'form-label position-relative'}}) }}
+                {{ form_label(form.email, 'Email' , {'label_attr': {'class': 'contact-form-label position-relative'}}) }}
                 {{ form_widget(form.email,  {'attr': {'placeholder': 'Entrer votre mail'}}) }}
             </div>
             <div class="form-row mt-4">
-                {{ form_label(form.message, 'Sujet' , {'label_attr': {'class': 'form-label position-relative'}}) }}
+                {{ form_label(form.message, 'Sujet' , {'label_attr': {'class': 'contact-form-label position-relative'}}) }}
                 {{ form_widget(form.message, {'attr': {'placeholder': 'Entrer votre message'}}) }}
             </div>
             <div class="form-row mt-5 text-center">

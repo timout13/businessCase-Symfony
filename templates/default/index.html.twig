@@ -73,11 +73,11 @@
                             {% for produit in produits %}
                                 {% if produit.flagship == 1 %}
                                     <div class=" ">
-                                        <div class="card py-3 position-relative rounded-4 ">
+                                        <div class="p-card py-3 position-relative rounded-4 ">
                                             <a href="{{ path('cart_add', {'id': produit.id }) }}" class="cart-icon">
                                                 <i class="fa-solid fa-cart-arrow-down align-middle fa-md "></i>
                                             </a>
-                                            <a href="{{ path('detail', {'id': produit.id }) }}" class="card-content">
+                                            <a href="{{ path('detail', {'id': produit.id }) }}" class="p-card-content">
 
                                                 <div class="img">
                                                     <img src="{{ produit.image }}"
@@ -86,9 +86,9 @@
                                                          height="300">
                                                 </div>
                                                 <hr>
-                                                <div class=" card-body">
-                                                    <div class="card-product-brand">{{ produit.brand }}</div>
-                                                    <p class="card-product-name">
+                                                <div class=" p-card-body">
+                                                    <div class="p-card-product-brand">{{ produit.brand }}</div>
+                                                    <p class="p-card-product-name">
                                                         {{ produit.name }}
                                                     </p>
                                                     <div class="text-start">
@@ -103,7 +103,7 @@
 
                                                     </div>
 
-                                                    <p class="card-product-price">
+                                                    <p class="p-card-product-price">
                                                         {{ produit.price }} € <sup class="ttc">TTC</sup>
                                                     </p>
 

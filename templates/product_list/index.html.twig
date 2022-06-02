@@ -35,19 +35,20 @@
                     4
                     produits</a>
             </div>
-                <div class="col-md-3 col-sm-12 bg-light sticky-sm-top">
+                <aside class="col-lg-3 col-12 bg-light sticky-sm-top">
+
                     {{ form_start(form) }}
                     {{ form_end(form) }}
-                </div>
-                <div class="col-md-9 col-sm-12">
+                </aside>
+                <div class="col-lg-9 col-12">
                     <div class="row ps-3 pt-3 g-2">
                         {% for produit in produits %}
                             <div class="col-md-4 col-sm-12 col-12">
-                                    <div class="card py-3 position-relative rounded-4 ">
+                                    <div class="p-card py-3 position-relative rounded-4 ">
                                         <a href="{{ path('cart_add', {'id': produit.id }) }}" class="cart-icon">
                                             <i class="fa-solid fa-cart-arrow-down align-middle fa-md "></i>
                                         </a>
-                                        <a href="{{ path('detail', {'id': produit.id }) }}" class="card-content">
+                                        <a href="{{ path('detail', {'id': produit.id }) }}" class="p-card-content">
                                             <div class="img text-center">
                                                 <img src="{{ produit.image }}"
                                                      class="img-fluid rounded-4"
@@ -55,9 +56,9 @@
                                                      height="300">
                                             </div>
                                             <hr>
-                                            <div class=" card-body">
-                                                <div class="card-product-brand">{{ produit.brand }}</div>
-                                                <p class="card-product-name">
+                                            <div class=" p-card-body">
+                                                <div class="p-card-product-brand">{{ produit.brand }}</div>
+                                                <p class="p-card-product-name">
                                                     {{ produit.name }}
                                                 </p>
                                                 <div class="text-start">
@@ -72,7 +73,7 @@
 
                                                 </div>
 
-                                                <p class="card-product-price">
+                                                <p class="p-card-product-price">
                                                     {{ produit.price }} € <sup class="ttc">TTC</sup>
                                                 </p>
 
