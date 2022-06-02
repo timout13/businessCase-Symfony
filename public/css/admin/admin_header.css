@@ -178,4 +178,7 @@ a {
     .body-pd {
         padding-left: calc(68px + 188px)
     }
+    .header-pd {
+        padding-left: calc(68px + 11rem)
+    }
 }

@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 // add padding to body
                 bodypd.classList.toggle('body-pd')
 // add padding to header
-                headerpd.classList.toggle('body-pd')
+                headerpd.classList.toggle('header-pd')
             })
         }
     }
