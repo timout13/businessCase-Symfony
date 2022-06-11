@@ -46,7 +46,7 @@ class ProductsRepository extends ServiceEntityRepository
 
 
 
-    public function search($filter) {
+    public function search($filter, $currentPage, $nbDisplayed) {
         $query = $this->createQueryBuilder('p')->leftJoin('p.category', 'category');
 
 
@@ -79,7 +79,9 @@ class ProductsRepository extends ServiceEntityRepository
 
             $query->andWhere('p.price < :maxPrice')->setParameter('maxPrice', $filter['maxPrice']);
         }
-
+        $query
+            ->setMaxResults($nbDisplayed)
+            ->setFirstResult($currentPage*$nbDisplayed-$nbDisplayed);
 
         return $query->getQuery()->getResult();
 

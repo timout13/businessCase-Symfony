@@ -28,10 +28,8 @@ class DefaultController extends AbstractController
     #[Route('/', name: 'default')]
     public function index(): Response {
         $produits = $this->productRepository->findAll();
-        //$categories = $this->categoryRepository->findByParentNull();
         return $this->render('default/index.html.twig', [
             'produits' => $produits,
-            //'categories' => $categories
         ]);
     }
 

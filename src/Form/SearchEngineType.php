@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Brand;
 use App\Entity\Category;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -16,12 +17,18 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class SearchEngineType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void {
+        $catId=$options['catId'];
         $builder
             ->add('searchBar', TextType::class, [
                 'required' => false,
                 'attr' => ['class' => 'form-control'],
             ])
             ->add('category', EntityType::class, ['required' => false,
+                'query_builder'=> function (EntityRepository $entityRepository) use ($catId){
+                return $entityRepository->createQueryBuilder('c')
+                    ->where('c.cat_parent = :idCatParent')
+                    ->setParameter('idCatParent', $catId);
+                },
                 'class' => Category::class,
                 'attr' => ['class' => 'form-control', 'multiple'=>'']
             ])
@@ -58,9 +65,8 @@ class SearchEngineType extends AbstractType
     }
 
     public function configureOptions(OptionsResolver $resolver): void {
-        $resolver
-            ->setDefaults([
-            // Configure your form options here
+        $resolver->setRequired([
+            'catId',
         ]);
     }
 

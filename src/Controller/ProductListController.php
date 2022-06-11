@@ -22,7 +22,8 @@ class ProductListController extends AbstractController
 
     #[Route('/product/list/{idCat}/{currentPage}/{nbDisplayed}', name: 'product_list', requirements: ['idCat' => '\d+'])]
     public function products(ProductsRepository $productsRepository, $currentPage, $nbDisplayed, $idCat, CategoryRepository $categoryRepository, Request $request): Response {
-        $form = $this->createForm(SearchEngineType::class);
+        $objName[]= '';
+        $form = $this->createForm(SearchEngineType::class,$objName,['catId'=>$idCat]);
         $form->handleRequest($request);
 
         $nbProducts = $productsRepository->countByCat($idCat);
@@ -32,14 +33,16 @@ class ProductListController extends AbstractController
             $nbPage = (int) ($nbProducts/$nbDisplayed)+1;
         }
 
-        $products = $productsRepository->findByPagination($idCat, $currentPage, $nbDisplayed);
+
         $categories = $categoryRepository->findByParentNull();
 
 
-        $productFiltered = '';
+        $products= '';
         if ($form->isSubmitted() && $form->isValid()) {
             $filter = $form->getData();
-            $productFiltered = $productsRepository->search($filter);
+            $products = $productsRepository->search($filter, $currentPage, $nbDisplayed);
+        } else{
+            $products = $productsRepository->findByPagination($idCat, $currentPage, $nbDisplayed);
         }
 
         return $this->render('product_list/index.html.twig', [
@@ -50,7 +53,6 @@ class ProductListController extends AbstractController
             'idCat'=> $idCat,
             'categories'=>$categories,
             'form'=>$form->createView(),
-            'productFiltered'=>$productFiltered
         ]);
     }
 

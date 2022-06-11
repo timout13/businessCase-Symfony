@@ -67,6 +67,17 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $edgarCooperCroqChien->setAvailable(true);
         $edgarCooperCroqChien->setFlagship(true);
 
+        $frolicCroqChien = new Products();
+        $frolicCroqChien->setName('Edgard & Cooper - Croquettes BIO à la Dinde et Poulet pour Chien - 2,5Kg');
+        $frolicCroqChien->setBrand($this->getReference(BrandFixtures::FROLIC_REFERENCE));
+        $frolicCroqChien->setCategory($this->getReference(CategoryFixtures::CANIDENOURRITURE_REFERENCE));
+        $frolicCroqChien->setdescription('Ces croquettes Frolic® sont préparées avec du bœuf frais et sont si savoureuses que votre chien ne pourra plus s\'en passer. Simplement irrésistible !');
+        $frolicCroqChien->setImage('https://frolic.fr/app/uploads/Frolic_Adulte_Complet_Boeuf.png');
+        $frolicCroqChien->setPrice(3.92);
+        $frolicCroqChien->setNbStar(2);
+        $frolicCroqChien->setAvailable(true);
+        $frolicCroqChien->setFlagship(true);
+
         $tetraNourPoisson = new Products();
         $tetraNourPoisson->setName('Tetra - Aliment Complet TetraMin en Flocons pour Poissons Tropicaux - 1L');
         $tetraNourPoisson->setBrand($this->getReference(BrandFixtures::TETRA_REFERENCE));
@@ -105,6 +116,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($purinaCroquetteChat);
         $manager->persist($ankaJouetChat);
         $manager->persist($edgarCooperCroqChien);
+        $manager->persist($frolicCroqChien);
         $manager->persist($tetraNourPoisson);
         $manager->persist($paradisioNourRongeur);
         $manager->persist($paradisioNourVolatile);
