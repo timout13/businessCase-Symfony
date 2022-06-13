@@ -128,7 +128,8 @@ class CartController extends AbstractController
     }
 
     #[Route('/validation', name: 'validation')]
-    public function cartValidation(SessionInterface $session, Request $request,User $user, EntityManagerInterface $entityManager) {
+    public function cartValidation(SessionInterface $session, Request $request, EntityManagerInterface $entityManager) {
+        $user = $request->query->get('user_id');
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
