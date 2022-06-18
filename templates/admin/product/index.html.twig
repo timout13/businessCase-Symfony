@@ -1,0 +1,37 @@
+{% extends 'admin_base.html.twig' %}
+
+{% block title %}Product index{% endblock %}
+
+{% block body %}
+    <h1>Administration des Produits</h1>
+
+    <a href="{{ path('admin_product_new') }}">Ajouter un produit</a>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Marque</th>
+            <th>Nom</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.brand }}</td>
+                <td>{{ product.name }}</td>
+                <td>
+                    <a href="{{ path('admin_category_show', {'id': product.id}) }}">Voir</a>
+                    <a href="{{ path('admin_product_edit', {'id': product.id}) }}">Editer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun produit trouvé !</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

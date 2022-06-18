@@ -179,6 +179,16 @@ a.nav_link:hover{
     opacity: 1;
     transition: opacity 0.4s;
 }
+.profil-btn-group{
+    height: 50%;
+    width: 16%;
+}
+.profil-btn{
+   padding-inline-start: 0;
+}
+.profil-img{
+    margin-inline-end: 10%;
+}
 @media screen and (min-width: 768px) {
     body {
         margin: calc(3rem + 1rem) 0 0 0;
