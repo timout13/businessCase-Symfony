@@ -1,0 +1,13 @@
+{% extends 'admin_base.html.twig' %}
+
+{% block title %}Edit Brand{% endblock %}
+
+{% block body %}
+    <h1>Edition de la marque</h1>
+
+    {{ include('admin/brand/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+    <a href="{{ path('admin_brand_index') }}">Retour</a>
+
+    {{ include('admin/brand/_delete_form.html.twig') }}
+{% endblock %}

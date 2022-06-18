@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Brand;
 use App\Entity\Category;
+use App\Form\BrandType;
 use App\Form\CategoryType;
+use App\Repository\BrandRepository;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -83,5 +86,57 @@ class AdminController extends AbstractController
         }
 
         return $this->redirectToRoute('admin_category_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/brand', name: 'brand_index', methods: ['GET'])]
+    public function brand_index(BrandRepository $brandRepository): Response {
+        return $this->render('admin/brand/index.html.twig', [
+            'brands' => $brandRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/brand/new', name: 'brand_new', methods: ['GET', 'POST'])]
+    public function brand_new(Request $request, EntityManagerInterface $entityManager): Response {
+        $brand = new Brand();
+        $form = $this->createForm(BrandType::class, $brand);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($brand);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_brand_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('admin/brand/new.html.twig', [
+            'brand' => $brand,
+            'form' => $form,
+        ]);
+    }
+    #[Route('/brand/{id}/edit', name: 'brand_edit', methods: ['GET', 'POST'])]
+    public function brand_edit(Request $request, Brand $brand, EntityManagerInterface $entityManager): Response {
+        $form = $this->createForm(BrandType::class, $brand);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($brand);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_brand_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('admin/brand/edit.html.twig', [
+            'brand' => $brand,
+            'form' => $form->createView(),
+        ]);
+    }
+    #[Route('/brand/{id}', name: 'brand_delete', methods: ['POST'])]
+    public function brand_delete(Request $request, Brand $brand, EntityManagerInterface $entityManager): Response {
+        if ($this->isCsrfTokenValid('delete' . $brand->getId(), $request->request->get('_token'))) {
+            $entityManager->remove($brand);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('admin_brand_index', [], Response::HTTP_SEE_OTHER);
     }
 }

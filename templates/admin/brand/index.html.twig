@@ -1,0 +1,35 @@
+{% extends 'admin_base.html.twig' %}
+
+{% block title %}Brand index{% endblock %}
+
+{% block body %}
+    <h1>Administration des Marques</h1>
+
+    <a href="{{ path('admin_brand_new') }}">Ajouter une marque</a>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Label</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for brand in brands %}
+            <tr>
+                <td>{{ brand.id }}</td>
+                <td>{{ brand.label }}</td>
+                <td>
+                    <a href="{{ path('admin_category_show', {'id': brand.id}) }}">Voir</a>
+                    <a href="{{ path('admin_brand_edit', {'id': brand.id}) }}">Editer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucune marque trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
