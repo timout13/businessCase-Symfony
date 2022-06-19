@@ -3,35 +3,42 @@
 {% block title %}Product index{% endblock %}
 
 {% block body %}
-    <h1>Administration des Produits</h1>
-
-    <a href="{{ path('admin_product_new') }}">Ajouter un produit</a>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Marque</th>
-            <th>Nom</th>
-            <th>actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for product in products %}
+    <div class="d-flex justify-content-between align-items-center flex-wrap mb-5">
+        <h1>Administration des Produits</h1>
+        <a href="{{ path('admin_product_new') }}" class="btn btn-success">Ajouter un produit</a>
+    </div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
             <tr>
-                <td>{{ product.id }}</td>
-                <td>{{ product.brand }}</td>
-                <td>{{ product.name }}</td>
-                <td>
-                    <a href="{{ path('admin_category_show', {'id': product.id}) }}">Voir</a>
-                    <a href="{{ path('admin_product_edit', {'id': product.id}) }}">Editer</a>
-                </td>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Prix</th>
+                <th>actions</th>
             </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">Aucun produit trouvé !</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.description }}</td>
+                    <td class="admin-product-img text-center"><img src="{{ product.image }}" class="p-mw-200px"></td>
+                    <td>{{ product.price }}</td>
+                    <td>
+                        <a href="{{path('detail', {'id': product.id}) }}">Voir</a>
+                        <a href="{{ path('admin_product_edit', {'id': product.id}) }}">Editer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucun produit trouvé !</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
 {% endblock %}

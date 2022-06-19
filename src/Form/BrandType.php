@@ -15,6 +15,7 @@ class BrandType extends AbstractType
         $builder
             ->add('label', TextType::class,
                 [
+                    'label'=>'Nom de la marque',
                     'required'=>true,
                     'attr'=>['class'=>'form-control']
                 ]

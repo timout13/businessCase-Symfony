@@ -27,6 +27,7 @@ class SearchEngineType extends AbstractType
                 'query_builder'=> function (EntityRepository $entityRepository) use ($catId){
                 return $entityRepository->createQueryBuilder('c')
                     ->where('c.cat_parent = :idCatParent')
+                    ->orWhere('c.id= :idCatParent')
                     ->setParameter('idCatParent', $catId);
                 },
                 'class' => Category::class,

@@ -7,8 +7,10 @@ use App\Form\ContactFormType;
 use App\Form\SearchBarType;
 use App\Form\SearchEngineType;
 use App\Form\SearchType;
+use App\Form\UserType;
 use App\Repository\CategoryRepository;
 use App\Repository\ProductsRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,23 +38,23 @@ class DefaultController extends AbstractController
     public function displayCatNav(SessionInterface $session, Request $request, ProductsRepository $productsRepository): Response {
         $categories = $this->categoryRepository->findByParentNull();
         $cart = $session->get('cart', []);
-        $cart_notif=0;
-        $searchProduct='';
+        $cart_notif = 0;
+        $searchProduct = '';
         $form = $this->createForm(SearchBarType::class);
         $form->handleRequest($request);
-        foreach ($cart as $value){
+        foreach ($cart as $value) {
             $cart_notif += $value->getQuantity();
         }
-        $productSearched='';
+        $productSearched = '';
         if ($form->isSubmitted() && $form->isValid()) {
             $filter = $form->getData();
             $productSearched = $productsRepository->search($filter);
-            return  $this->redirectToRoute('product_all');
+            return $this->redirectToRoute('product_all');
         }
         return $this->render('parts/header.html.twig', [
             'categories' => $categories,
-            'cart_notif'=> $cart_notif,
-            'formSearch'=>$form->createView(),
+            'cart_notif' => $cart_notif,
+            'formSearch' => $form->createView(),
 
         ]);
     }
@@ -82,11 +84,38 @@ class DefaultController extends AbstractController
             return $this->redirectToRoute('contact', [], Response::HTTP_SEE_OTHER);
         }
         return $this->render('default/contact.html.twig',
-        ['form'=>$form->createView(),]);
+            ['form' => $form->createView(),]);
     }
 
-    /*#[Route('/register', name: 'register')]
-    public function register() {
-        return $this->render('default/register.html.twig');
-    }*/
+    #[Route('/account', name: 'account')]
+    public function account() {
+        return $this->render('default/account.html.twig');
+    }
+
+    #[Route('/account/detail', name: 'account_detail')]
+    public function detail_account(EntityManagerInterface $entityManager, Request $request) {
+        $user = $this->getUser();
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('validation', [], Response::HTTP_SEE_OTHER);
+
+        }
+        return $this->render('default/account_detail.html.twig',
+            [
+                'user' => $user,
+                'form' => $form->createView()
+            ],
+
+        );
+    }
+
+    #[Route('/account/order', name: 'account_order')]
+    public function order_account() {
+        return $this->render('default/account_order.html.twig');
+    }
 }

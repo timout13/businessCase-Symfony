@@ -127,13 +127,17 @@ class CartController extends AbstractController
         return $this->redirectToRoute('cart_display');
     }
 
-    #[Route('/validation', name: 'validation')]
+    #[Route('/validation', name: 'validation', methods: ['GET', 'POST']) ]
     public function cartValidation(SessionInterface $session, Request $request, EntityManagerInterface $entityManager) {
-        $user = $request->query->get('user_id');
+        $user = $this->getUser();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('validation', [], Response::HTTP_SEE_OTHER);
 
         }
         return $this->render('cart/orderOption.html.twig', [

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container pt-5">
+        {% include 'parts/breadcrumbs.html.twig' %}
+            <div class="d-flex justify-content-center align-items-start flex-wrap gap-5">
+                <div class="nav flex-column nav-pills me-3 account-menu" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link border {{ (app.request.get('_route')=='account_detail') ? 'active' : '' }}" href="{{ path('account_detail') }}">Détails du compte</a>
+                    <a class="nav-link border {{ (app.request.get('_route')=='account_order') ? 'active' : '' }}" href="{{ path('account_order') }}">Mes commandes</a>
+                </div>
+                <div class="">
+                        <p class="account-text h3">Mes identifiants :</p>
+                        {{ form_start(form, {'attr': {'class': 'account-form'}}) }}
+                        {{ form_row(form.email ) }}
+                        {{ form_row(form.password) }}
+                        <hr>
+                        <p class="account-text h3">Informations de compte :</p>
+                        {{ form_row(form.firstname) }}
+                        {{ form_row(form.lastname) }}
+                        {{ form_row(form.birthday) }}
+                        {{ form_row(form.genre) }}
+                        <hr>
+                        <p class="account-text h3">Mon adresse :</p>
+                        {{ form_row(form.nbStreet, {'attr': {'value': app.user.nbStreet }}) }}
+                        {{ form_row(form.addressLine, {'attr': {'value': app.user.addressLine }}) }}
+                        {{ form_row(form.postCode, {'attr': {'value': app.user.postCode }}) }}
+                        {{ form_row(form.city, {'attr': {'value': app.user.city }}) }}
+                        {{ form_row(form._token) }}
+                        {{ form_row(form.submit) }}
+
+                        {{ form_end(form, {'render_rest':false}) }}
+                </div>
+            </div>
+    </div>
+{% endblock %}

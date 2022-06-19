@@ -1,3 +1,7 @@
+:root{
+    --light-green: #41916c;
+    --dark-green: #1a4332;
+}
 /****************************** Body
 */
 main{
@@ -139,6 +143,23 @@ _______________________________*/
     left: 100%;
     transform: translate3d(20%,-50%,0);
 }
+.account-form{
+    width: 600px;
+}
+.account-form>hr{
+    opacity: 1;
+    height: 3px;
+}
+.account-menu>a.active{
+    background-color: var(--light-green)!important;
+    color: white!important;
+}
+.account-menu>a{
+    color: black!important;
+}
+p.account-text {
+    margin: 0px 0 40px 0;
+}
 @media (hover: hover) {
     /* when supported */
     .cart-icon {
@@ -177,6 +198,11 @@ _______________________________*/
 @media screen and (max-width: 960px) {
     .footer-bg-p {
         padding-top: 15px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .account-form{
+        width: 400px;
     }
 }
 

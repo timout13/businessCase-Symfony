@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ProductsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProductsRepository::class)]
 class Products
@@ -13,9 +14,21 @@ class Products
     #[ORM\Column(type: 'integer')]
     private $id;
 
+    #[Assert\Length(
+        min: 5,
+        max: 50,
+        minMessage: 'Votre nom de produit doit contenir {{ limit }} charactères au minimum.',
+        maxMessage: 'Votre nom de produit doit contenir {{ limit }} charactères au maximum.',
+    )]
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
+    #[Assert\Length(
+        min: 10,
+        max: 250,
+        minMessage: 'Votre description doit contenir {{ limit }} charactères au minimum.',
+        maxMessage: 'Votre description doit contenir {{ limit }} charactères au maximum.',
+    )]
     #[ORM\Column(type: 'string', length: 255)]
     private $description;
 
@@ -23,8 +36,10 @@ class Products
     private $image;
 
     #[ORM\Column(type: 'float')]
+    #[Assert\PositiveOrZero(null,message: 'Le prix doit être supérieur ou égal à 0.')]
     private $price;
 
+    #[Assert\PositiveOrZero(null,message: 'Le nnombre d\'étoiles doit être supérieur ou égal à 0.')]
     #[ORM\Column(type: 'integer', nullable: false)]
     private $nbStar;
 

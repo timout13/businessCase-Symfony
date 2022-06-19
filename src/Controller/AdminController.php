@@ -14,9 +14,11 @@ use App\Repository\ProductsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/admin', name: 'admin_')]
 /*#[IsGranted('ROLE_ADMIN')]*/
@@ -149,12 +151,30 @@ class AdminController extends AbstractController
         ]);
     }
     #[Route('/product/new', name: 'product_new', methods: ['GET', 'POST'])]
-    public function product_new(Request $request, EntityManagerInterface $entityManager): Response {
+    public function product_new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response {
         $product = new Products();
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Upload img
+            $productImg = $form->get('image')->getData();
+            if ($productImg) {
+                $originalFilename = pathinfo($productImg->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$productImg->guessExtension();
+
+                try {
+                    $productImg->move(
+                        $this->getParameter('product_img'),
+                        $newFilename
+                    );
+                } catch (FileException $e){
+
+                }
+                $product->setImage($newFilename);
+            }
+
             $entityManager->persist($product);
             $entityManager->flush();
 
@@ -167,11 +187,28 @@ class AdminController extends AbstractController
         ]);
     }
     #[Route('/product/{id}/edit', name: 'product_edit', methods: ['GET', 'POST'])]
-    public function product_edit(Request $request, Products $products, EntityManagerInterface $entityManager): Response {
+    public function product_edit(Request $request, Products $products, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response {
         $form = $this->createForm(ProductType::class, $products);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Upload img
+            $productImg = $form->get('image')->getData();
+            if ($productImg) {
+                $originalFilename = pathinfo($productImg->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$productImg->guessExtension();
+
+                try {
+                    $productImg->move(
+                        $this->getParameter('product_img'),
+                        $newFilename
+                    );
+                } catch (FileException $e){
+
+                }
+                $products->setImage($newFilename);
+            }
             $entityManager->persist($products);
             $entityManager->flush();
 

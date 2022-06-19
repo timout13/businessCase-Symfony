@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container pt-5">
+        {% include 'parts/breadcrumbs.html.twig' %}
+        <div class="d-flex justify-content-around">
+            <div class="d-flex justify-content-center align-items-start flex-wrap gap-5">
+                <div class="nav flex-column nav-pills me-3 account-menu" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link border {{ (app.request.get('_route')=='account_detail') ? 'active' : '' }}" href="{{ path('account_detail') }}">Détails du compte</a>
+                    <a class="nav-link border {{ (app.request.get('_route')=='account_order') ? 'active' : '' }}" href="{{ path('account_order') }}">Mes commandes</a>
+                </div>
+                <div class="">
+                    <p class="account-text h3">Mes commandes :</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

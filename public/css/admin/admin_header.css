@@ -189,9 +189,15 @@ a.nav_link:hover{
 .profil-img{
     margin-inline-end: 10%;
 }
+.admin-product-img{}
+.p-mw-200px{
+    max-width: 200px;
+    height: 200px;
+    border: 1px solid gray;
+}
 @media screen and (min-width: 768px) {
     body {
-        margin: calc(3rem + 1rem) 0 0 0;
+        margin: 6rem 0 0 0;
         padding-left: calc(68px + 188px);
     }
 
