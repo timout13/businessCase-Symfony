@@ -1,5 +1,6 @@
 :root{
     --light-green: #41916c;
+    --medium-green:#198754;
     --dark-green: #1a4332;
 }
 /****************************** Body
@@ -160,6 +161,41 @@ _______________________________*/
 p.account-text {
     margin: 0px 0 40px 0;
 }
+a.account-block-link {
+    width: 340px;
+    height: 340px;
+    background-color: var(--medium-green);
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    box-shadow: 0px 0px 4px -1px grey;
+}
+a.account-block-link:hover {
+    width: 340px;
+    height: 340px;
+    background-color: var(--dark-green);
+    text-decoration: none;
+    color: white;
+}
+.account-block>p{
+    font-size: 30px;
+    font-weight: 700;
+}
+.account-block{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.account-block>i{
+    color: white;
+    font-size: 3rem;
+}
+
 @media (hover: hover) {
     /* when supported */
     .cart-icon {

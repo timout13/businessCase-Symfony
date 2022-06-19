@@ -18,6 +18,20 @@
                     {% endif %}
                 {% endfor %}
             </li>
+        {% elseif app.request.get('_route')=='account' %}
+            <li class="breadcrumb-item active" aria-current="page">
+               Compte
+            </li>
+        {% elseif app.request.get('_route')=='account_detail' %}
+            <li class="breadcrumb-item"><a href="{{ path('account') }}">Compte</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+                Détails du compte
+            </li>
+        {% elseif app.request.get('_route')=='account_order' %}
+            <li class="breadcrumb-item"><a href="{{ path('account') }}">Compte</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+                Mes commandes
+            </li>
         {% endif %}
     </ol>
 </nav>

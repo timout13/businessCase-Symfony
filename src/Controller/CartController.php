@@ -2,11 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\Orders;
 use App\Entity\ProductOrder;
 use App\Entity\Products;
+use App\Entity\Status;
 use App\Entity\User;
+use App\Form\AddressType;
+use App\Form\PaymentType;
 use App\Form\QuantityOrderType;
 use App\Form\UserType;
+use App\Repository\StatusRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,6 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[Route('/cart', name: 'cart_')]
 class CartController extends AbstractController
@@ -127,21 +133,69 @@ class CartController extends AbstractController
         return $this->redirectToRoute('cart_display');
     }
 
-    #[Route('/validation', name: 'validation', methods: ['GET', 'POST']) ]
-    public function cartValidation(SessionInterface $session, Request $request, EntityManagerInterface $entityManager) {
-        $user = $this->getUser();
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
+    #[Route('/validation', name: 'validation', methods: ['GET', 'POST'])]
+    public function cartValidation(SessionInterface $session, Request $request, StatusRepository $statusRepository, EntityManagerInterface $entityManager) {
+        $session = $request->getSession();
+        $cart = $session->get('cart');
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        $user = $this->getUser();
+        $addressForm = $this->createForm(AddressType::class, $user);
+        $addressForm->handleRequest($request);
+
+        if ($addressForm->isSubmitted() && $addressForm->isValid()) {
             $entityManager->persist($user);
             $entityManager->flush();
+            return $this->redirectToRoute('cart_validation', [], Response::HTTP_SEE_OTHER);
+        }
 
-            return $this->redirectToRoute('validation', [], Response::HTTP_SEE_OTHER);
+        $paymentForm = $this->createForm(PaymentType::class);
+        $paymentForm->handleRequest($request);
+        if ($paymentForm->isSubmitted() && $paymentForm->isValid()) {
+            $payment = $paymentForm->getData('payment_type');
+            $order = new Orders();
+            $status = $statusRepository->findBy(['label' => 'Accepté']);
 
+            foreach ($payment as $value) {
+                $order->setPayment($value);
+            }
+
+            foreach ($status as $array) {
+                $order->setStatus($array);
+            }
+
+            $order->setDateOrder(new \DateTime());
+            $order->setUser($user);
+
+
+            foreach ($cart as $po) {
+               dump($order);
+                $productOrder = new ProductOrder();
+                $productOrder->setQuantity($po->getQuantity());
+                $productOrder->setProduct($po->getProduct());
+                $productOrder->setPriceNow($po->getProduct()->getPrice());
+                $productOrder->setOrders($order);
+                dump($po);
+            }
+            die();
         }
         return $this->render('cart/orderOption.html.twig', [
-            'form'=>$form->createView(),
+            'addressForm' => $addressForm->createView(),
+            'paymentForm' => $paymentForm->createView(),
+        ]);
+    }
+
+    #[Route('/summary', name: 'summary', methods: ['GET', 'POST'])]
+    public function cartSummary(SessionInterface $session, Request $request, UserInterface $user, EntityManagerInterface $entityManager) {
+
+        return $this->render('cart/orderOption.html.twig', [
+        ]);
+    }
+
+    #[Route('/receip', name: 'summary', methods: ['GET', 'POST'])]
+    public function cartReceip(SessionInterface $session, Request $request, UserInterface $user, EntityManagerInterface $entityManager) {
+
+
+        return $this->render('cart/orderOption.html.twig', [
         ]);
     }
 }

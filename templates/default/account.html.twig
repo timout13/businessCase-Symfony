@@ -4,10 +4,20 @@
 
         <div class="container pt-5">
             {% include 'parts/breadcrumbs.html.twig' %}
-            <h1>Bienvenue sur votre compte</h1>
-            <div class="d-flex justify-content-around">
-                <a href="{{ path('account_detail') }}"><div class="account-block">Détails du compte</div></a>
-                <a href="{{ path('account_order') }}"><div class="account-block">Mes commandes</div></a>
+            <h1 class="text-center my-5">Bienvenue sur votre compte {{ app.user.firstname }} !</h1>
+            <div class="d-flex justify-content-around flex-wrap mb-5 gap-5">
+                <a href="{{ path('account_detail') }}" class="account-block-link border">
+                    <div class="account-block">
+                        <p>Détails du compte</p>
+                        <i class="bi bi-person"></i>
+                    </div>
+                </a>
+                <a href="{{ path('account_order') }}" class="account-block-link border">
+                    <div class="account-block">
+                        <p>Mes commandes</p>
+                        <i class="bi bi-bag-check"></i>
+                    </div>
+                </a>
             </div>
         </div>
 {% endblock %}
