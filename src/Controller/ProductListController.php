@@ -14,12 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProductListController extends AbstractController
 {
-    /*private $productRepository;
-
-    public function __construct(ProductsRepository $productRepository) {
-        $this->productRepository = $productRepository;
-    }*/
-
     #[Route('/product/list/{idCat}/{currentPage}/{nbDisplayed}', name: 'product_list', requirements: ['idCat' => '\d+'])]
     public function products(ProductsRepository $productsRepository, $currentPage, $nbDisplayed, $idCat, CategoryRepository $categoryRepository, Request $request): Response {
         $objName[]= '';
@@ -33,9 +27,7 @@ class ProductListController extends AbstractController
             $nbPage = (int) ($nbProducts/$nbDisplayed)+1;
         }
 
-
         $categories = $categoryRepository->findByParentNull();
-
 
         $products= '';
         if ($form->isSubmitted() && $form->isValid()) {
@@ -59,9 +51,9 @@ class ProductListController extends AbstractController
     #[Route('/product/all', name: 'product_all')]
     public function allProducts(Request $request): Response {
 
-//$productSearched= $request->request->get('search_bar')['searchBar'];
+        $productSearched= $request->request->get('search_bar')['searchBar'];
         return $this->render('product_list/allProducts.html.twig', [
-            //'productSearched'=>$productSearched,
+            'productSearched'=>$productSearched,
         ]);
     }
 

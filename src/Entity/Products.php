@@ -56,7 +56,6 @@ class Products
     #[ORM\Column(type: 'boolean', nullable: true)]
     private $flagship;
 
-
     public function getId(): ?int
     {
         return $this->id;

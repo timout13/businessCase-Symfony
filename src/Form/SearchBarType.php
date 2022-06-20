@@ -15,6 +15,7 @@ class SearchBarType extends AbstractType
         $builder
             ->add('searchBar', TextType::class, [
                 'required' => false,
+                'mapped'=>false,
                 'attr' => ['class' => 'form-control'],
             ])
             ->add('save', SubmitType::class, [

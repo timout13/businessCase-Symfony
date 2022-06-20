@@ -5,7 +5,9 @@
                                                                       height="50"
                                                                       alt="logo de l'Animealerie"></a>
             <div class="d-flex order-lg-last align-items-center gap-2 gap-md-5">
-{#                    {{ form(formSearch) }}#}
+                {{ form(formSearch) }}
+                {{ form_end(formSearch) }}
+
                 <form class="d-flex justify-content-start align-items-center position-relative" id="form-searchBar">
                     <!--                    <i class="fas fa-search" id="searchBar-search"></i>-->
                     <svg xmlns="http://www.w3.org/2000/svg" class="searchBar-search" viewBox="0 0 512 512">
@@ -22,8 +24,6 @@
                 <a href="{{ path('cart_display') }}" class="a-color notification">
                     <i class="fas fa-shopping-cart text-center"></i><span class="notif-badge">{{ cart_notif }}</span>
                 </a>
-
-
                 {% if app.user %}
                     <div class="btn-group">
                         <button type="button" class="btn btn-success rounded-pill dropdown-toggle"
@@ -33,7 +33,7 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
                             {% if is_granted("ROLE_ADMIN") %}
-                            <li><a class="dropdown-item" href="{{ path('admin_index') }}">Administration</a></li>
+                                <li><a class="dropdown-item" href="{{ path('admin_index') }}">Administration</a></li>
                             {% endif %}
                             <li><a class="dropdown-item" href="{{ path('account') }}">Mon compte</a></li>
                             <li><a class="dropdown-item" href="{{ path('app_logout') }}">Me déconnecter</a></li>
@@ -63,7 +63,7 @@
                                 <div class="col-6">
                                     <h6 class="title">Nos animaux</h6>
                                     <ul class="list-unstyled">
-                                       {% for category in categories %}
+                                        {% for category in categories %}
                                             <li>
                                                 <a href="{{ path('product_list', {'idCat':category.id, 'currentPage': 1, 'nbDisplayed': 10}) }}">
                                                     {{ category.label }}

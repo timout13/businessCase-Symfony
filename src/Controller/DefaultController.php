@@ -39,15 +39,19 @@ class DefaultController extends AbstractController
         $categories = $this->categoryRepository->findByParentNull();
         $cart = $session->get('cart', []);
         $cart_notif = 0;
-        $searchProduct = '';
-        $form = $this->createForm(SearchBarType::class);
+        $searchProduct = null;
+        $form = $this->createForm(SearchBarType::class, $searchProduct);
         $form->handleRequest($request);
         foreach ($cart as $value) {
             $cart_notif += $value->getQuantity();
         }
-        $productSearched = '';
+
         if ($form->isSubmitted() && $form->isValid()) {
+            dd($form);
+
+            $productSearched = '';
             $filter = $form->getData();
+
             $productSearched = $productsRepository->search($filter);
             return $this->redirectToRoute('product_all');
         }

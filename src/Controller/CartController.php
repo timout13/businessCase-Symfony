@@ -11,6 +11,7 @@ use App\Form\AddressType;
 use App\Form\PaymentType;
 use App\Form\QuantityOrderType;
 use App\Form\UserType;
+use App\Repository\ProductOrderRepository;
 use App\Repository\StatusRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -150,6 +151,7 @@ class CartController extends AbstractController
 
         $paymentForm = $this->createForm(PaymentType::class);
         $paymentForm->handleRequest($request);
+
         if ($paymentForm->isSubmitted() && $paymentForm->isValid()) {
             $payment = $paymentForm->getData('payment_type');
             $order = new Orders();
@@ -165,18 +167,20 @@ class CartController extends AbstractController
 
             $order->setDateOrder(new \DateTime());
             $order->setUser($user);
-
+            $entityManager->persist($order);
+            $entityManager->flush();
 
             foreach ($cart as $po) {
-               dump($order);
                 $productOrder = new ProductOrder();
                 $productOrder->setQuantity($po->getQuantity());
                 $productOrder->setProduct($po->getProduct());
                 $productOrder->setPriceNow($po->getProduct()->getPrice());
                 $productOrder->setOrders($order);
-                dump($po);
+
+                $entityManager->merge($productOrder);
+                $entityManager->flush();
             }
-            die();
+            return $this->redirectToRoute('cart_receip', [], Response::HTTP_SEE_OTHER);
         }
         return $this->render('cart/orderOption.html.twig', [
             'addressForm' => $addressForm->createView(),
@@ -191,11 +195,11 @@ class CartController extends AbstractController
         ]);
     }
 
-    #[Route('/receip', name: 'summary', methods: ['GET', 'POST'])]
-    public function cartReceip(SessionInterface $session, Request $request, UserInterface $user, EntityManagerInterface $entityManager) {
+    #[Route('/receip/', name: 'receip', methods: ['GET', 'POST'])]
+    public function cartReceip() {
 
 
-        return $this->render('cart/orderOption.html.twig', [
+        return $this->render('cart/receip.html.twig', [
         ]);
     }
 }
