@@ -40,7 +40,9 @@ i {
 .fade-up a {
     color: black;
 }
-
+.a-header{
+    text-decoration: none;
+}
 .fade-up a:hover {
     color: #40916c !important;
 }

@@ -1,14 +1,6 @@
 /****************************** Body
 */
 
-/*
-Don't know what it is
-missing class in index.php
-
-.width-menuRight {
-    width: 300px;
-}*/
-
 p {
     font-size: 1rem;
 }
@@ -29,17 +21,29 @@ _______________________________*/
 
 /****************************** H2
 */
+h2 {
+    position: relative;
+}
 
 h2::before {
     font-family: "Font Awesome 5 Free";
-    content: "\f1b0";
+    content: "";
     font-weight: 900;
+    transform: rotate(315deg);
+    display: block;
+    position: absolute;
+    left: 6%;
 }
 
 h2::after {
     font-family: "Font Awesome 5 Free";
-    content: "\f1b0";
+    content: "";
     font-weight: 900;
+    transform: rotate(45deg);
+    display: block;
+    position: absolute;
+    right: 6%;
+    top: 0;
 }
 
 
@@ -108,7 +112,19 @@ _______________________________*/
 .carousel-block-btn {
     padding-right: 20%;
 }
-
+.p-d-flex{
+    display: flex!important;
+    justify-content: center!important;
+}
+.btn-index{
+    background: #d2a52a;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 25px;
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+}
 /******************************
           End Carousel
 *******************************/
@@ -116,13 +132,12 @@ _______________________________*/
             QSN
 *******************************/
 
-.qsn {
-    background: no-repeat 99% 110%/12% url(../images/index/qsn_chien.png);
+.qsn{
+    background: none;
     margin-bottom: 0;
     padding-top: 5%;
     padding-bottom: 5%;
 }
-
 .qsn p {
     line-height: 2;
 }
@@ -321,6 +336,53 @@ a.btn-home:hover {
           RESPONSIVE
 *******************************/
 
+@media screen and (min-width: 768px) {
+    .qsn{
+        background-repeat: no-repeat;
+        background-size: 15%;
+        background-position: 99% 101%;
+        background-image: url(../images/index/qsn_chien.png);
+    }
+    .h2-index::before {
+        left: 20%;
+        content: "\f1b0";
+
+    }
+    .h2-index::after {
+        right: 20%;
+        content: "\f1b0";
+    }
+}
+
+@media screen and (min-width: 990px) {
+    .h2-index::before {
+        left: 28%;
+        content: "\f1b0";
+
+    }
+    .h2-index::after {
+        right: 28%;
+        content: "\f1b0";
+    }
+}
+@media screen and (min-width: 1300px) {
+    .h2-index::before {
+        left: 30%;
+        content: "\f1b0";
+
+    }
+    .h2-index::after {
+        right: 30%;
+        content: "\f1b0";
+    }
+}
+@media screen and (min-width: 1024px) {
+    .qsn{
+        background-position: 99% 103%;
+        background-size: 15%;
+    }
+}
+
 @media screen and (max-width: 1320px) {
     .rea-h2::before {
         display: inline-block;
@@ -330,7 +392,6 @@ a.btn-home:hover {
         height: 180px;
         bottom: -110px;
 
-        background-color: red;
         z-index: -1;
         left: 0;
 
@@ -344,7 +405,6 @@ a.btn-home:hover {
         width: 259px;
         height: 180px;
         bottom: -110px;
-        background-color: blue;
         z-index: -1;
         right: 0;
 
@@ -361,11 +421,8 @@ a.btn-home:hover {
         width: 259px;
         height: 180px;
         bottom: -60px;
-
-        background-color: red;
         z-index: -1;
         right: 0;
-        /*background: url("../img/index/bulle_poisson_gauche.png") no-repeat left center;*/
     }
 
     .rea-h2::after {
@@ -375,12 +432,9 @@ a.btn-home:hover {
         width: 259px;
         height: 180px;
         bottom: -60px;
-        background-color: blue;
         z-index: -1;
         left: 0;
-        /*background: url("../img/index/bulle_poisson_droite.png") no-repeat left center;*/
     }
-
     .rea_block {
         padding: 0;
     }
@@ -394,11 +448,8 @@ a.btn-home:hover {
         width: 259px;
         height: 180px;
         bottom: -60px;
-
-        background-color: red;
         z-index: -1;
         right: 0;
-        /*background: url("../img/index/bulle_poisson_gauche.png") no-repeat left center;*/
     }
 
     .rea-h2::after {
@@ -411,7 +462,6 @@ a.btn-home:hover {
         background-color: blue;
         z-index: -1;
         left: 0;
-        /*background: url("../img/index/bulle_poisson_droite.png") no-repeat left center;*/
     }
 
 }
@@ -421,6 +471,8 @@ a.btn-home:hover {
         text-align: center;
         margin-right: auto;
         margin-left: auto;
+        width: initial;
+        margin-top: 50px;
     }
 
     .vpm {

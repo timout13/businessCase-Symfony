@@ -11,6 +11,7 @@ use App\Form\AddressType;
 use App\Form\PaymentType;
 use App\Form\QuantityOrderType;
 use App\Form\UserType;
+use App\Repository\OrdersRepository;
 use App\Repository\ProductOrderRepository;
 use App\Repository\StatusRepository;
 use App\Repository\UserRepository;
@@ -180,7 +181,10 @@ class CartController extends AbstractController
                 $entityManager->merge($productOrder);
                 $entityManager->flush();
             }
-            return $this->redirectToRoute('cart_receip', [], Response::HTTP_SEE_OTHER);
+            if ($session->has('cart')) {
+                $session->remove('cart');
+            }
+            return $this->redirectToRoute('cart_receipt', [], Response::HTTP_SEE_OTHER);
         }
         return $this->render('cart/orderOption.html.twig', [
             'addressForm' => $addressForm->createView(),
@@ -195,11 +199,18 @@ class CartController extends AbstractController
         ]);
     }
 
-    #[Route('/receip/', name: 'receip', methods: ['GET', 'POST'])]
-    public function cartReceip() {
-
-
-        return $this->render('cart/receip.html.twig', [
+    #[Route('/receipt/', name: 'receipt', methods: ['GET', 'POST'])]
+    public function cartreceipt(OrdersRepository $ordersRepository, ProductOrderRepository $productOrderRepository) {
+        $order=$ordersRepository->findBy([],['id'=>'DESC'],['limit'=>1]);
+        foreach ($order as $value){
+            $orderId = $value->getId();
+            $dateToString = $value->getDateOrder()->format('Y-m-d H:i:s');
+            $orderLines=$productOrderRepository->findBy(['orders'=>$orderId]);
+        }
+        return $this->render('cart/receipt.html.twig', [
+            'orderLines'=>$orderLines,
+            'order'=>$value,
+            'dateOrder'=>$dateToString
         ]);
     }
 }

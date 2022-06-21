@@ -23,11 +23,6 @@
 
 </head>
 <body>
-{% if app.request.get('_route')=='default' %}
-    <style>
-        main{margin-top: 44px!important;}
-    </style>
-{% endif %}
 <header>
     {{ render(controller('App\\Controller\\DefaultController::displayCatNav')) }}
 </header>
