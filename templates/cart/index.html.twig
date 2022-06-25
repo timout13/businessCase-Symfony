@@ -3,23 +3,10 @@
 {% block title %}Hello CartController!{% endblock %}
 
 {% block body %}
-    <style>
-        .example-wrapper {
-            margin: 1em auto;
-            max-width: 800px;
-            width: 95%;
-            font: 18px/1.5 sans-serif;
-        }
-
-        .example-wrapper code {
-            background: #F5F5F5;
-            padding: 2px 6px;
-        }
-    </style>
-    <main>
-        <div class="container">
+        <div class="container pt-5">
+            {% include 'parts/breadcrumbs.html.twig' %}
             {% if cart|length > 0 %}
-                <h2 class="mb-5">Le montant de votre panier s'élève à : <span class="text-success">{{ price }} €</span>
+                <h2 class="mb-5">Le montant de votre panier s'élève à : <span class="text-success">{{ price |number_format(2) }} €</span>
                 </h2>
                 <div class="row">
                     <div class="col-12 col-md-8">
@@ -36,7 +23,6 @@
                                 </thead>
                                 <tbody>
                                 {% for productOrder in cart %}
-                                    {% dump productOrder %}
                                     <tr class="align-middle">
                                         <th scope="row">{{ productOrder.product.name }}</th>
                                         <td class="text-center">
@@ -80,7 +66,7 @@
 
                     </div>
                 </div>
-                <div class="d-flex justify-content-center gap-2">
+                <div class="mt-4 d-flex justify-content-center gap-2">
                     {% if app.request.headers.get('referer') == app.request.uri %}
                         <a href="{{ path('default') }}" class="btn btn-success"> Retour</a>
                     {% else %}
@@ -99,5 +85,4 @@
 
             {% endif %}
         </div>
-    </main>
 {% endblock %}

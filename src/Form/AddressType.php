@@ -39,7 +39,7 @@ class AddressType extends AbstractType
             ->add('submit', SubmitType::class,
                 [
                     'label' => 'Mettre à jour',
-                    'attr' => ['class' => 'btn btn-outline-dark px-5 float-end']
+                    'attr' => ['class' => 'btn btn-outline-dark px-5']
                 ]);
         ;
     }

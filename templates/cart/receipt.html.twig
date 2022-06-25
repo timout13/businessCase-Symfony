@@ -3,29 +3,50 @@
 {% block title %}Hello CartController!{% endblock %}
 
 {% block body %}
-    <div class="container">
+    <div class="container pt-5">
         <div class="h2">
             Votre commande a bien été passée
         </div>
-        <div class="border">
-            TO
-{{ app.user.firstname }}
-{{ app.user.lastname }}
-{{ app.user.nbStreet }}
-{{ app.user.addressLine }}
-{{ app.user.postCode }}
-{{ app.user.city }}
-            Reçu
-            {{ order.id }}
-            {{ dateOrder }}
-            {{ order.status.label }}
-            {{ dump(order) }}
+        <div class="border mt-3">
+            <p>
+                Destinataire : {{ app.user.firstname }} {{ app.user.lastname }}
+            </p>
+            <p>
+                Adresse de livraison : {{ app.user.nbStreet }}
+                {{ app.user.addressLine }}
+                {{ app.user.postCode }}
+                {{ app.user.city }}
+            </p>
 
-            {{ dump(orderLines) }}
-            {% for orderLine in orderLines  %}
+            <div class="">
+                <div class="text-end">
+                    <p>Reçu : </p>
+                    <p>Numéro de commande : {{ order.id }}</p>
+                    <p>Date : {{ dateOrder }}</p>
+                    <p>Status : {{ order.status.label }}</p>
+                </div>
 
-                {{ orderLine.product.name }}
-            {% endfor %}
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Produit</th>
+                        <th scope="col">Quantité</th>
+                        <th scope="col">Prix unitaire / total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for orderLine in orderLines %}
+                        <tr>
+                            <td>{{ orderLine.product.name }}</td>
+                            <td>{{ orderLine.quantity }}</td>
+                            <td>{{ orderLine.pricenow }} | {{ orderLine.quantity*orderLine.pricenow |number_format(2)}} €</td>
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="border">
 

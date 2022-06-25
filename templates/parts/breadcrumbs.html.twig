@@ -32,6 +32,11 @@
             <li class="breadcrumb-item active" aria-current="page">
                 Mes commandes
             </li>
+        {% elseif app.request.get('_route')=='cart_display' %}
+            <li class="breadcrumb-item active">Panier</li>
+        {% elseif app.request.get('_route')=='cart_validation' %}
+            <li class="breadcrumb-item"><a href="{{ path('cart_display') }}">Panier</a></li>
+            <li class="breadcrumb-item active">Validation de la commande</li>
         {% endif %}
     </ol>
 </nav>

@@ -195,7 +195,52 @@ a.account-block-link:hover {
     color: white;
     font-size: 3rem;
 }
-
+.p-accordion-button:not(.collapsed) {
+    color: var(--dark-green);
+    background-color: rgba(65, 145, 108, 0.17);
+}
+.p-accordion-button:focus{
+    box-shadow: 0 0 0 0.15rem rgba(65, 145, 108, 0.56);
+}
+.p-accordion:not(.collapsed) {
+    box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
+}
+#payment_payment_type_0::after {
+    content: '';
+    width: 84px;
+    background-size: 50%;
+    height: 50px;
+    position: absolute;
+    background-position-x: center;
+    background-repeat: no-repeat;
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/a/a4/Paypal_2014_logo.png);
+    top: -5px;
+}
+#payment_payment_type_1::after {
+    content: '';
+    width: 97px;
+    background-size: 140px;
+    height: 50px;
+    position: absolute;
+    background-position-x: right;
+    background-repeat: no-repeat;
+    background-image: url(/images/index/reassurance_mPaiement.png);
+    top: -8px;
+    left: 62%;
+}
+.payment-radio>label,#payment_submit{
+    display: none;
+}
+.ws-nowrap{
+    white-space: nowrap;
+}
+.modal-body>p{
+    font-size: 16px;
+}
+.p-alert-light{
+    box-shadow: 0px 1px 2px 0px #a6a6a6;
+    padding: 10px 20px;
+}
 @media (hover: hover) {
     /* when supported */
     .cart-icon {

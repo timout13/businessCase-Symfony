@@ -5,16 +5,11 @@ namespace App\Controller;
 use App\Entity\Orders;
 use App\Entity\ProductOrder;
 use App\Entity\Products;
-use App\Entity\Status;
-use App\Entity\User;
 use App\Form\AddressType;
 use App\Form\PaymentType;
-use App\Form\QuantityOrderType;
-use App\Form\UserType;
 use App\Repository\OrdersRepository;
 use App\Repository\ProductOrderRepository;
 use App\Repository\StatusRepository;
-use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -66,18 +61,13 @@ class CartController extends AbstractController
     public function index(Request $request): Response {
         $cart = [];
         $session = $request->getSession();
-
         if ($session->has('cart')) {
             $cart = $session->get('cart');
         }
-
         $price = 0;
-
         foreach ($cart as $oneP) {
             $price += $oneP->getProduct()->getPrice() * $oneP->getQuantity();
         }
-
-
         return $this->render('cart/index.html.twig', [
             'cart' => $cart,
             'price' => $price,
@@ -137,6 +127,11 @@ class CartController extends AbstractController
         $session = $request->getSession();
         $cart = $session->get('cart');
 
+        $price = 0;
+        foreach ($cart as $oneP) {
+            $price += $oneP->getProduct()->getPrice() * $oneP->getQuantity();
+        }
+
         $user = $this->getUser();
         $addressForm = $this->createForm(AddressType::class, $user);
         $addressForm->handleRequest($request);
@@ -186,28 +181,22 @@ class CartController extends AbstractController
         return $this->render('cart/orderOption.html.twig', [
             'addressForm' => $addressForm->createView(),
             'paymentForm' => $paymentForm->createView(),
+            'price'=>$price,
+            'cart'=>$cart
         ]);
     }
-
-    #[Route('/summary', name: 'summary', methods: ['GET', 'POST'])]
-    public function cartSummary(SessionInterface $session, Request $request, UserInterface $user, EntityManagerInterface $entityManager) {
-
-        return $this->render('cart/orderOption.html.twig', [
-        ]);
-    }
-
     #[Route('/receipt/', name: 'receipt', methods: ['GET', 'POST'])]
     public function cartreceipt(OrdersRepository $ordersRepository, ProductOrderRepository $productOrderRepository) {
-        $order=$ordersRepository->findBy([],['id'=>'DESC'],['limit'=>1]);
-        foreach ($order as $value){
+        $order = $ordersRepository->findBy([], ['id' => 'DESC'], ['limit' => 1]);
+        foreach ($order as $value) {
             $orderId = $value->getId();
             $dateToString = $value->getDateOrder()->format('Y-m-d H:i:s');
-            $orderLines=$productOrderRepository->findBy(['orders'=>$orderId]);
+            $orderLines = $productOrderRepository->findBy(['orders' => $orderId]);
         }
         return $this->render('cart/receipt.html.twig', [
-            'orderLines'=>$orderLines,
-            'order'=>$value,
-            'dateOrder'=>$dateToString
+            'orderLines' => $orderLines,
+            'order' => $value,
+            'dateOrder' => $dateToString
         ]);
     }
 }

@@ -16,15 +16,21 @@ class PaymentType extends AbstractType
         $builder
             ->add('payment_type', ChoiceType::class,
                 [
+                    'label'=>'Types de paiements :',
                     'choices' => [
                         'Paypal' => 'paypal',
                         'Carte bancaire' => 'visa',
                     ],
+                    'choice_attr' => [
+                        'Paypal' => ['class' => 'payment-radio-btn ms-5 me-3'],
+                        'Carte bancaire' => ['class' => 'payment-radio-btn ms-5 me-3'],
+                    ],
+                    'attr'=>['class'=>'payment-radio position-relative gap-5 my-3 d-flex flex-wrap justify-content-start justify-content-md-center align-items-center'],
                     'expanded' => true
                 ])
             ->add('submit', SubmitType::class,
                 [
-                    'label' => 'Mettre à jour',
+                    'label' => 'Valider la commande',
                     'attr' => ['class' => 'btn btn-outline-dark px-5']
                 ]);
         ;
