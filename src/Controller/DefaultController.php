@@ -4,8 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Products;
 use App\Form\ContactFormType;
-use App\Form\SearchBarType;
-use App\Form\SearchEngineType;
 use App\Form\SearchType;
 use App\Form\UserType;
 use App\Repository\CategoryRepository;
@@ -39,26 +37,14 @@ class DefaultController extends AbstractController
         $categories = $this->categoryRepository->findByParentNull();
         $cart = $session->get('cart', []);
         $cart_notif = 0;
-        $searchProduct = null;
-        $form = $this->createForm(SearchBarType::class, $searchProduct);
-        $form->handleRequest($request);
         foreach ($cart as $value) {
             $cart_notif += $value->getQuantity();
         }
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            dd($form);
 
-            $productSearched = '';
-            $filter = $form->getData();
-
-            $productSearched = $productsRepository->search($filter);
-            return $this->redirectToRoute('product_all');
-        }
         return $this->render('parts/header.html.twig', [
             'categories' => $categories,
             'cart_notif' => $cart_notif,
-            'formSearch' => $form->createView(),
 
         ]);
     }

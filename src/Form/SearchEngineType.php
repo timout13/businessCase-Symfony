@@ -17,50 +17,53 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class SearchEngineType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void {
-        $catId=$options['catId'];
+        $catId = $options['catId'];
         $builder
             ->add('searchBar', TextType::class, [
                 'required' => false,
                 'attr' => ['class' => 'form-control'],
             ])
             ->add('category', EntityType::class, ['required' => false,
-                'query_builder'=> function (EntityRepository $entityRepository) use ($catId){
-                return $entityRepository->createQueryBuilder('c')
-                    ->where('c.cat_parent = :idCatParent')
-                    ->orWhere('c.id= :idCatParent')
-                    ->setParameter('idCatParent', $catId);
+                'query_builder' => function (EntityRepository $entityRepository) use ($catId) {
+                    return $entityRepository->createQueryBuilder('c')
+                        ->where('c.cat_parent = :idCatParent')
+                        ->setParameter('idCatParent', $catId);
                 },
                 'class' => Category::class,
-                'attr' => ['class' => 'form-control', 'multiple'=>'']
+                'placeholder' => 'false',
+                'attr' => ['class' => 'form-select']
             ])
             ->add('brand', EntityType::class, ['required' => false,
                 'class' => Brand::class,
-                'attr' => ['class' => 'form-control', 'multiple'=>'']
+                'placeholder' => 'Choisissez une marque',
+                'attr' => ['class' => 'form-select',]
             ])
-            ->add('nbStars', ChoiceType::class, ['required' => false,
-                'choices' =>
-                    [
-                        '1 stars' => 1,
-                        'stars 2' => 2,
-                        'stars 3' => 3,
-                        'stars 4' => 4,
-                        'stars 5' => 5],
-                'expanded' => true,
-                'multiple' => true,
-                'attr' => ['class' => 'form-control'],
-            ])
+            ->add('nbStars', ChoiceType::class,
+                [
+                    'required' => false,
+                    'choices' =>
+                        [
+                            'stars 1' => 1,
+                            'stars 2' => 2,
+                            'stars 3' => 3,
+                            'stars 4' => 4,
+                            'stars 5' => 5],
+                    'expanded' => true,
+                    'multiple' => true,
+                    'attr' => ['class' => 'form-control'],
+                ])
             ->add('minPrice', NumberType::class,
                 [
                     'required' => false,
-                    'attr'=>['class'=>'form-control'],
+                    'attr' => ['class' => 'form-control'],
                 ])
             ->add('maxPrice', NumberType::class,
                 [
                     'required' => false,
-                    'attr'=>['class'=>'form-control'],
+                    'attr' => ['class' => 'form-control'],
                 ])
             ->add('save', SubmitType::class, [
-                'attr'=>['class'=>'btn btn-dark'],
+                'attr' => ['class' => 'btn btn-dark'],
 
             ]);
     }
@@ -70,5 +73,4 @@ class SearchEngineType extends AbstractType
             'catId',
         ]);
     }
-
 }

@@ -81,13 +81,12 @@
                         <div class="my-slider">
                             {% for produit in produits %}
                                 {% if produit.flagship == 1 %}
-                                    <div class=" ">
+                                    <div class="p-tns-card">
                                         <div class="p-card py-3 position-relative rounded-4 ">
                                             <a href="{{ path('cart_add', {'id': produit.id }) }}" class="cart-icon">
                                                 <i class="fa-solid fa-cart-arrow-down align-middle fa-md "></i>
                                             </a>
                                             <a href="{{ path('detail', {'id': produit.id }) }}" class="p-card-content">
-
                                                 <div class="img">
                                                     <img src="{{ produit.image }}"
                                                          class="img-fluid rounded-4"
@@ -109,13 +108,10 @@
                                                             {% endif %}
                                                         {% endfor %}
                                                         <span class="star-text">({{ produit.nbStar }})</span>
-
                                                     </div>
-
                                                     <p class="p-card-product-price">
                                                         {{ produit.price }} € <sup class="ttc">TTC</sup>
                                                     </p>
-
                                                 </div>
                                             </a>
                                         </div>
@@ -127,7 +123,7 @@
                 </div>
                 <div class="col-lg-12 col-sm-12 py-4">
                     <div class="py-4">
-                        <a href="" class="btn-home">Voir tous les produits</a>
+                        <a href="{{ path('product_all') }}" class="btn-home">Voir tous les produits</a>
                     </div>
                 </div>
             </div>

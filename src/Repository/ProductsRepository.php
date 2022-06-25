@@ -65,9 +65,8 @@ class ProductsRepository extends ServiceEntityRepository
             $query->andWhere("p.brand = :brand")->setParameter('brand', $filter["brand"]);
         }
 
-        if(!empty($filter["nbStar"])){
-
-            $query->andWhere('p.nbStar IN (:array)')->setParameter('array', $filter["nbStar"]);
+        if(!empty($filter["nbStars"])){
+            $query->andWhere('p.nbStar IN (:array)')->setParameter('array', $filter["nbStars"]);
         }
 
         if(!is_null($filter["minPrice"])){

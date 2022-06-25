@@ -1,0 +1,12 @@
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container pt-5">
+    <h1>Page non trouvée !</h1>
+    <p>
+        La page que vous cherchez est introuvable.
+         <a href="{{ path('default') }}">Retourner à la page d'accueil</a>.
+    </p>
+    </div>
+{% endblock %}

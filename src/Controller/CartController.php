@@ -77,13 +77,10 @@ class CartController extends AbstractController
             $price += $oneP->getProduct()->getPrice() * $oneP->getQuantity();
         }
 
-        // Calculer le prix total
 
-        // Afficher mon panier
         return $this->render('cart/index.html.twig', [
             'cart' => $cart,
             'price' => $price,
-
         ]);
     }
 

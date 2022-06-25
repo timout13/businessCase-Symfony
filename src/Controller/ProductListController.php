@@ -26,13 +26,17 @@ class ProductListController extends AbstractController
         if ($nbProducts%$nbDisplayed !=0){
             $nbPage = (int) ($nbProducts/$nbDisplayed)+1;
         }
-
         $categories = $categoryRepository->findByParentNull();
 
+        $catName=$categoryRepository->findBy(['id'=>$idCat]);
+
+        $test= $form->getData();
         $products= '';
         if ($form->isSubmitted() && $form->isValid()) {
             $filter = $form->getData();
+
             $products = $productsRepository->search($filter, $currentPage, $nbDisplayed);
+
         } else{
             $products = $productsRepository->findByPagination($idCat, $currentPage, $nbDisplayed);
         }
@@ -49,12 +53,11 @@ class ProductListController extends AbstractController
     }
 
     #[Route('/product/all', name: 'product_all')]
-    public function allProducts(Request $request): Response {
-
-        $productSearched= $request->request->get('search_bar')['searchBar'];
-        return $this->render('product_list/allProducts.html.twig', [
-            'productSearched'=>$productSearched,
-        ]);
+    public function allProducts(Request $request, ProductsRepository $productsRepository): Response {
+        $products = $productsRepository->findAll();
+        return $this->render('product_list/allProducts.html.twig', @
+            ['products'=>$products,]
+        );
     }
 
 }
