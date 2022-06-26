@@ -21,7 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/admin', name: 'admin_')]
-/*#[IsGranted('ROLE_ADMIN')]*/
+#[IsGranted('ROLE_ADMIN')]
 
 class AdminController extends AbstractController
 {

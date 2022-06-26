@@ -37,6 +37,8 @@
         {% elseif app.request.get('_route')=='cart_validation' %}
             <li class="breadcrumb-item"><a href="{{ path('cart_display') }}">Panier</a></li>
             <li class="breadcrumb-item active">Validation de la commande</li>
+        {% elseif app.request.get('_route')=='product_all' %}
+            <li class="breadcrumb-item active">Tous les produits</li>
         {% endif %}
     </ol>
 </nav>

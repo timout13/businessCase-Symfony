@@ -11,6 +11,7 @@ use App\Repository\OrdersRepository;
 use App\Repository\ProductOrderRepository;
 use App\Repository\StatusRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -123,6 +124,7 @@ class CartController extends AbstractController
     }
 
     #[Route('/validation', name: 'validation', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
     public function cartValidation(SessionInterface $session, Request $request, StatusRepository $statusRepository, EntityManagerInterface $entityManager) {
         $session = $request->getSession();
         $cart = $session->get('cart');
@@ -186,6 +188,7 @@ class CartController extends AbstractController
         ]);
     }
     #[Route('/receipt/', name: 'receipt', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
     public function cartreceipt(OrdersRepository $ordersRepository, ProductOrderRepository $productOrderRepository) {
         $order = $ordersRepository->findBy([], ['id' => 'DESC'], ['limit' => 1]);
         foreach ($order as $value) {

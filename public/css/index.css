@@ -216,6 +216,7 @@ a.btn-home:hover {
 
 .vpm_block_text p {
     width: 50%;
+    font-size: 1.4rem;
 }
 
 /******************************
@@ -232,6 +233,9 @@ a.btn-home:hover {
         background-size: 15%;
         background-position: 99% 101%;
         background-image: url(../images/index/qsn_chien.png);
+    }
+    .qsn>div>p{
+        font-size: 1.1rem;
     }
 
     .h2-index::before {

@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+<a class="col-md-3 border cat-card bg-success"
+                   href="{{ path('product_list', {'idCat':categorie.id, 'currentPage': 1, 'nbDisplayed': 2}) }}">
+                    <div>{{ categorie.label }}</div>
+
 {% block title %}Hello DefaultController!{% endblock %}
 
 {% block stylesheets %}

@@ -8,17 +8,9 @@
         {% include 'parts/breadcrumbs.html.twig' %}
         <h1>Nos produits</h1>
     </div>
-    <div class="border row p-5 shadow-inner">
-        <div class="btn-group-vertical">
-            <a class="btn btn-outline-success"
-               href="{{ path('product_list', {'idCat':idCat, 'currentPage': currentPage, 'nbDisplayed': 10}) }}">Afficher
-                2
-                produits</a>
-            <a class="btn btn-outline-success"
-               href="{{ path('product_list', {'idCat':idCat, 'currentPage': currentPage, 'nbDisplayed': 50}) }}">Afficher
-                4
-                produits</a>
-        </div>
+    <hr>
+    <div class="row p-5">
+
         <aside class="col-lg-3 col-12 bg-light sticky-sm-top">
             {{ form_start(form) }}
             {{ form_end(form) }}
