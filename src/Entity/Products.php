@@ -39,7 +39,7 @@ class Products
     #[Assert\PositiveOrZero(null,message: 'Le prix doit être supérieur ou égal à 0.')]
     private $price;
 
-    #[Assert\PositiveOrZero(null,message: 'Le nnombre d\'étoiles doit être supérieur ou égal à 0.')]
+    #[Assert\PositiveOrZero(null,message: 'Le nombre d\'étoiles doit être supérieur ou égal à 0.')]
     #[ORM\Column(type: 'integer', nullable: false)]
     private $nbStar;
 

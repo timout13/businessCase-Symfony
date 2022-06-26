@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
@@ -43,15 +44,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $genre;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\PositiveOrZero(null,message: 'Le numéro de rue doit être supérieur ou égal à 0.')]
+    #[Assert\Length(
+        min: 1,
+        max: 3,
+        minMessage: 'Votre numéro doit contenir {{ limit }} charactères au minimum.',
+        maxMessage: 'Votre numéro doit contenir {{ limit }} charactères au maximum.',
+    )]
     private $nbStreet;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\Length(
+        min: 10,
+        max: 100,
+        minMessage: 'Votre adresse doit contenir {{ limit }} charactères au minimum.',
+        maxMessage: 'Votre adresse doit contenir {{ limit }} charactères au maximum.',
+    )]
     private $addressLine;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\PositiveOrZero(null,message: 'Le code postal ne peux pas être négatif ou nul.')]
+    #[Assert\Length(
+        min: 5,
+        max: 5,
+        minMessage: 'Votre code postal doit contenir {{ limit }} charactères au minimum.',
+        exactMessage: 'Votre code postal doit contenir exactement {{ limit }} charactères.',
+        maxMessage: 'Votre code postal doit contenir {{ limit }} charactères au maximum.',
+    )]
     private $postCode;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\Length(
+        min: 3,
+        max: 50,
+        minMessage: 'Votre ville doit contenir {{ limit }} charactères au minimum.',
+        maxMessage: 'Votre ville postal doit contenir {{ limit }} charactères au maximum.',
+    )]
     private $city;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Orders::class)]

@@ -17,7 +17,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 #[Route('/cart', name: 'cart_')]
 class CartController extends AbstractController
@@ -29,8 +28,9 @@ class CartController extends AbstractController
         $productOrder->setProduct($product);
         $productOrder->setQuantity(1);
 
+        //Get the session
         $session = $request->getSession();
-
+        //
         $cart = [];
 
         if ($session->has('cart')) {
@@ -39,12 +39,6 @@ class CartController extends AbstractController
 
         $exist = false;
         foreach ($cart as $productOrderElem) {
-            /*dump('produit');
-            dump($product->getId());
-            dump('produits dans ma session panier');
-            dump($productOrderElem->getProduct()->getId());
-            dump('expression entre les deux');
-            dd($productOrderElem->getProduct() == $product);*/
             if ($productOrderElem->getProduct()->getId() == $product->getId()) {
                 $exist = true;
                 $productOrderElem->setQuantity($productOrderElem->getQuantity() + 1);
@@ -74,7 +68,6 @@ class CartController extends AbstractController
             'price' => $price,
         ]);
     }
-
     #[Route('/remove-product/{id}', name: 'remove_product')]
     public function removeProduct(Products $product, Request $request) {
         $session = $request->getSession();
@@ -85,12 +78,8 @@ class CartController extends AbstractController
                 $delete = $key;
             }
         }
-
         unset($cart[$delete]);
-
         $session->set('cart', $cart);
-
-
         return $this->redirectToRoute('cart_display');
     }
 
@@ -119,7 +108,6 @@ class CartController extends AbstractController
             }
         }
         $session->set('cart', $cart);
-
         return $this->redirectToRoute('cart_display');
     }
 
@@ -183,10 +171,11 @@ class CartController extends AbstractController
         return $this->render('cart/orderOption.html.twig', [
             'addressForm' => $addressForm->createView(),
             'paymentForm' => $paymentForm->createView(),
-            'price'=>$price,
-            'cart'=>$cart
+            'price' => $price,
+            'cart' => $cart
         ]);
     }
+
     #[Route('/receipt/', name: 'receipt', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_USER')]
     public function cartreceipt(OrdersRepository $ordersRepository, ProductOrderRepository $productOrderRepository) {
@@ -195,16 +184,16 @@ class CartController extends AbstractController
             $orderId = $value->getId();
             $dateToString = $value->getDateOrder()->format('d-m-Y');
             $orderLines = $productOrderRepository->findBy(['orders' => $orderId]);
-            $totalPrice=0;
-            foreach ($orderLines as $line){
-                $totalPrice+=$line->getPriceNow()*(float)$line->getQuantity();
+            $totalPrice = 0;
+            foreach ($orderLines as $line) {
+                $totalPrice += $line->getPriceNow() * (float)$line->getQuantity();
             }
         }
         return $this->render('cart/receipt.html.twig', [
             'orderLines' => $orderLines,
             'order' => $value,
             'dateOrder' => $dateToString,
-            'totalPrice'=>$totalPrice
+            'totalPrice' => $totalPrice
         ]);
     }
 }

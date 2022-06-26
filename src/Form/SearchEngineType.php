@@ -30,10 +30,11 @@ class SearchEngineType extends AbstractType
                         ->setParameter('idCatParent', $catId);
                 },
                 'class' => Category::class,
-                'placeholder' => 'false',
+                'placeholder' => 'Choisissez une sous-catégorie',
                 'attr' => ['class' => 'form-select']
             ])
-            ->add('brand', EntityType::class, ['required' => false,
+            ->add('brand', EntityType::class, [
+                'required' => false,
                 'class' => Brand::class,
                 'placeholder' => 'Choisissez une marque',
                 'attr' => ['class' => 'form-select',]
