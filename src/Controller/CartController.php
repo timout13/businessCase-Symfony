@@ -190,13 +190,18 @@ class CartController extends AbstractController
         $order = $ordersRepository->findBy([], ['id' => 'DESC'], ['limit' => 1]);
         foreach ($order as $value) {
             $orderId = $value->getId();
-            $dateToString = $value->getDateOrder()->format('Y-m-d H:i:s');
+            $dateToString = $value->getDateOrder()->format('d-m-Y');
             $orderLines = $productOrderRepository->findBy(['orders' => $orderId]);
+            $totalPrice=0;
+            foreach ($orderLines as $line){
+                $totalPrice+=$line->getPriceNow()*(float)$line->getQuantity();
+            }
         }
         return $this->render('cart/receipt.html.twig', [
             'orderLines' => $orderLines,
             'order' => $value,
-            'dateOrder' => $dateToString
+            'dateOrder' => $dateToString,
+            'totalPrice'=>$totalPrice
         ]);
     }
 }

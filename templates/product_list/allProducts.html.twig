@@ -8,60 +8,67 @@
 {% block body %}
 
 
-    <div class="container">
+    <div class="container pt-5">
         {% include 'parts/breadcrumbs.html.twig' %}
-
+        <div class="row gap-4 justify-content-center py-5">
+            {% for categorie in categories %}
+                <a class="col-md-3 border cat-card bg-success"
+                   href="{{ path('product_list', {'idCat':categorie.id, 'currentPage': 1, 'nbDisplayed': 2}) }}">
+                    <div>{{ categorie.label }}</div>
+                </a>
+            {% endfor %}
+        </div>
         <h1>Nos produits</h1>
         <div class="row gap-4 justify-content-center py-5">
             <div class="row ps-3 pt-3 g-2">
-            {% for produit in products %}
-                <div class="col-md-4 col-sm-12 col-12">
-                    <div class="p-card py-3 position-relative rounded-4 ">
-                        <a href="{{ path('cart_add', {'id': produit.id }) }}" class="cart-icon">
-                            <i class="fa-solid fa-cart-arrow-down align-middle fa-md "></i>
-                        </a>
-                        <a href="{{ path('detail', {'id': produit.id }) }}" class="p-card-content">
-                            <div class="img text-center">
-                                <img src="{{ produit.image }}"
-                                     class="img-fluid rounded-4"
-                                     width="200"
-                                     height="200" style="max-height: 200px">
-                            </div>
-                            <hr>
-                            <div class=" p-card-body">
-                                <div class="p-card-product-brand">{{ produit.brand }}</div>
-                                <p class="p-card-product-name">
-                                    {{ produit.name }}
-                                </p>
-                                <div class="text-start">
-                                    {% for i in range(1,5 ) %}
-                                        {% if i > produit.nbStar %}
-                                            <i class="fa-regular fa-star fa-2xs align-middle"></i>
-                                        {% else %}
-                                            <i class="fa-solid fa-star fa-2xs align-middle"></i>
-                                        {% endif %}
-                                    {% endfor %}
-                                    <span class="star-text">({{ produit.nbStar }})</span>
+                {% for produit in products %}
+                    <div class="col-md-4 col-sm-12 col-12">
+                        <div class="p-card py-3 position-relative rounded-4 ">
+                            <a href="{{ path('cart_add', {'id': produit.id }) }}" class="cart-icon">
+                                <i class="fa-solid fa-cart-arrow-down align-middle fa-md "></i>
+                            </a>
+                            <a href="{{ path('detail', {'id': produit.id }) }}" class="p-card-content">
+                                <div class="img text-center">
+                                    <img src="{{ produit.image }}"
+                                         class="img-fluid rounded-4"
+                                         width="200"
+                                         height="200" style="max-height: 200px">
+                                </div>
+                                <hr>
+                                <div class=" p-card-body">
+                                    <div class="p-card-product-brand">{{ produit.brand }}</div>
+                                    <p class="p-card-product-name">
+                                        {{ produit.name }}
+                                    </p>
+                                    <div class="text-start">
+                                        {% for i in range(1,5 ) %}
+                                            {% if i > produit.nbStar %}
+                                                <i class="fa-regular fa-star fa-2xs align-middle"></i>
+                                            {% else %}
+                                                <i class="fa-solid fa-star fa-2xs align-middle"></i>
+                                            {% endif %}
+                                        {% endfor %}
+                                        <span class="star-text">({{ produit.nbStar }})</span>
+
+                                    </div>
+
+                                    <p class="p-card-product-price">
+                                        {{ produit.price }} € <sup class="ttc">TTC</sup>
+                                    </p>
 
                                 </div>
-
-                                <p class="p-card-product-price">
-                                    {{ produit.price }} € <sup class="ttc">TTC</sup>
-                                </p>
-
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     </div>
-                </div>
 
 
-            {% endfor %}
+                {% endfor %}
 
-        </div>
-
-                </div>
             </div>
+
         </div>
+    </div>
+    </div>
     </div>
     </div>
 

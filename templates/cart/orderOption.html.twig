@@ -69,47 +69,46 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">Résumé de votre commande</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <p>Adresse de Livraison : {{ app.user.nbStreet }} {{ app.user.addressLine }}, {{ app.user.city }}, {{ app.user.postCode }}</p>
-                                <p>Moyen de paiement : <span id="payment_summary"></span></p>
+                                <p><span class="fw-bold">Adresse de Livraison : </span>{{ app.user.nbStreet }} {{ app.user.addressLine }}
+                                    , {{ app.user.city }}, {{ app.user.postCode }}</p>
+                                <p class="fw-bold">Moyen de paiement : <span class="fw-normal" id="payment_summary"></span></p>
                                 <hr>
-                                {% for productOrder in cart %}
-                                    <p></p>
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th scope="col">Nom</th>
-                                            <th scope="col">Quantité</th>
-                                            <th scope="col">Prix</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Nom</th>
+                                        <th scope="col">Quantité</th>
+                                        <th scope="col">Prix</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for productOrder in cart %}
                                         <tr>
                                             <td>{{ productOrder.product.name }}</td>
                                             <td class="text-center">{{ productOrder.quantity }}</td>
                                             <td class="ws-nowrap">{{ productOrder.product.price }} €</td>
                                         </tr>
-                                        </tbody>
-                                    </table>
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <p>PRIX HT :</p>
-                                            <p>TVA (20%) : </p>
-                                            <p>Livraison : </p>
-                                            <p>PRIX TOTAL :</p>
-                                        </div>
-                                        <div>
-                                            <p>{{ (price*0.8)|number_format(2) }} €</p>
-                                            <p>{{ (price*0.2)|number_format(2) }} €</p>
-                                            <p>gratuite</p>
-                                            <p>{{ price|number_format(2) }} €</p>
-                                        </div>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                <div class="d-flex justify-content-between p-chekout-card">
+                                    <div>
+                                        <p>PRIX HT :</p>
+                                        <p>TVA (20%) : </p>
+                                        <p>Livraison : </p>
+                                        <p>PRIX TOTAL :</p>
                                     </div>
-
-                                {% endfor %}
-
+                                    <div>
+                                        <p>{{ (price*0.8)|number_format(2) }} €</p>
+                                        <p>{{ (price*0.2)|number_format(2) }} €</p>
+                                        <p>gratuite</p>
+                                        <p>{{ price|number_format(2) }} €</p>
+                                    </div>
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>

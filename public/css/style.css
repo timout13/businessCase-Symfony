@@ -1,14 +1,19 @@
-:root{
+@import url('https://fonts.googleapis.com/css2?family=Yellowtail&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+:root {
     --light-green: #41916c;
-    --medium-green:#198754;
+    --medium-green: #198754;
     --dark-green: #1a4332;
 }
+
 /****************************** Body
 */
-main{
-    margin-top: 75px!important;
-    margin-bottom: 75px!important;
+main {
+    margin-top: 75px !important;
+    margin-bottom: 75px !important;
 }
+
 .mb-section {
     margin-bottom: 7%;
 }
@@ -17,7 +22,7 @@ ul {
     list-style-type: none;
 }
 
-.imgProduct{
+.imgProduct {
     height: auto;
     width: 100px;
 }
@@ -73,6 +78,7 @@ _______________________________*/
     background-color: #fff;
     border: 1px solid rgba(0, 0, 0, .125);
 }
+
 .cart-icon {
     position: absolute;
     background-color: #41916c;
@@ -89,52 +95,61 @@ _______________________________*/
     margin: inherit;
     box-shadow: 0px -5px 12px 4px black;
 }
-.p-card-content{
+
+.p-card-content {
     text-decoration: none;
     color: black;
 }
-.p-card-content:hover{
+
+.p-card-content:hover {
     color: #41916c;
 }
 
-.p-card-body{
+.p-card-body {
     padding: 0.5rem 1rem;
     border-top: solid 1px;
 }
 
-.p-card-product-brand{
+.p-card-product-brand {
     text-align: left;
     font-size: 14px;
     font-weight: 700;
 }
-.p-card-product-name{
+
+.p-card-product-name {
     text-align: left;
     font-size: 14px;
     max-height: 40px;
     overflow: hidden;
     margin-bottom: 0;
 }
-.p-card-product-price{
+
+.p-card-product-price {
     font-weight: 700;
 }
-.star-text{
+
+.star-text {
     font-size: 12px;
     font-style: italic;
 }
-.ttc{
+
+.ttc {
     font-size: 12px;
     font-style: italic;
 }
-.form-contact{
+
+.form-contact {
     color: white;
     font-weight: 700;
     background-color: #1c4332;
 }
-.form-save{
+
+.form-save {
     background-color: white;
     color: #1c4332;
 }
-.contact-form-label::after{
+
+.contact-form-label::after {
     position: absolute;
     content: '';
     width: 50%;
@@ -142,25 +157,31 @@ _______________________________*/
     background-color: #41916c;
     top: 50%;
     left: 100%;
-    transform: translate3d(20%,-50%,0);
+    transform: translate3d(20%, -50%, 0);
 }
-.account-form{
+
+.account-form {
     width: 600px;
 }
-.account-form>hr{
+
+.account-form > hr {
     opacity: 1;
     height: 3px;
 }
-.account-menu>a.active{
-    background-color: var(--light-green)!important;
-    color: white!important;
+
+.account-menu > a.active {
+    background-color: var(--light-green) !important;
+    color: white !important;
 }
-.account-menu>a{
-    color: black!important;
+
+.account-menu > a {
+    color: black !important;
 }
+
 p.account-text {
     margin: 0px 0 40px 0;
 }
+
 a.account-block-link {
     width: 340px;
     height: 340px;
@@ -174,6 +195,7 @@ a.account-block-link {
     color: white;
     box-shadow: 0px 0px 4px -1px grey;
 }
+
 a.account-block-link:hover {
     width: 340px;
     height: 340px;
@@ -181,30 +203,37 @@ a.account-block-link:hover {
     text-decoration: none;
     color: white;
 }
-.account-block>p{
+
+.account-block > p {
     font-size: 30px;
     font-weight: 700;
 }
-.account-block{
+
+.account-block {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
 }
-.account-block>i{
+
+.account-block > i {
     color: white;
     font-size: 3rem;
 }
+
 .p-accordion-button:not(.collapsed) {
     color: var(--dark-green);
     background-color: rgba(65, 145, 108, 0.17);
 }
-.p-accordion-button:focus{
+
+.p-accordion-button:focus {
     box-shadow: 0 0 0 0.15rem rgba(65, 145, 108, 0.56);
 }
+
 .p-accordion:not(.collapsed) {
     box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
 }
+
 #payment_payment_type_0::after {
     content: '';
     width: 84px;
@@ -216,6 +245,7 @@ a.account-block-link:hover {
     background-image: url(https://upload.wikimedia.org/wikipedia/commons/a/a4/Paypal_2014_logo.png);
     top: -5px;
 }
+
 #payment_payment_type_1::after {
     content: '';
     width: 97px;
@@ -228,18 +258,143 @@ a.account-block-link:hover {
     top: -8px;
     left: 62%;
 }
-.payment-radio>label,#payment_submit{
+
+.payment-radio > label, #payment_submit {
     display: none;
 }
-.ws-nowrap{
+
+.ws-nowrap {
     white-space: nowrap;
 }
-.modal-body>p{
+
+.modal-body > p {
     font-size: 16px;
 }
-.p-alert-light{
+
+.p-alert-light {
     box-shadow: 0px 1px 2px 0px #a6a6a6;
     padding: 10px 20px;
+}
+
+.p-chekout-card {
+    padding: 0.5rem;
+}
+
+.rea_margin {
+    margin-top: 10% !important;
+}
+
+.rea-h2::before {
+    display: inline-block;
+    content: "";
+    position: absolute;
+    width: 259px;
+    height: 180px;
+    bottom: -110px;
+    z-index: -1;
+    left: 0;
+
+    background: url("../images/index/bulle_poisson_gauche.png") no-repeat center;
+}
+
+.rea-h2::after {
+    display: inline-block;
+    content: "";
+    position: absolute;
+    width: 259px;
+    height: 180px;
+    bottom: -110px;
+    z-index: -1;
+    right: 0;
+
+    background: url("../images/index/bulle_poisson_droite.png") no-repeat center;
+}
+
+.rea_block {
+    padding-top: 80px;
+}
+
+.rea_block_mPaiement {
+    padding: 5% 0 5% 0;
+    box-shadow: 0px 5px 7px #dddddd;
+    width: 70%;
+}
+
+.rea_block_mPaiement::before {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 34px;
+    top: 0%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    background: url("../images/index/reassurance_safePaiement.png") no-repeat center;
+    z-index: 2;
+}
+
+.rea_block_mPaiement::after {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 34px;
+    top: 0%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    background-color: #ffffff;
+    z-index: 1;
+}
+
+.rea_block_ship {
+    padding: 85px 0 85px 0;
+    margin-inline-end: 60px;
+    margin-inline-start: 60px;
+    box-shadow: 0px 5px 7px #dddddd;
+}
+
+.rea_block_refound {
+    padding: 60px 0 60px 0;
+    margin-inline-end: 60px;
+    margin-inline-start: 60px;
+    box-shadow: 0px 5px 7px #dddddd;
+}
+
+.rea_block p {
+    margin-top: 102px;
+}
+
+.reassurance p {
+    margin-top: 35px;
+    font-weight: 700;
+}
+
+.reassurance strong {
+    color: #40916c;
+}
+
+.reassurance hr {
+    width: 50%;
+    margin: 0 0 0 25%;
+    border: 6px solid #40916c;
+    background-color: #40916c;
+}
+
+.rea_block_mPaiement,
+.rea_block_ship,
+.rea_block_refound {
+    border: 3px solid #40916c;
+}
+
+.detail-hr{
+    width: 50%;
+    height: 4px!important;
+    color: #034431;
+    opacity: 0.7;
+    box-shadow: 0px 2px 4px 0px grey;
+}
+
+.p-card-img{
+    width:auto;
+    height:200px;
 }
 @media (hover: hover) {
     /* when supported */
@@ -250,7 +405,8 @@ a.account-block-link:hover {
         right: 0;
         transition: 0.3s;
     }
-     .p-card:hover > .cart-icon {
+
+    .p-card:hover > .cart-icon {
 
         visibility: visible;
         opacity: 1;
@@ -258,12 +414,14 @@ a.account-block-link:hover {
         padding: 10px 10px 10px 10px;
         border-radius: 25px;
     }
+
     .cart-icon:hover {
         background-color: #1a4332;
         color: white;
         transition: 0.3s;
     }
 }
+
 /* End Hoover
 _______________________________*/
 /******************************
@@ -276,13 +434,32 @@ _______________________________*/
     }
 }
 
+@media screen and (min-width: 520px) and (max-width: 767px) {
+    #payment_payment_type_1::after {
+        left: 40%;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 990px) {
+    #payment_payment_type_1::after {
+        left: 72%;
+    }
+}
+
+@media screen and (min-width: 991px) and (max-width: 1200px) {
+    #payment_payment_type_1::after {
+        left: 66%;
+    }
+}
+
 @media screen and (max-width: 960px) {
     .footer-bg-p {
         padding-top: 15px;
     }
 }
+
 @media screen and (max-width: 768px) {
-    .account-form{
+    .account-form {
         width: 400px;
     }
 }
@@ -291,4 +468,88 @@ _______________________________*/
     .footer-bg-p {
         padding-top: 14px;
     }
+}
+
+@media screen and (max-width: 1320px) {
+    .rea-h2::before {
+        display: inline-block;
+        content: "";
+        position: absolute;
+        width: 259px;
+        height: 180px;
+        bottom: -110px;
+
+        z-index: -1;
+        left: 0;
+
+        background: url("../images/index/bulle_poisson_gauche.png") no-repeat center;
+    }
+
+    .rea-h2::after {
+        display: inline-block;
+        content: "";
+        position: absolute;
+        width: 259px;
+        height: 180px;
+        bottom: -110px;
+        z-index: -1;
+        right: 0;
+
+        background: url("../images/index/bulle_poisson_droite.png") no-repeat center;
+    }
+
+}
+
+@media screen and (max-width: 991px) {
+    .rea-h2::before {
+        display: none;
+        content: "";
+        position: absolute;
+        width: 259px;
+        height: 180px;
+        bottom: -60px;
+        z-index: -1;
+        right: 0;
+    }
+
+    .rea-h2::after {
+        display: none;
+        content: "";
+        position: absolute;
+        width: 259px;
+        height: 180px;
+        bottom: -60px;
+        z-index: -1;
+        left: 0;
+    }
+
+    .rea_block {
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .rea-h2::before {
+        display: none;
+        content: "";
+        position: absolute;
+        width: 259px;
+        height: 180px;
+        bottom: -60px;
+        z-index: -1;
+        right: 0;
+    }
+
+    .rea-h2::after {
+        display: none;
+        content: "";
+        position: absolute;
+        width: 259px;
+        height: 180px;
+        bottom: -60px;
+        background-color: blue;
+        z-index: -1;
+        left: 0;
+    }
+
 }

@@ -134,7 +134,7 @@ svg.searchBar-remove.open {
     font-size: 9px;
     font-weight: 900;
     color: white;
-    padding: 3px;
+    padding: 3px 7px;
 }
 
 @media screen and (max-width: 959px) {

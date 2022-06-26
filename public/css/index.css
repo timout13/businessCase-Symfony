@@ -25,7 +25,7 @@ h2 {
     position: relative;
 }
 
-h2::before {
+.h2-index::before {
     font-family: "Font Awesome 5 Free";
     content: "";
     font-weight: 900;
@@ -35,7 +35,7 @@ h2::before {
     left: 6%;
 }
 
-h2::after {
+.h2-index::after {
     font-family: "Font Awesome 5 Free";
     content: "";
     font-weight: 900;
@@ -54,19 +54,6 @@ h2::after {
 /* End H2
 _______________________________*/
 
-
-/****************************** Border
-*/
-
-.rea_block_mPaiement,
-.rea_block_ship,
-.rea_block_refound {
-    border: 3px solid #40916c;
-}
-
-/* End Border
-_______________________________*/
-
 /******************************
             Carousel
 *******************************/
@@ -75,14 +62,9 @@ _______________________________*/
 }
 
 .carousel .carousel-caption {
-    /* background-color: #1b4332; */
     left: 5%;
     text-align: left;
     width: 90%;
-}
-
-.carousel-gradient {
-    background-color: #1b4332;
 }
 
 .carousel .carousel-indicators button {
@@ -101,10 +83,6 @@ _______________________________*/
     background-color: rgb(255, 255, 255) !important;
 }
 
-.carousel .carousel-item {
-    background-color: #1b4332;
-}
-
 .carousel-block-text {
     padding: 20px 50px 20px 20px;
 }
@@ -112,19 +90,41 @@ _______________________________*/
 .carousel-block-btn {
     padding-right: 20%;
 }
-.p-d-flex{
-    display: flex!important;
-    justify-content: center!important;
+
+.p-d-flex {
+    display: flex !important;
+    justify-content: space-around !important;
+    flex-wrap: wrap;
 }
-.btn-index{
-    background: #d2a52a;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 25px;
-    color: white;
-    font-weight: 700;
-    font-size: 16px;
+
+.p-carousel-img {
+    height: calc(100vh - 75px);
+    transform: scale(1.5) translateX(16%);
 }
+
+.p-carousel-inner {
+    height: calc(100vh - 75px);
+}
+
+.p-carousel-caption > h2 {
+    font-family: 'Yellowtail', cursive;
+    font-size: 3.5rem !important;
+}
+
+.btn-home {
+    font-family: 'Yellowtail', cursive;
+    font-size: 1.5rem !important;
+}
+
+.p-carousel-caption > p {
+    font-size: 2rem;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.p-carousel-caption {
+    width: 40%;
+}
+
 /******************************
           End Carousel
 *******************************/
@@ -132,12 +132,13 @@ _______________________________*/
             QSN
 *******************************/
 
-.qsn{
+.qsn {
     background: none;
     margin-bottom: 0;
     padding-top: 5%;
     padding-bottom: 5%;
 }
+
 .qsn p {
     line-height: 2;
 }
@@ -182,7 +183,7 @@ _______________________________*/
 
 a.btn-home:hover {
     color: white;
-    background-color: black;
+    background-color: #1b4332;
 }
 
 .btn-home {
@@ -205,6 +206,7 @@ a.btn-home:hover {
     background-repeat: no-repeat;
     background-color: #1b4332;
     box-shadow: 0px 5px 7px #939393;
+
 }
 
 .vpm_block_text {
@@ -221,133 +223,23 @@ a.btn-home:hover {
 *******************************/
 
 /******************************
-          REASSURANCE
-*******************************/
-.rea_margin {
-    margin-top: 10% !important;
-}
-
-.rea-h2::before {
-    display: inline-block;
-    content: "";
-    position: absolute;
-    width: 259px;
-    height: 180px;
-    bottom: -110px;
-
-    background-color: red;
-    z-index: -1;
-    left: 0;
-
-    background: url("../images/index/bulle_poisson_gauche.png") no-repeat center;
-}
-
-.rea-h2::after {
-    display: inline-block;
-    content: "";
-    position: absolute;
-    width: 259px;
-    height: 180px;
-    bottom: -110px;
-    background-color: blue;
-    z-index: -1;
-    right: 0;
-
-    background: url("../images/index/bulle_poisson_droite.png") no-repeat center;
-}
-
-.rea_block {
-    padding-top: 80px;
-}
-
-.rea_block_mPaiement {
-    padding: 5% 0 5% 0;
-    box-shadow: 0px 5px 7px #dddddd;
-
-
-}
-
-.rea_block_mPaiement::before {
-    content: "";
-    position: absolute;
-    width: 30px;
-    height: 34px;
-    top: 0%;
-    left: 50%;
-    transform: translate3d(-50%, -50%, 0);
-    background-color: #0a53be;
-    background: url("../images/index/reassurance_safePaiement.png") no-repeat center;
-    z-index: 2;
-}
-
-.rea_block_mPaiement::after {
-    content: "";
-    position: absolute;
-    width: 100px;
-    height: 34px;
-    top: 0%;
-    left: 50%;
-    transform: translate3d(-50%, -50%, 0);
-    background-color: #ffffff;
-    z-index: 1;
-
-}
-
-.rea_block_ship {
-    padding: 85px 0 85px 0;
-    margin-inline-end: 60px;
-    margin-inline-start: 60px;
-    box-shadow: 0px 5px 7px #dddddd;
-}
-
-.rea_block_refound {
-    padding: 60px 0 60px 0;
-    margin-inline-end: 60px;
-    margin-inline-start: 60px;
-    box-shadow: 0px 5px 7px #dddddd;
-}
-
-.rea_block p {
-    margin-top: 102px;
-}
-
-.reassurance p {
-    margin-top: 35px;
-    font-weight: 700;
-}
-
-.reassurance strong {
-    color: #40916c;
-}
-
-.reassurance hr {
-    width: 50%;
-    margin: 0 0 0 25%;
-    border: 6px solid #40916c;
-    background-color: #40916c;
-}
-
-/******************************
-        End REASSURANCE
-*******************************/
-
-
-/******************************
           RESPONSIVE
 *******************************/
 
 @media screen and (min-width: 768px) {
-    .qsn{
+    .qsn {
         background-repeat: no-repeat;
         background-size: 15%;
         background-position: 99% 101%;
         background-image: url(../images/index/qsn_chien.png);
     }
+
     .h2-index::before {
         left: 20%;
         content: "\f1b0";
 
     }
+
     .h2-index::after {
         right: 20%;
         content: "\f1b0";
@@ -360,110 +252,73 @@ a.btn-home:hover {
         content: "\f1b0";
 
     }
+
     .h2-index::after {
         right: 28%;
         content: "\f1b0";
     }
 }
+
+@media screen and (min-width: 1024px) {
+    .qsn {
+        background-position: 99% 103%;
+        background-size: 15%;
+    }
+
+    .p-carousel-img {
+        transform: scale(1) translateX(-35%);
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .p-d-flex {
+        display: flex !important;
+        justify-content: space-around !important;
+        flex-wrap: wrap;
+        text-align: center !important;
+    }
+
+    .p-carousel-caption {
+        width: initial;
+        margin-bottom: 10px;
+    }
+
+}
+
 @media screen and (min-width: 1300px) {
     .h2-index::before {
         left: 30%;
         content: "\f1b0";
 
     }
+
     .h2-index::after {
         right: 30%;
         content: "\f1b0";
     }
 }
-@media screen and (min-width: 1024px) {
-    .qsn{
-        background-position: 99% 103%;
-        background-size: 15%;
+
+@media screen and (min-width: 1400px) {
+    .vpm {
+        background-size: 105%;
+        background-position-y: -91%;
+    }
+
+    .p-carousel-img {
+        transform: scale(1) translateX(-15%);
     }
 }
 
-@media screen and (max-width: 1320px) {
-    .rea-h2::before {
-        display: inline-block;
-        content: "";
-        position: absolute;
-        width: 259px;
-        height: 180px;
-        bottom: -110px;
-
-        z-index: -1;
-        left: 0;
-
-        background: url("../images/index/bulle_poisson_gauche.png") no-repeat center;
+@media screen and (min-width: 1200px) and (max-width: 1399px) {
+    .vpm {
+        background-size: 105%;
+        background-position-y: 219%;
     }
 
-    .rea-h2::after {
-        display: inline-block;
-        content: "";
-        position: absolute;
-        width: 259px;
-        height: 180px;
-        bottom: -110px;
-        z-index: -1;
-        right: 0;
-
-        background: url("../images/index/bulle_poisson_droite.png") no-repeat center;
+    .p-carousel-img {
+        height: calc(100vh - 75px);
+        transform: scale(1) translateX(-25%);
     }
-
-}
-
-@media screen and (max-width: 991px) {
-    .rea-h2::before {
-        display: none;
-        content: "";
-        position: absolute;
-        width: 259px;
-        height: 180px;
-        bottom: -60px;
-        z-index: -1;
-        right: 0;
-    }
-
-    .rea-h2::after {
-        display: none;
-        content: "";
-        position: absolute;
-        width: 259px;
-        height: 180px;
-        bottom: -60px;
-        z-index: -1;
-        left: 0;
-    }
-    .rea_block {
-        padding: 0;
-    }
-}
-
-@media screen and (max-width: 960px) {
-    .rea-h2::before {
-        display: none;
-        content: "";
-        position: absolute;
-        width: 259px;
-        height: 180px;
-        bottom: -60px;
-        z-index: -1;
-        right: 0;
-    }
-
-    .rea-h2::after {
-        display: none;
-        content: "";
-        position: absolute;
-        width: 259px;
-        height: 180px;
-        bottom: -60px;
-        background-color: blue;
-        z-index: -1;
-        left: 0;
-    }
-
 }
 
 @media screen and (max-width: 580px) {
