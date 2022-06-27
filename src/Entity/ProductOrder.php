@@ -13,7 +13,7 @@ class ProductOrder
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\ManyToOne(targetEntity: Products::class)]
+    #[ORM\ManyToOne(targetEntity: Products::class,cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false)]
     private $product;
 

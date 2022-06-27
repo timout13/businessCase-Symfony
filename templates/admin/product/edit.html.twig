@@ -4,10 +4,11 @@
 
 {% block body %}
     <h1>Edition du produit</h1>
+    <div class="d-flex justify-content-between mb-4">
+        <a href="{{ path('admin_product_index') }}" class="btn btn-dark">Retour</a>
 
+        {{ include('admin/product/_delete_form.html.twig') }}
+    </div>
     {{ include('admin/product/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
-    <a href="{{ path('admin_product_index') }}">Retour</a>
-
-    {{ include('admin/product/_delete_form.html.twig') }}
 {% endblock %}

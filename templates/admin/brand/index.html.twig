@@ -3,10 +3,11 @@
 {% block title %}Brand index{% endblock %}
 
 {% block body %}
-    <h1>Administration des Marques</h1>
-
-    <a href="{{ path('admin_brand_new') }}">Ajouter une marque</a>
-    <table class="table">
+    <div class="d-flex justify-content-between align-items-center flex-wrap mb-5">
+        <h1 class="mb-4">Administration des Marques</h1>
+        <a href="{{ path('admin_brand_new') }}" class="btn btn-success">Ajouter une marque</a>
+    </div>
+    <table class="table mt-4">
         <thead>
         <tr>
             <th>Id</th>
@@ -14,14 +15,13 @@
             <th>actions</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody class="align-middle">
         {% for brand in brands %}
             <tr>
                 <td>{{ brand.id }}</td>
                 <td>{{ brand.label }}</td>
                 <td>
-                    <a href="{{ path('admin_category_show', {'id': brand.id}) }}">Voir</a>
-                    <a href="{{ path('admin_brand_edit', {'id': brand.id}) }}">Editer</a>
+                    <a href="{{ path('admin_brand_edit', {'id': brand.id}) }}" class="btn btn-success">Editer</a>
                 </td>
             </tr>
         {% else %}

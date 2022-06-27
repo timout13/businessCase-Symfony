@@ -181,7 +181,6 @@ a.nav_link:hover{
 }
 .profil-btn-group{
     height: 50%;
-    width: 16%;
 }
 .profil-btn{
    padding-inline-start: 0;
@@ -194,6 +193,9 @@ a.nav_link:hover{
     max-width: 200px;
     height: 200px;
     border: 1px solid gray;
+}
+.p-admin-large-card{
+    box-shadow: 0px 1px 3px 0px grey;
 }
 @media screen and (min-width: 768px) {
     body {

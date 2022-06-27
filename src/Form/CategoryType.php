@@ -18,14 +18,14 @@ class CategoryType extends AbstractType
                 [
                     'label'=>'Nom de la catégorie',
                     'required'=>true,
-                    'attr'=>['class'=>'form-control']
+                    'attr'=>['class'=>'form-control mt-2 mb-3']
                 ]
             )
             ->add('cat_parent', EntityType::class,
                 [
                     'label'=>'Catégorie parente',
                     'class' => Category::class,
-                    'attr'=>['class'=>'form-control']
+                    'attr'=>['class'=>'form-control mt-2']
                 ]
             )
         ;

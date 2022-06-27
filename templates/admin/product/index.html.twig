@@ -19,17 +19,17 @@
                 <th>actions</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody class="align-middle">
             {% for product in products %}
                 <tr>
                     <td>{{ product.id }}</td>
                     <td>{{ product.name }}</td>
                     <td>{{ product.description }}</td>
                     <td class="admin-product-img text-center"><img src="{{ product.image }}" class="p-mw-200px"></td>
-                    <td>{{ product.price }}</td>
+                    <td class="ws-nowrap">{{ product.price }} €</td>
                     <td>
-                        <a href="{{path('detail', {'id': product.id}) }}">Voir</a>
-                        <a href="{{ path('admin_product_edit', {'id': product.id}) }}">Editer</a>
+                        <a href="{{path('detail', {'id': product.id}) }}" class="btn btn-success">Voir</a>
+                        <a href="{{ path('admin_product_edit', {'id': product.id}) }}" class="mt-2 btn btn-success">Editer</a>
                     </td>
                 </tr>
             {% else %}

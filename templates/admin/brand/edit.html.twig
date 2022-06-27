@@ -3,11 +3,13 @@
 {% block title %}Edit Brand{% endblock %}
 
 {% block body %}
-    <h1>Edition de la marque</h1>
+    <h1 class="mb-4">Edition de la marque</h1>
 
+    <div class="d-flex justify-content-between mb-4">
+        <a href="{{ path('admin_brand_index') }}" class="btn btn-dark">Retour</a>
+        {{ include('admin/brand/_delete_form.html.twig') }}
+    </div>
     {{ include('admin/brand/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
-    <a href="{{ path('admin_brand_index') }}">Retour</a>
 
-    {{ include('admin/brand/_delete_form.html.twig') }}
 {% endblock %}

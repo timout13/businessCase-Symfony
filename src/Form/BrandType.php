@@ -17,7 +17,7 @@ class BrandType extends AbstractType
                 [
                     'label'=>'Nom de la marque',
                     'required'=>true,
-                    'attr'=>['class'=>'form-control']
+                    'attr'=>['class'=>'form-control mt-2 mb-3']
                 ]
             )
         ;

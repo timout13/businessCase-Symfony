@@ -18,7 +18,7 @@ class Brand
     #[ORM\Column(type: 'string', length: 255)]
     private $label;
 
-    #[ORM\OneToMany(mappedBy: 'brand', targetEntity: Products::class)]
+    #[ORM\OneToMany(mappedBy: 'brand', targetEntity: Products::class, cascade: ['remove'])]
     private $products;
 
     public function __construct()
