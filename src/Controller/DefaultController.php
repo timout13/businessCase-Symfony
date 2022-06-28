@@ -7,8 +7,11 @@ use App\Form\ContactFormType;
 use App\Form\SearchType;
 use App\Form\UserType;
 use App\Repository\CategoryRepository;
+use App\Repository\OrdersRepository;
+use App\Repository\ProductOrderRepository;
 use App\Repository\ProductsRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -105,7 +108,32 @@ class DefaultController extends AbstractController
     }
 
     #[Route('/account/order', name: 'account_order')]
-    public function order_account() {
-        return $this->render('default/account_order.html.twig');
+    #[IsGranted('ROLE_USER')]
+    public function order_account(OrdersRepository $ordersRepository, ProductOrderRepository $productOrderRepository) {
+        //Get the last order of the User in db
+        $order = $ordersRepository->findBy(['user' => $this->getUser()], ['id' => 'DESC'], ['limit' => 1]);
+        if ($order) {
+            //Change date format & Get total price of the order
+            foreach ($order as $value) {
+                $orderId = $value->getId();
+                $dateToString = $value->getDateOrder()->format('d-m-Y');
+                $orderLines = $productOrderRepository->findBy(['orders' => $orderId]);
+                $totalPrice = 0;
+                foreach ($orderLines as $line) {
+                    $totalPrice += $line->getPriceNow() * (float)$line->getQuantity();
+                }
+            }
+        } else {
+            $orderLines='';
+            $value='';
+            $dateToString='';
+            $totalPrice='';
+        }
+        return $this->render('default/account_order.html.twig', [
+            'orderLines' => $orderLines,
+            'orders' => $value,
+            'dateOrder' => $dateToString,
+            'totalPrice' => $totalPrice
+        ]);
     }
 }

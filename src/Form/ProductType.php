@@ -18,83 +18,82 @@ use Symfony\Component\Validator\Constraints\File;
 
 class ProductType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    public function buildForm(FormBuilderInterface $builder, array $options): void {
         $builder
             ->add('name', TextType::class,
                 [
-                    'label'=>'Nom du produit',
-                    'required'=>true,
-                    'attr'=>['class'=>'form-control mb-3']
+                    'label' => 'Nom du produit',
+                    'required' => true,
+                    'attr' => ['class' => 'form-control mb-3']
                 ]
             )
             ->add('description', TextareaType::class,
                 [
-                    'label'=>'Description',
-                    'required'=>true,
-                    'attr'=>['class'=>'form-control mb-3']
+                    'label' => 'Description',
+                    'required' => true,
+                    'attr' => ['class' => 'form-control mb-3']
                 ])
-            ->add('image',FileType::class,
+            ->add('image', FileType::class,
                 [
-                'label'=>'Upload d\'une image',
-                'required'=>false,
-                'mapped'=>false,
-                'constraints'=> [
-                    new File([
-                        'maxSize'=>'1024K',
-                        'mimeTypes'=>[
-                            'image/png',
-                            'image/jpg',
-                        ],
-                        'mimeTypesMessage'=>'Veuillez ajouter une image png ou jpg',
-                    ])
-                ],
-                'attr'=>['class'=>'form-control mb-3']
+                    'label' => 'Upload d\'une image',
+                    'required' => false,
+                    'mapped' => false,
+                    'constraints' => [
+                        new File([
+                            'maxSize' => '1024k',
+                            'maxSizeMessage' => 'Le fichier est trop lourd. Veuillez ne pas dépasser {{ limit }} {{ suffix }}.',
+                            'mimeTypes' => [
+                                'image/png',
+                                'image/jpg',
+                                'image/webp',
+                            ],
+                            'mimeTypesMessage' => 'Veuillez ajouter une image png, jpg ou webp.',
+                        ])
+                    ],
+                    'attr' => ['class' => 'form-control mb-3']
                 ]
             )
             ->add('price', NumberType::class,
                 [
-                    'label'=>'Prix',
-                    'required'=>true,
-                    'attr'=>['class'=>'form-control mb-3']
+                    'label' => 'Prix',
+                    'required' => true,
+                    'attr' => ['class' => 'form-control mb-3']
                 ]
             )
             ->add('nbStar', NumberType::class,
                 [
-                    'label'=>'Nombre d\'étoiles',
-                    'attr'=>['class'=>'form-control mb-3']
+                    'label' => 'Nombre d\'étoiles',
+                    'attr' => ['class' => 'form-control mb-3']
                 ])
             ->add('available', CheckboxType::class,
                 [
-                    'label'=>'Disponible',
-                    'required'=>false,
-                    'attr'=>['class'=>'form-check mb-3']
+                    'label' => 'Disponible',
+                    'required' => false,
+                    'attr' => ['class' => 'form-check mb-3']
                 ]
             )
             ->add('flagship', CheckboxType::class,
                 [
-                    'label'=>'Afficher sur la page d\'accueil',
-                    'required'=>false,
-                    'attr'=>['class'=>'form-check mb-3']
+                    'label' => 'Afficher sur la page d\'accueil',
+                    'required' => false,
+                    'attr' => ['class' => 'form-check mb-3']
                 ]
             )
             ->add('category', EntityType::class,
                 [
-                    'label'=>'Catégorie du produit',
+                    'label' => 'Catégorie du produit',
                     'class' => Category::class,
-                    'attr'=>['class'=>'form-select mb-3']
-                ] )
+                    'attr' => ['class' => 'form-select mb-3']
+                ])
             ->add('brand', EntityType::class,
                 [
-                    'label'=>'Marque du produit',
+                    'label' => 'Marque du produit',
                     'class' => Brand::class,
-                    'attr'=>['class'=>'form-select mb-3']
-                ])
-        ;
+                    'attr' => ['class' => 'form-select mb-3']
+                ]);
     }
 
-    public function configureOptions(OptionsResolver $resolver): void
-    {
+    public function configureOptions(OptionsResolver $resolver): void {
         $resolver->setDefaults([
             'data_class' => Products::class,
         ]);

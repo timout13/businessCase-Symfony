@@ -31,7 +31,6 @@ class ProductListController extends AbstractController
         $products = '';
         if ($form->isSubmitted() && $form->isValid()) {
             $filter = $form->getData();
-
             $products = $productsRepository->search($filter, $currentPage, $nbDisplayed);
 
         } else {

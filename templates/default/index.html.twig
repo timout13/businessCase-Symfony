@@ -103,7 +103,7 @@
                                             </a>
                                             <a href="{{ path('detail', {'id': produit.id }) }}" class="p-card-content">
                                                 <div class="img">
-                                                    <img src="{{ produit.image }}"
+                                                    <img src="{{ asset('images/products/' ~ produit.image) }}"
                                                          class="rounded-4 p-card-img">
                                                 </div>
                                                 <hr>

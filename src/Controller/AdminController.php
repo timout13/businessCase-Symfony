@@ -10,6 +10,8 @@ use App\Form\CategoryType;
 use App\Form\ProductType;
 use App\Repository\BrandRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\OrdersRepository;
+use App\Repository\ProductOrderRepository;
 use App\Repository\ProductsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -32,6 +34,14 @@ class AdminController extends AbstractController
         ]);
     }
 
+    #[Route('/order', name: 'order_index', methods: ['GET'])]
+    public function order_index(OrdersRepository $ordersRepository, ProductOrderRepository $productOrderRepository): Response {
+        return $this->render('admin/order/index.html.twig', [
+            'orders'=>$ordersRepository->findAll(),
+            'productOrders'=>$productOrderRepository->findAll()
+        ]);
+    }
+
     #[Route('/category', name: 'category_index', methods: ['GET'])]
     public function category_index(CategoryRepository $categoryRepository): Response {
         return $this->render('admin/category/index.html.twig', [
@@ -41,10 +51,12 @@ class AdminController extends AbstractController
 
     #[Route('/category/new', name: 'category_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response {
+        //Create new  Category object & get the data of the form
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
 
+        //Prepare and send data to the db
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($category);
             $entityManager->flush();
@@ -152,29 +164,35 @@ class AdminController extends AbstractController
     }
     #[Route('/product/new', name: 'product_new', methods: ['GET', 'POST'])]
     public function product_new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response {
+        //Create Product object & get the data from the form
         $product = new Products();
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
+        //Form is good ? image configuration : '' ;
         if ($form->isSubmitted() && $form->isValid()) {
-            // Upload img
+            //Get image
             $productImg = $form->get('image')->getData();
+
+            //Image renaming
             if ($productImg) {
                 $originalFilename = pathinfo($productImg->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFilename = $slugger->slug($originalFilename);
                 $newFilename = $safeFilename.'-'.uniqid().'.'.$productImg->guessExtension();
 
+                //Move the image with the parameter in config/routes/services.yaml
                 try {
                     $productImg->move(
                         $this->getParameter('product_img'),
                         $newFilename
                     );
                 } catch (FileException $e){
-
                 }
+                //Set the new path of the image product
                 $product->setImage($newFilename);
             }
 
+            //Generate piled queries & send in the order
             $entityManager->persist($product);
             $entityManager->flush();
 
@@ -186,29 +204,38 @@ class AdminController extends AbstractController
             'form' => $form,
         ]);
     }
+
     #[Route('/product/{id}/edit', name: 'product_edit', methods: ['GET', 'POST'])]
     public function product_edit(Request $request, Products $products, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response {
+        //Get the form data
         $form = $this->createForm(ProductType::class, $products);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Upload img
+
+            //If the img has changed, upload the new one
             $productImg = $form->get('image')->getData();
+
+            //Image renaming
             if ($productImg) {
                 $originalFilename = pathinfo($productImg->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFilename = $slugger->slug($originalFilename);
                 $newFilename = $safeFilename.'-'.uniqid().'.'.$productImg->guessExtension();
 
+                //Move the image with the parameter in config/routes/services.yaml
                 try {
                     $productImg->move(
                         $this->getParameter('product_img'),
                         $newFilename
                     );
                 } catch (FileException $e){
-
                 }
+
+                //Set the new path of the image product
                 $products->setImage($newFilename);
             }
+
+            //Generate piled queries & send in the order
             $entityManager->persist($products);
             $entityManager->flush();
 
@@ -222,6 +249,7 @@ class AdminController extends AbstractController
     }
     #[Route('/product/{id}', name: 'product_delete', methods: ['POST'])]
     public function product_delete(Request $request, Products $products, EntityManagerInterface $entityManager): Response {
+        //Verify the id between the product we send and the db
         if ($this->isCsrfTokenValid('delete' . $products->getId(), $request->request->get('_token'))) {
             $entityManager->remove($products);
             $entityManager->flush();

@@ -49,7 +49,6 @@ class ProductsRepository extends ServiceEntityRepository
     public function search($filter, $currentPage, $nbDisplayed) {
         $query = $this->createQueryBuilder('p')->leftJoin('p.category', 'category');
 
-
         if(!is_null($filter['searchBar'])){
             $query->where('p.name LIKE :name')
                 ->orWhere('p.description LIKE :name')

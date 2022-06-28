@@ -3,9 +3,10 @@
 {% block title %}New Brand{% endblock %}
 
 {% block body %}
-    <h1>Création d'une nouvelle marque</h1>
-
+    <div class="d-flex justify-content-between align-items-center flex-wrap mb-5">
+        <h1>Création d'une nouvelle marque</h1>
+        <a href="{{ path('admin_brand_index') }}" class="btn btn-dark">Retour</a>
+    </div>
     {{ include('admin/brand/_form.html.twig') }}
 
-    <a href="{{ path('admin_brand_index') }}">Retour</a>
 {% endblock %}

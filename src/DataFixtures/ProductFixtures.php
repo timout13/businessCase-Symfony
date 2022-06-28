@@ -17,7 +17,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $whiskasPateeChat->setBrand($this->getReference(BrandFixtures::WHISKAS_REFERENCE));
         $whiskasPateeChat->setCategory($this->getReference(CategoryFixtures::FELINNOURRITURE_REFERENCE));
         $whiskasPateeChat->setdescription('Chez WHISKAS®, nous vous aidons à nourrir votre chat à chaque étape de sa vie, avec des repas qu\'il aimera instinctivement.');
-        $whiskasPateeChat->setImage('https://s3-eu-west-1.amazonaws.com/w3.cdn.gpd/fr.whiskas.12/large_whiskas-junior-volaille-x12-en-gelee-637359487585710674.png');
+        $whiskasPateeChat->setImage('whiskas_croquette.png');
         $whiskasPateeChat->setPrice(5.99);
         $whiskasPateeChat->setNbStar(4);
         $whiskasPateeChat->setAvailable(true);
@@ -28,7 +28,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $purinaPateeChat->setBrand($this->getReference(BrandFixtures::PURINA_REFERENCE));
         $purinaPateeChat->setCategory($this->getReference(CategoryFixtures::FELINNOURRITURE_REFERENCE));
         $purinaPateeChat->setdescription('Chez Purina®, nous vous aidons à nourrir votre chat à chaque étape de sa vie, avec des repas qu\'il aimera instinctivement.');
-        $purinaPateeChat->setImage('https://s3-eu-west-1.amazonaws.com/w3.cdn.gpd/fr.whiskas.12/large_whiskas-junior-volaille-x12-en-gelee-637359487585710674.png');
+        $purinaPateeChat->setImage('purina_patee.webp');
         $purinaPateeChat->setPrice(5.99);
         $purinaPateeChat->setNbStar(4);
         $purinaPateeChat->setAvailable(true);
@@ -39,7 +39,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $purinaCroquetteChat->setBrand($this->getReference(BrandFixtures::PURINA_REFERENCE));
         $purinaCroquetteChat->setCategory($this->getReference(CategoryFixtures::FELINCROQ_REFERENCE));
         $purinaCroquetteChat->setdescription('Quand le chat atteint l’âge adulte, il est nécessaire de lui servir une alimentation qui comble ses besoins nutritionnels.');
-        $purinaCroquetteChat->setImage('https://www.croquetteland.com/on/demandware.static/-/Sites-croquetteland-master/default/dwdab73d9d/18645-CONF/0_full.jpg');
+        $purinaCroquetteChat->setImage('purina_croquette.webp');
         $purinaCroquetteChat->setPrice(34.99);
         $purinaCroquetteChat->setNbStar(5);
         $purinaCroquetteChat->setAvailable(true);
@@ -50,7 +50,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $ankaJouetChat->setBrand($this->getReference(BrandFixtures::ANKA_REFERENCE));
         $ankaJouetChat->setCategory($this->getReference(CategoryFixtures::FELINJOUET_REFERENCE));
         $ankaJouetChat->setdescription('Jouet avec organe sonore imitant le piaillement d\'un oiseau.Au contact de la patte du chat, l\'organe sonore se met en route (s\'arrête au bout de quelques secondes jusqu\'au prochain contact). Des heures d\'amusement pour votre chat ou chaton !');
-        $ankaJouetChat->setImage('https://www.croquetteland.com/on/demandware.static/-/Sites-croquetteland-master/default/dwdab73d9d/18645-CONF/0_full.jpg');
+        $ankaJouetChat->setImage('anka_char.jpg');
         $ankaJouetChat->setPrice(6.95);
         $ankaJouetChat->setNbStar(3);
         $ankaJouetChat->setAvailable(true);
@@ -61,7 +61,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $edgarCooperCroqChien->setBrand($this->getReference(BrandFixtures::EDGARDANDCOOPER_REFERENCE));
         $edgarCooperCroqChien->setCategory($this->getReference(CategoryFixtures::CANIDE_REFERENCE));
         $edgarCooperCroqChien->setdescription('Des aliments savoureux avec un maximum de viande fraîche. Des aliments naturels et savoureux bons pour eux, bien pour nous et notre planète.');
-        $edgarCooperCroqChien->setImage('https://www.animalis.com/media/catalog/product/cache/85f240ca63119a4567716628ae715af2/4/6/46554_835237.jpg');
+        $edgarCooperCroqChien->setImage('edgardCooper.jpg');
         $edgarCooperCroqChien->setPrice(23.95);
         $edgarCooperCroqChien->setNbStar(5);
         $edgarCooperCroqChien->setAvailable(true);
@@ -72,7 +72,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $frolicCroqChien->setBrand($this->getReference(BrandFixtures::FROLIC_REFERENCE));
         $frolicCroqChien->setCategory($this->getReference(CategoryFixtures::CANIDENOURRITURE_REFERENCE));
         $frolicCroqChien->setdescription('Ces croquettes Frolic® sont préparées avec du bœuf frais et sont si savoureuses que votre chien ne pourra plus s\'en passer. Simplement irrésistible !');
-        $frolicCroqChien->setImage('https://frolic.fr/app/uploads/Frolic_Adulte_Complet_Boeuf.png');
+        $frolicCroqChien->setImage('Frolic_Adulte_Complet_Boeuf.png');
         $frolicCroqChien->setPrice(3.92);
         $frolicCroqChien->setNbStar(2);
         $frolicCroqChien->setAvailable(true);
@@ -83,7 +83,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $tetraNourPoisson->setBrand($this->getReference(BrandFixtures::TETRA_REFERENCE));
         $tetraNourPoisson->setCategory($this->getReference(CategoryFixtures::POISSON_REFERENCE));
         $tetraNourPoisson->setdescription('Est composé de plus de 40 substances importantes .Des ingrédients de grande qualité rigoureusement sélectionnés avec apport garanti en vitamines, minéraux et oligo-éléments, pour une alimentation saine et équilibrée.');
-        $tetraNourPoisson->setImage('https://www.animalis.com/media/catalog/product/cache/85f240ca63119a4567716628ae715af2/6/0/6083_009794.jpg');
+        $tetraNourPoisson->setImage('tetra_poisson.jpg');
         $tetraNourPoisson->setPrice(18.50);
         $tetraNourPoisson->setNbStar(4);
         $tetraNourPoisson->setAvailable(true);
@@ -94,7 +94,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $paradisioNourRongeur->setBrand($this->getReference(BrandFixtures::PARADISIO_REFERENCE));
         $paradisioNourRongeur->setCategory($this->getReference(CategoryFixtures::RONGEUR_REFERENCE));
         $paradisioNourRongeur->setdescription('Avec ce mélange complet spécialement étudié pour les jeunes lapins, vous n\'aurez aucune crainte de mauvaise alimentation.');
-        $paradisioNourRongeur->setImage('https://www.animalis.com/media/catalog/product/cache/85f240ca63119a4567716628ae715af2/5/7/5796_032741_1.jpg');
+        $paradisioNourRongeur->setImage('paradisio.jpg');
         $paradisioNourRongeur->setPrice(5.50);
         $paradisioNourRongeur->setNbStar(4);
         $paradisioNourRongeur->setAvailable(true);
@@ -105,7 +105,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $paradisioNourVolatile->setBrand($this->getReference(BrandFixtures::PARADISIO_REFERENCE));
         $paradisioNourVolatile->setCategory($this->getReference(CategoryFixtures::VOLATILE_REFERENCE));
         $paradisioNourVolatile->setdescription('Ce mélange paradisio spécialement étudié pour les canaris convient en alimentation principale. Il les ravira d\'autant plus qu\'il contient leur graine favorite : le millet !');
-        $paradisioNourVolatile->setImage('https://www.animalis.com/media/catalog/product/cache/85f240ca63119a4567716628ae715af2/1/4/1449_044209_1.jpg');
+        $paradisioNourVolatile->setImage('paradisio_melange.jpg');
         $paradisioNourVolatile->setPrice(3.95);
         $paradisioNourVolatile->setNbStar(2);
         $paradisioNourVolatile->setAvailable(true);

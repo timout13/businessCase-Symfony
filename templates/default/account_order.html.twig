@@ -6,13 +6,59 @@
         {% include 'parts/breadcrumbs.html.twig' %}
         <div class="d-flex justify-content-around">
             <div class="d-flex justify-content-center align-items-start my-5 flex-wrap gap-5">
-                <div class="nav flex-column nav-pills me-3 account-menu" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <a class="nav-link border {{ (app.request.get('_route')=='account_detail') ? 'active' : '' }}" href="{{ path('account_detail') }}">Détails du compte</a>
-                    <a class="nav-link border {{ (app.request.get('_route')=='account_order') ? 'active' : '' }}" href="{{ path('account_order') }}">Mes commandes</a>
+                <div class="nav flex-column nav-pills me-3 account-menu" id="v-pills-tab" role="tablist"
+                     aria-orientation="vertical">
+                    <a class="nav-link border {{ (app.request.get('_route')=='account_detail') ? 'active' : '' }}"
+                       href="{{ path('account_detail') }}">Détails du compte</a>
+                    <a class="nav-link border {{ (app.request.get('_route')=='account_order') ? 'active' : '' }}"
+                       href="{{ path('account_order') }}">Mes commandes</a>
                 </div>
                 <div class="">
                     <p class="account-text h3">Mes commandes :</p>
 
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">État</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for order in orders %}
+                        <tr>
+                            <th scope="row">{{ order.id }}</th>
+                            <td>{{ order.date_order }}</td>
+                            <td>{{ order.status }}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <table class="table mb-0">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Produit</th>
+                                        <th scope="col">Prix</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    {% if orders %}
+
+                    {% else %}
+                        <p class="h2">Vous n'avez de commandes.</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
